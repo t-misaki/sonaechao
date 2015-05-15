@@ -1,0 +1,225 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.example.misakitatsuya.hello_world.hijo"
+    android:id="@+id/in">
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ホーム"
+        android:id="@+id/homeb"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="39dp" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="非常食"
+        android:id="@+id/hijob"
+        android:layout_alignTop="@+id/homeb"
+        android:layout_toLeftOf="@+id/karoributton"
+        android:layout_toRightOf="@+id/homeb"
+        android:layout_toEndOf="@+id/homeb" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="備蓄品"
+        android:id="@+id/bichikub"
+        android:layout_alignTop="@+id/hijob"
+        android:layout_toRightOf="@+id/hijob"
+        android:layout_toLeftOf="@+id/okasibutton"
+        android:layout_toStartOf="@+id/okasibutton" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="設定"
+        android:id="@+id/settingb"
+        android:layout_alignTop="@+id/bichikub"
+        android:layout_alignRight="@+id/textView17"
+        android:layout_alignEnd="@+id/textView17" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="非常食・備蓄品(防災グッズ)"
+        android:id="@+id/textView12"
+        android:textSize="25dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="もしもの時の備えを事前にチェックしよう！"
+        android:id="@+id/textView17"
+        android:layout_below="@+id/textView12"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="主食"
+        android:id="@+id/textView24"
+        android:textSize="25dp"
+        android:layout_below="@+id/textView17"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="※1週間21食分必要"
+        android:id="@+id/textView25"
+        android:layout_alignBottom="@+id/textView24"
+        android:layout_toRightOf="@+id/homeb"
+        android:layout_toEndOf="@+id/homeb" />
+
+    <ImageButton
+        android:layout_width="80dp"
+        android:layout_height="90dp"
+        android:id="@+id/ImageButton"
+        android:src="@drawable/retoruto_gohan"
+        android:layout_below="@+id/textView24"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <ImageButton
+        android:layout_width="80dp"
+        android:layout_height="90dp"
+        android:id="@+id/kandumebutton"
+        android:src="@drawable/kandume"
+        android:layout_below="@+id/textView25"
+        android:layout_toLeftOf="@+id/freazedry_button"
+        android:layout_toStartOf="@+id/freazedry_button" />
+
+    <ImageButton
+        android:layout_width="80dp"
+        android:layout_height="90dp"
+        android:id="@+id/kanmenbutton"
+        android:src="@drawable/kanmen"
+        android:layout_below="@+id/textView25"
+        android:layout_toRightOf="@+id/kandumebutton"
+        android:layout_toEndOf="@+id/kandumebutton" />
+
+    <ImageButton
+        android:layout_width="80dp"
+        android:layout_height="90dp"
+        android:id="@+id/kanpanbutton"
+        android:src="@drawable/kanpan"
+        android:layout_alignTop="@+id/kanmenbutton"
+        android:layout_toRightOf="@+id/kanmenbutton"
+        android:layout_toEndOf="@+id/kanmenbutton" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="主菜"
+        android:id="@+id/textView26"
+        android:textSize="25dp"
+        android:layout_below="@+id/ImageButton"
+        android:layout_alignLeft="@+id/textView12"
+        android:layout_alignStart="@+id/textView12" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="※1週間21食分必要"
+        android:id="@+id/textView27"
+        android:layout_alignBottom="@+id/textView26"
+        android:layout_alignLeft="@+id/textView25"
+        android:layout_alignStart="@+id/textView25" />
+
+    <ImageButton
+        android:layout_width="80dp"
+        android:layout_height="90dp"
+        android:id="@+id/kandumebutton2"
+        android:src="@drawable/kandume"
+        android:layout_below="@+id/textView26"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <ImageButton
+        android:layout_width="80dp"
+        android:layout_height="90dp"
+        android:id="@+id/retorutobutton"
+        android:src="@drawable/retoruto"
+        android:layout_below="@+id/textView27"
+        android:layout_toRightOf="@+id/kandumebutton2"
+        android:layout_toEndOf="@+id/kandumebutton2" />
+
+    <ImageButton
+        android:layout_width="80dp"
+        android:layout_height="90dp"
+        android:id="@+id/freazedry_button"
+        android:src="@drawable/furizu_dorai"
+        android:layout_below="@+id/textView27"
+        android:layout_toRightOf="@+id/retorutobutton"
+        android:layout_toEndOf="@+id/retorutobutton" />
+
+    <ImageButton
+        android:layout_width="80dp"
+        android:layout_height="90dp"
+        android:id="@+id/imageButton9"
+        android:layout_alignTop="@+id/freazedry_button"
+        android:layout_toRightOf="@+id/freazedry_button"
+        android:layout_toEndOf="@+id/freazedry_button" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="その他"
+        android:id="@+id/textView28"
+        android:textSize="25dp"
+        android:layout_below="@+id/kandumebutton2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <ImageButton
+        android:layout_width="80dp"
+        android:layout_height="90dp"
+        android:id="@+id/mizu_button"
+        android:layout_below="@+id/textView28"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:src="@drawable/mizu" />
+
+    <ImageButton
+        android:layout_width="80dp"
+        android:layout_height="90dp"
+        android:id="@+id/pokaributton"
+        android:src="@drawable/pokari_hunmatu"
+        android:layout_alignTop="@+id/mizu_button"
+        android:layout_toRightOf="@+id/mizu_button"
+        android:layout_toEndOf="@+id/mizu_button" />
+
+    <ImageButton
+        android:layout_width="80dp"
+        android:layout_height="90dp"
+        android:id="@+id/karoributton"
+        android:src="@drawable/karori_meito"
+        android:layout_alignTop="@+id/okasibutton"
+        android:layout_toLeftOf="@+id/okasibutton"
+        android:layout_toStartOf="@+id/okasibutton" />
+
+    <ImageButton
+        android:layout_width="80dp"
+        android:layout_height="90dp"
+        android:id="@+id/okasibutton"
+        android:src="@drawable/okasi"
+        android:layout_below="@+id/textView28"
+        android:layout_alignLeft="@+id/kanpanbutton"
+        android:layout_alignStart="@+id/kanpanbutton" />
+
+</RelativeLayout>
