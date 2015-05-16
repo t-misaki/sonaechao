@@ -24,10 +24,9 @@
         android:layout_height="wrap_content"
         android:text="非常食"
         android:id="@+id/hijob"
-        android:layout_alignTop="@+id/homeb"
-        android:layout_toLeftOf="@+id/karoributton"
-        android:layout_toRightOf="@+id/homeb"
-        android:layout_toEndOf="@+id/homeb" />
+        android:layout_below="@+id/mizu_button"
+        android:layout_toRightOf="@+id/textView24"
+        android:layout_toEndOf="@+id/textView24" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -36,7 +35,6 @@
         android:text="備蓄品"
         android:id="@+id/bichikub"
         android:layout_alignTop="@+id/hijob"
-        android:layout_toRightOf="@+id/hijob"
         android:layout_toLeftOf="@+id/okasibutton"
         android:layout_toStartOf="@+id/okasibutton" />
 
@@ -47,8 +45,8 @@
         android:text="設定"
         android:id="@+id/settingb"
         android:layout_alignTop="@+id/bichikub"
-        android:layout_alignRight="@+id/textView17"
-        android:layout_alignEnd="@+id/textView17" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -70,21 +68,12 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="主食"
+        android:text="食べ物"
         android:id="@+id/textView24"
         android:textSize="25dp"
         android:layout_below="@+id/textView17"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="※1週間21食分必要"
-        android:id="@+id/textView25"
-        android:layout_alignBottom="@+id/textView24"
-        android:layout_toRightOf="@+id/homeb"
-        android:layout_toEndOf="@+id/homeb" />
 
     <ImageButton
         android:layout_width="80dp"
@@ -100,16 +89,16 @@
         android:layout_height="90dp"
         android:id="@+id/kandumebutton"
         android:src="@drawable/kandume"
-        android:layout_below="@+id/textView25"
-        android:layout_toLeftOf="@+id/freazedry_button"
-        android:layout_toStartOf="@+id/freazedry_button" />
+        android:layout_alignTop="@+id/ImageButton"
+        android:layout_toRightOf="@+id/ImageButton"
+        android:layout_toEndOf="@+id/ImageButton" />
 
     <ImageButton
         android:layout_width="80dp"
         android:layout_height="90dp"
         android:id="@+id/kanmenbutton"
         android:src="@drawable/kanmen"
-        android:layout_below="@+id/textView25"
+        android:layout_alignTop="@+id/kandumebutton"
         android:layout_toRightOf="@+id/kandumebutton"
         android:layout_toEndOf="@+id/kandumebutton" />
 
@@ -122,104 +111,86 @@
         android:layout_toRightOf="@+id/kanmenbutton"
         android:layout_toEndOf="@+id/kanmenbutton" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="主菜"
-        android:id="@+id/textView26"
-        android:textSize="25dp"
-        android:layout_below="@+id/ImageButton"
-        android:layout_alignLeft="@+id/textView12"
-        android:layout_alignStart="@+id/textView12" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="※1週間21食分必要"
-        android:id="@+id/textView27"
-        android:layout_alignBottom="@+id/textView26"
-        android:layout_alignLeft="@+id/textView25"
-        android:layout_alignStart="@+id/textView25" />
-
     <ImageButton
         android:layout_width="80dp"
         android:layout_height="90dp"
         android:id="@+id/kandumebutton2"
         android:src="@drawable/kandume"
-        android:layout_below="@+id/textView26"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/ImageButton" />
 
     <ImageButton
         android:layout_width="80dp"
         android:layout_height="90dp"
         android:id="@+id/retorutobutton"
         android:src="@drawable/retoruto"
-        android:layout_below="@+id/textView27"
-        android:layout_toRightOf="@+id/kandumebutton2"
-        android:layout_toEndOf="@+id/kandumebutton2" />
+        android:layout_below="@+id/kandumebutton"
+        android:layout_alignLeft="@+id/kandumebutton"
+        android:layout_alignStart="@+id/kandumebutton" />
 
     <ImageButton
         android:layout_width="80dp"
         android:layout_height="90dp"
         android:id="@+id/freazedry_button"
         android:src="@drawable/furizu_dorai"
-        android:layout_below="@+id/textView27"
-        android:layout_toRightOf="@+id/retorutobutton"
-        android:layout_toEndOf="@+id/retorutobutton" />
-
-    <ImageButton
-        android:layout_width="80dp"
-        android:layout_height="90dp"
-        android:id="@+id/imageButton9"
-        android:layout_alignTop="@+id/freazedry_button"
-        android:layout_toRightOf="@+id/freazedry_button"
-        android:layout_toEndOf="@+id/freazedry_button" />
+        android:layout_below="@+id/kandumebutton"
+        android:layout_toRightOf="@+id/kandumebutton"
+        android:layout_toEndOf="@+id/kandumebutton" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="その他"
+        android:text="水"
         android:id="@+id/textView28"
         android:textSize="25dp"
-        android:layout_below="@+id/kandumebutton2"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_above="@+id/mizu_button"
+        android:layout_alignLeft="@+id/settingb"
+        android:layout_alignStart="@+id/settingb" />
 
     <ImageButton
         android:layout_width="80dp"
         android:layout_height="90dp"
         android:id="@+id/mizu_button"
-        android:layout_below="@+id/textView28"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:src="@drawable/mizu" />
+        android:src="@drawable/mizu"
+        android:layout_above="@+id/homeb"
+        android:layout_alignRight="@+id/textView12"
+        android:layout_alignEnd="@+id/textView12" />
 
     <ImageButton
         android:layout_width="80dp"
         android:layout_height="90dp"
-        android:id="@+id/pokaributton"
-        android:src="@drawable/pokari_hunmatu"
-        android:layout_alignTop="@+id/mizu_button"
-        android:layout_toRightOf="@+id/mizu_button"
-        android:layout_toEndOf="@+id/mizu_button" />
+        android:id="@+id/rinyubutton"
+        android:src="@drawable/rinyu"
+        android:layout_below="@+id/retorutobutton"
+        android:layout_toRightOf="@+id/karoributton"
+        android:layout_toEndOf="@+id/karoributton" />
 
     <ImageButton
         android:layout_width="80dp"
         android:layout_height="90dp"
         android:id="@+id/karoributton"
         android:src="@drawable/karori_meito"
-        android:layout_alignTop="@+id/okasibutton"
-        android:layout_toLeftOf="@+id/okasibutton"
-        android:layout_toStartOf="@+id/okasibutton" />
+        android:layout_below="@+id/kandumebutton2"
+        android:layout_alignLeft="@+id/textView12"
+        android:layout_alignStart="@+id/textView12" />
 
     <ImageButton
         android:layout_width="80dp"
         android:layout_height="90dp"
         android:id="@+id/okasibutton"
         android:src="@drawable/okasi"
-        android:layout_below="@+id/textView28"
-        android:layout_alignLeft="@+id/kanpanbutton"
-        android:layout_alignStart="@+id/kanpanbutton" />
+        android:layout_below="@+id/kanpanbutton"
+        android:layout_toRightOf="@+id/kanmenbutton"
+        android:layout_toEndOf="@+id/kanmenbutton" />
+
+    <ImageButton
+        android:layout_width="80dp"
+        android:layout_height="90dp"
+        android:id="@+id/konamilkbutton"
+        android:layout_below="@+id/freazedry_button"
+        android:layout_toRightOf="@+id/rinyubutton"
+        android:layout_toEndOf="@+id/rinyubutton"
+        android:src="@drawable/konamilk" />
 
 </RelativeLayout>

@@ -18,7 +18,15 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import java.util.Calendar;
+
 public class bichiku extends Activity {
+
+    final Calendar calendar = Calendar.getInstance();
+    int mYear = calendar.get(calendar.YEAR);
+    int mMonth = calendar.get(calendar.MONTH);
+    int mDay = calendar.get(calendar.DAY_OF_MONTH);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +81,23 @@ public class bichiku extends Activity {
                         SharedPreferences.Editor e = pref.edit();
                         e.putInt("pop1num", i);
                         e.commit();
+
+                        //最終入力日の日付記録
+                        SharedPreferences lastyearprefb = getSharedPreferences("lastyearprefb", MODE_PRIVATE);
+                        SharedPreferences lastmonthprefb = getSharedPreferences("lastmonthprefb", MODE_PRIVATE);
+                        SharedPreferences lastdayprefb = getSharedPreferences("lastdayprefb", MODE_PRIVATE);
+
+                        SharedPreferences.Editor lastyear_eb = lastyearprefb.edit();
+                        SharedPreferences.Editor lastmonth_eb = lastmonthprefb.edit();
+                        SharedPreferences.Editor lastday_eb = lastdayprefb.edit();
+
+                        lastyear_eb.putInt("lastyear_keyb", mYear);
+                        lastmonth_eb.putInt("lastmonth_keyb", mMonth);
+                        lastday_eb.putInt("lastday_keyb",mDay);
+
+                        lastyear_eb.commit();
+                        lastmonth_eb.commit();
+                        lastday_eb.commit();
                     }
                 });
                 alert.setView(viw);
@@ -128,6 +153,23 @@ public class bichiku extends Activity {
                                 SharedPreferences.Editor e = pref.edit();
                                 e.putInt("pop2num",i);
                                 e.commit();
+
+                                //最終入力日の日付記録
+                                SharedPreferences lastyearprefb = getSharedPreferences("lastyearprefb", MODE_PRIVATE);
+                                SharedPreferences lastmonthprefb = getSharedPreferences("lastmonthprefb", MODE_PRIVATE);
+                                SharedPreferences lastdayprefb = getSharedPreferences("lastdayprefb", MODE_PRIVATE);
+
+                                SharedPreferences.Editor lastyear_eb = lastyearprefb.edit();
+                                SharedPreferences.Editor lastmonth_eb = lastmonthprefb.edit();
+                                SharedPreferences.Editor lastday_eb = lastdayprefb.edit();
+
+                                lastyear_eb.putInt("lastyear_keyb", mYear);
+                                lastmonth_eb.putInt("lastmonth_keyb", mMonth);
+                                lastday_eb.putInt("lastday_keyb",mDay);
+
+                                lastyear_eb.commit();
+                                lastmonth_eb.commit();
+                                lastday_eb.commit();
                             }
                         });
                 alert.setView(viw);
@@ -184,6 +226,23 @@ public class bichiku extends Activity {
                         SharedPreferences.Editor e = pref.edit();
                         e.putInt("pop3num",i);
                         e.commit();
+
+                        //最終入力日の日付記録
+                        SharedPreferences lastyearprefb = getSharedPreferences("lastyearprefb", MODE_PRIVATE);
+                        SharedPreferences lastmonthprefb = getSharedPreferences("lastmonthprefb", MODE_PRIVATE);
+                        SharedPreferences lastdayprefb = getSharedPreferences("lastdayprefb", MODE_PRIVATE);
+
+                        SharedPreferences.Editor lastyear_eb = lastyearprefb.edit();
+                        SharedPreferences.Editor lastmonth_eb = lastmonthprefb.edit();
+                        SharedPreferences.Editor lastday_eb = lastdayprefb.edit();
+
+                        lastyear_eb.putInt("lastyear_keyb", mYear);
+                        lastmonth_eb.putInt("lastmonth_keyb", mMonth);
+                        lastday_eb.putInt("lastday_keyb",mDay);
+
+                        lastyear_eb.commit();
+                        lastmonth_eb.commit();
+                        lastday_eb.commit();
                     }
                 });
 
@@ -241,6 +300,23 @@ public class bichiku extends Activity {
                         SharedPreferences.Editor e = pref.edit();
                         e.putInt("pop4num",i);
                         e.commit();
+
+                        //最終入力日の日付記録
+                        SharedPreferences lastyearprefb = getSharedPreferences("lastyearprefb", MODE_PRIVATE);
+                        SharedPreferences lastmonthprefb = getSharedPreferences("lastmonthprefb", MODE_PRIVATE);
+                        SharedPreferences lastdayprefb = getSharedPreferences("lastdayprefb", MODE_PRIVATE);
+
+                        SharedPreferences.Editor lastyear_eb = lastyearprefb.edit();
+                        SharedPreferences.Editor lastmonth_eb = lastmonthprefb.edit();
+                        SharedPreferences.Editor lastday_eb = lastdayprefb.edit();
+
+                        lastyear_eb.putInt("lastyear_keyb", mYear);
+                        lastmonth_eb.putInt("lastmonth_keyb", mMonth);
+                        lastday_eb.putInt("lastday_keyb",mDay);
+
+                        lastyear_eb.commit();
+                        lastmonth_eb.commit();
+                        lastday_eb.commit();
                     }
                 });
 
@@ -298,6 +374,23 @@ public class bichiku extends Activity {
                         SharedPreferences.Editor e = pref.edit();
                         e.putInt("pop5num",i);
                         e.commit();
+
+                        //最終入力日の日付記録
+                        SharedPreferences lastyearprefb = getSharedPreferences("lastyearprefb", MODE_PRIVATE);
+                        SharedPreferences lastmonthprefb = getSharedPreferences("lastmonthprefb", MODE_PRIVATE);
+                        SharedPreferences lastdayprefb = getSharedPreferences("lastdayprefb", MODE_PRIVATE);
+
+                        SharedPreferences.Editor lastyear_eb = lastyearprefb.edit();
+                        SharedPreferences.Editor lastmonth_eb = lastmonthprefb.edit();
+                        SharedPreferences.Editor lastday_eb = lastdayprefb.edit();
+
+                        lastyear_eb.putInt("lastyear_keyb", mYear);
+                        lastmonth_eb.putInt("lastmonth_keyb", mMonth);
+                        lastday_eb.putInt("lastday_keyb",mDay);
+
+                        lastyear_eb.commit();
+                        lastmonth_eb.commit();
+                        lastday_eb.commit();
                     }
                 });
 
@@ -355,6 +448,23 @@ public class bichiku extends Activity {
                         SharedPreferences.Editor e = pref.edit();
                         e.putInt("pop6num",i);
                         e.commit();
+
+                        //最終入力日の日付記録
+                        SharedPreferences lastyearprefb = getSharedPreferences("lastyearprefb", MODE_PRIVATE);
+                        SharedPreferences lastmonthprefb = getSharedPreferences("lastmonthprefb", MODE_PRIVATE);
+                        SharedPreferences lastdayprefb = getSharedPreferences("lastdayprefb", MODE_PRIVATE);
+
+                        SharedPreferences.Editor lastyear_eb = lastyearprefb.edit();
+                        SharedPreferences.Editor lastmonth_eb = lastmonthprefb.edit();
+                        SharedPreferences.Editor lastday_eb = lastdayprefb.edit();
+
+                        lastyear_eb.putInt("lastyear_keyb", mYear);
+                        lastmonth_eb.putInt("lastmonth_keyb", mMonth);
+                        lastday_eb.putInt("lastday_keyb",mDay);
+
+                        lastyear_eb.commit();
+                        lastmonth_eb.commit();
+                        lastday_eb.commit();
                     }
                 });
 
@@ -412,6 +522,23 @@ public class bichiku extends Activity {
                         SharedPreferences.Editor e = pref.edit();
                         e.putInt("pop7num",i);
                         e.commit();
+
+                        //最終入力日の日付記録
+                        SharedPreferences lastyearprefb = getSharedPreferences("lastyearprefb", MODE_PRIVATE);
+                        SharedPreferences lastmonthprefb = getSharedPreferences("lastmonthprefb", MODE_PRIVATE);
+                        SharedPreferences lastdayprefb = getSharedPreferences("lastdayprefb", MODE_PRIVATE);
+
+                        SharedPreferences.Editor lastyear_eb = lastyearprefb.edit();
+                        SharedPreferences.Editor lastmonth_eb = lastmonthprefb.edit();
+                        SharedPreferences.Editor lastday_eb = lastdayprefb.edit();
+
+                        lastyear_eb.putInt("lastyear_keyb", mYear);
+                        lastmonth_eb.putInt("lastmonth_keyb", mMonth);
+                        lastday_eb.putInt("lastday_keyb",mDay);
+
+                        lastyear_eb.commit();
+                        lastmonth_eb.commit();
+                        lastday_eb.commit();
                     }
                 });
 
@@ -469,6 +596,23 @@ public class bichiku extends Activity {
                         SharedPreferences.Editor e = pref.edit();
                         e.putInt("pop8num",i);
                         e.commit();
+
+                        //最終入力日の日付記録
+                        SharedPreferences lastyearprefb = getSharedPreferences("lastyearprefb", MODE_PRIVATE);
+                        SharedPreferences lastmonthprefb = getSharedPreferences("lastmonthprefb", MODE_PRIVATE);
+                        SharedPreferences lastdayprefb = getSharedPreferences("lastdayprefb", MODE_PRIVATE);
+
+                        SharedPreferences.Editor lastyear_eb = lastyearprefb.edit();
+                        SharedPreferences.Editor lastmonth_eb = lastmonthprefb.edit();
+                        SharedPreferences.Editor lastday_eb = lastdayprefb.edit();
+
+                        lastyear_eb.putInt("lastyear_keyb", mYear);
+                        lastmonth_eb.putInt("lastmonth_keyb", mMonth);
+                        lastday_eb.putInt("lastday_keyb",mDay);
+
+                        lastyear_eb.commit();
+                        lastmonth_eb.commit();
+                        lastday_eb.commit();
                     }
                 });
 

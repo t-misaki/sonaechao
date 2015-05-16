@@ -81,23 +81,40 @@ public class hijo extends ActionBarActivity {
                         SharedPreferences.Editor e = pref.edit();
                         e.putInt("retorutogohan_num", i);
                         e.commit();
+
+                        //最終入力日の日付記録
+                        SharedPreferences lastyearpref = getSharedPreferences("lastyearpref", MODE_PRIVATE);
+                        SharedPreferences lastmonthpref = getSharedPreferences("lastmonthpref", MODE_PRIVATE);
+                        SharedPreferences lastdaypref = getSharedPreferences("lastdaypref", MODE_PRIVATE);
+
+                        SharedPreferences.Editor lastyear_e = lastyearpref.edit();
+                        SharedPreferences.Editor lastmonth_e = lastmonthpref.edit();
+                        SharedPreferences.Editor lastday_e = lastdaypref.edit();
+
+                        lastyear_e.putInt("lastyear_key", mYear);
+                        lastmonth_e.putInt("lastmonth_key", mMonth);
+                        lastday_e.putInt("lastday_key", mDay);
+
+                        lastyear_e.commit();
+                        lastmonth_e.commit();
+                        lastday_e.commit();
                     }
                 });
                 alert.setView(viw);
                 alert.show();
 
                 // カレンダー設定
-                SharedPreferences year_pref1 = getSharedPreferences("year_pref1",MODE_PRIVATE);
+                SharedPreferences year_pref1 = getSharedPreferences("year_pref1", MODE_PRIVATE);
                 SharedPreferences month_pref1 = getSharedPreferences("month_pref1", MODE_PRIVATE);
                 SharedPreferences day_pref1 = getSharedPreferences("day_pref1", MODE_PRIVATE);
-                int limit_year1 = year_pref1.getInt("year_key1",mYear);
-                int limit_month1 = month_pref1.getInt("month_key1",mMonth);
-                int limit_day1 = day_pref1.getInt("day_key1",mDay);
-                String limit_str1 = "賞味期限は" + String.valueOf(limit_year1) + "年" + String.valueOf(limit_month1+1) + "月" + String.valueOf(limit_day1) + "日です。";
-                TextView limit_tv1 = (TextView)viw.findViewById(R.id.textView30);
+                int limit_year1 = year_pref1.getInt("year_key1", mYear);
+                int limit_month1 = month_pref1.getInt("month_key1", mMonth);
+                int limit_day1 = day_pref1.getInt("day_key1", mDay);
+                String limit_str1 = "賞味期限は" + String.valueOf(limit_year1) + "年" + String.valueOf(limit_month1 + 1) + "月" + String.valueOf(limit_day1) + "日です。";
+                TextView limit_tv1 = (TextView) viw.findViewById(R.id.textView30);
                 limit_tv1.setText(limit_str1);
 
-                Button calbutton = (Button)viw.findViewById(R.id.calbutton);
+                Button calbutton = (Button) viw.findViewById(R.id.calbutton);
                 calbutton.setOnClickListener(new OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -109,7 +126,7 @@ public class hijo extends ActionBarActivity {
                                 mMonth = monthOfYear;
                                 mDay = dayOfMonth;
 
-                                SharedPreferences year_pref1 = getSharedPreferences("year_pref1",MODE_PRIVATE);
+                                SharedPreferences year_pref1 = getSharedPreferences("year_pref1", MODE_PRIVATE);
                                 SharedPreferences month_pref1 = getSharedPreferences("month_pref1", MODE_PRIVATE);
                                 SharedPreferences day_pref1 = getSharedPreferences("day_pref1", MODE_PRIVATE);
 
@@ -123,11 +140,11 @@ public class hijo extends ActionBarActivity {
                                 month_e1.commit();
                                 day_e1.commit();
 
-                                int limit_year1 = year_pref1.getInt("year_key1",mYear);
-                                int limit_month1 = month_pref1.getInt("month_key1",mMonth);
-                                int limit_day1 = day_pref1.getInt("day_key1",mDay);
-                                String limit_str1 = "賞味期限は" + String.valueOf(limit_year1) + "年" + String.valueOf(limit_month1+1) + "月" + String.valueOf(limit_day1) + "日です。";
-                                TextView limit_tv1 = (TextView)viw.findViewById(R.id.textView30);
+                                int limit_year1 = year_pref1.getInt("year_key1", mYear);
+                                int limit_month1 = month_pref1.getInt("month_key1", mMonth);
+                                int limit_day1 = day_pref1.getInt("day_key1", mDay);
+                                String limit_str1 = "賞味期限は" + String.valueOf(limit_year1) + "年" + String.valueOf(limit_month1 + 1) + "月" + String.valueOf(limit_day1) + "日です。";
+                                TextView limit_tv1 = (TextView) viw.findViewById(R.id.textView30);
                                 limit_tv1.setText(limit_str1);
                             }
                         };
@@ -190,6 +207,23 @@ public class hijo extends ActionBarActivity {
                         SharedPreferences.Editor e = pref.edit();
                         e.putInt("kandume_num", i);
                         e.commit();
+
+                        //最終入力日の日付記録
+                        SharedPreferences lastyearpref = getSharedPreferences("lastyearpref", MODE_PRIVATE);
+                        SharedPreferences lastmonthpref = getSharedPreferences("lastmonthpref", MODE_PRIVATE);
+                        SharedPreferences lastdaypref = getSharedPreferences("lastdaypref", MODE_PRIVATE);
+
+                        SharedPreferences.Editor lastyear_e = lastyearpref.edit();
+                        SharedPreferences.Editor lastmonth_e = lastmonthpref.edit();
+                        SharedPreferences.Editor lastday_e = lastdaypref.edit();
+
+                        lastyear_e.putInt("lastyear_key", mYear);
+                        lastmonth_e.putInt("lastmonth_key", mMonth);
+                        lastday_e.putInt("lastday_key",mDay);
+
+                        lastyear_e.commit();
+                        lastmonth_e.commit();
+                        lastday_e.commit();
                     }
                 });
                 alert.setView(viw);
@@ -298,6 +332,23 @@ public class hijo extends ActionBarActivity {
                         SharedPreferences.Editor e = pref.edit();
                         e.putInt("kanmen_num", i);
                         e.commit();
+
+                        //最終入力日の日付記録
+                        SharedPreferences lastyearpref = getSharedPreferences("lastyearpref", MODE_PRIVATE);
+                        SharedPreferences lastmonthpref = getSharedPreferences("lastmonthpref", MODE_PRIVATE);
+                        SharedPreferences lastdaypref = getSharedPreferences("lastdaypref", MODE_PRIVATE);
+
+                        SharedPreferences.Editor lastyear_e = lastyearpref.edit();
+                        SharedPreferences.Editor lastmonth_e = lastmonthpref.edit();
+                        SharedPreferences.Editor lastday_e = lastdaypref.edit();
+
+                        lastyear_e.putInt("lastyear_key", mYear);
+                        lastmonth_e.putInt("lastmonth_key", mMonth);
+                        lastday_e.putInt("lastday_key",mDay);
+
+                        lastyear_e.commit();
+                        lastmonth_e.commit();
+                        lastday_e.commit();
                     }
                 });
                 alert.setView(viw);
@@ -406,6 +457,23 @@ public class hijo extends ActionBarActivity {
                         SharedPreferences.Editor e = pref.edit();
                         e.putInt("kanpan_num", i);
                         e.commit();
+
+                        //最終入力日の日付記録
+                        SharedPreferences lastyearpref = getSharedPreferences("lastyearpref", MODE_PRIVATE);
+                        SharedPreferences lastmonthpref = getSharedPreferences("lastmonthpref", MODE_PRIVATE);
+                        SharedPreferences lastdaypref = getSharedPreferences("lastdaypref", MODE_PRIVATE);
+
+                        SharedPreferences.Editor lastyear_e = lastyearpref.edit();
+                        SharedPreferences.Editor lastmonth_e = lastmonthpref.edit();
+                        SharedPreferences.Editor lastday_e = lastdaypref.edit();
+
+                        lastyear_e.putInt("lastyear_key", mYear);
+                        lastmonth_e.putInt("lastmonth_key", mMonth);
+                        lastday_e.putInt("lastday_key",mDay);
+
+                        lastyear_e.commit();
+                        lastmonth_e.commit();
+                        lastday_e.commit();
                     }
                 });
                 alert.setView(viw);
@@ -514,6 +582,23 @@ public class hijo extends ActionBarActivity {
                         SharedPreferences.Editor e = pref.edit();
                         e.putInt("kandume2_num", i);
                         e.commit();
+
+                        //最終入力日の日付記録
+                        SharedPreferences lastyearpref = getSharedPreferences("lastyearpref", MODE_PRIVATE);
+                        SharedPreferences lastmonthpref = getSharedPreferences("lastmonthpref", MODE_PRIVATE);
+                        SharedPreferences lastdaypref = getSharedPreferences("lastdaypref", MODE_PRIVATE);
+
+                        SharedPreferences.Editor lastyear_e = lastyearpref.edit();
+                        SharedPreferences.Editor lastmonth_e = lastmonthpref.edit();
+                        SharedPreferences.Editor lastday_e = lastdaypref.edit();
+
+                        lastyear_e.putInt("lastyear_key", mYear);
+                        lastmonth_e.putInt("lastmonth_key", mMonth);
+                        lastday_e.putInt("lastday_key",mDay);
+
+                        lastyear_e.commit();
+                        lastmonth_e.commit();
+                        lastday_e.commit();
                     }
                 });
                 alert.setView(viw);
@@ -622,6 +707,23 @@ public class hijo extends ActionBarActivity {
                         SharedPreferences.Editor e = pref.edit();
                         e.putInt("retoruto_num", i);
                         e.commit();
+
+                        //最終入力日の日付記録
+                        SharedPreferences lastyearpref = getSharedPreferences("lastyearpref", MODE_PRIVATE);
+                        SharedPreferences lastmonthpref = getSharedPreferences("lastmonthpref", MODE_PRIVATE);
+                        SharedPreferences lastdaypref = getSharedPreferences("lastdaypref", MODE_PRIVATE);
+
+                        SharedPreferences.Editor lastyear_e = lastyearpref.edit();
+                        SharedPreferences.Editor lastmonth_e = lastmonthpref.edit();
+                        SharedPreferences.Editor lastday_e = lastdaypref.edit();
+
+                        lastyear_e.putInt("lastyear_key", mYear);
+                        lastmonth_e.putInt("lastmonth_key", mMonth);
+                        lastday_e.putInt("lastday_key",mDay);
+
+                        lastyear_e.commit();
+                        lastmonth_e.commit();
+                        lastday_e.commit();
                     }
                 });
                 alert.setView(viw);
@@ -730,6 +832,23 @@ public class hijo extends ActionBarActivity {
                         SharedPreferences.Editor e = pref.edit();
                         e.putInt("freaze_num", i);
                         e.commit();
+
+                        //最終入力日の日付記録
+                        SharedPreferences lastyearpref = getSharedPreferences("lastyearpref", MODE_PRIVATE);
+                        SharedPreferences lastmonthpref = getSharedPreferences("lastmonthpref", MODE_PRIVATE);
+                        SharedPreferences lastdaypref = getSharedPreferences("lastdaypref", MODE_PRIVATE);
+
+                        SharedPreferences.Editor lastyear_e = lastyearpref.edit();
+                        SharedPreferences.Editor lastmonth_e = lastmonthpref.edit();
+                        SharedPreferences.Editor lastday_e = lastdaypref.edit();
+
+                        lastyear_e.putInt("lastyear_key", mYear);
+                        lastmonth_e.putInt("lastmonth_key", mMonth);
+                        lastday_e.putInt("lastday_key",mDay);
+
+                        lastyear_e.commit();
+                        lastmonth_e.commit();
+                        lastday_e.commit();
                     }
                 });
                 alert.setView(viw);
@@ -838,6 +957,23 @@ public class hijo extends ActionBarActivity {
                         SharedPreferences.Editor e = pref.edit();
                         e.putInt("mizu_num", i);
                         e.commit();
+
+                        //最終入力日の日付記録
+                        SharedPreferences lastyearpref = getSharedPreferences("lastyearpref", MODE_PRIVATE);
+                        SharedPreferences lastmonthpref = getSharedPreferences("lastmonthpref", MODE_PRIVATE);
+                        SharedPreferences lastdaypref = getSharedPreferences("lastdaypref", MODE_PRIVATE);
+
+                        SharedPreferences.Editor lastyear_e = lastyearpref.edit();
+                        SharedPreferences.Editor lastmonth_e = lastmonthpref.edit();
+                        SharedPreferences.Editor lastday_e = lastdaypref.edit();
+
+                        lastyear_e.putInt("lastyear_key", mYear);
+                        lastmonth_e.putInt("lastmonth_key", mMonth);
+                        lastday_e.putInt("lastday_key",mDay);
+
+                        lastyear_e.commit();
+                        lastmonth_e.commit();
+                        lastday_e.commit();
                     }
                 });
                 alert.setView(viw);
@@ -897,22 +1033,22 @@ public class hijo extends ActionBarActivity {
             }
         });
 
-        //ポカリポップ
-        ImageButton btnpokari = (ImageButton) findViewById(R.id.pokaributton);
-        btnpokari.setOnClickListener(new OnClickListener() {
+        //離乳食ポップ
+        ImageButton btnrinyu = (ImageButton) findViewById(R.id.rinyubutton);
+        btnrinyu.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
                 // アラートダイアログの出力
                 AlertDialog.Builder alert = new AlertDialog.Builder(hijo.this);
-                alert.setTitle("ポカリスエット（粉末）");
+                alert.setTitle("離乳食");
                 LayoutInflater inflater = LayoutInflater.from(hijo.this);
-                final View viw = inflater.inflate(R.layout.activity_pokari, null);
+                final View viw = inflater.inflate(R.layout.activity_rinyu, null);
                 // プリファレンスの生成
                 SharedPreferences pref = getSharedPreferences("Preferences", MODE_PRIVATE);
                 int i = 0;
-                i = pref.getInt("pokari_num", i);
+                i = pref.getInt("rinyu_num", i);
                 String str = String.valueOf(i);
                 // 必ずView変数で生成したデータを使うこと
-                EditText et = (EditText) viw.findViewById(R.id.pokaritext);
+                EditText et = (EditText) viw.findViewById(R.id.rinyutext);
                 // 値をいれる
                 et.setText(str);
 
@@ -938,13 +1074,30 @@ public class hijo extends ActionBarActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         SharedPreferences pref = getSharedPreferences("Preferences", MODE_PRIVATE);
-                        EditText et = (EditText) viw.findViewById(R.id.pokaritext);
+                        EditText et = (EditText) viw.findViewById(R.id.rinyutext);
                         String str = et.getText().toString();
                         int i = Integer.parseInt(str);
 
                         SharedPreferences.Editor e = pref.edit();
-                        e.putInt("pokari_num", i);
+                        e.putInt("rinyu_num", i);
                         e.commit();
+
+                        //最終入力日の日付記録
+                        SharedPreferences lastyearpref = getSharedPreferences("lastyearpref", MODE_PRIVATE);
+                        SharedPreferences lastmonthpref = getSharedPreferences("lastmonthpref", MODE_PRIVATE);
+                        SharedPreferences lastdaypref = getSharedPreferences("lastdaypref", MODE_PRIVATE);
+
+                        SharedPreferences.Editor lastyear_e = lastyearpref.edit();
+                        SharedPreferences.Editor lastmonth_e = lastmonthpref.edit();
+                        SharedPreferences.Editor lastday_e = lastdaypref.edit();
+
+                        lastyear_e.putInt("lastyear_key", mYear);
+                        lastmonth_e.putInt("lastmonth_key", mMonth);
+                        lastday_e.putInt("lastday_key",mDay);
+
+                        lastyear_e.commit();
+                        lastmonth_e.commit();
+                        lastday_e.commit();
                     }
                 });
                 alert.setView(viw);
@@ -1052,6 +1205,23 @@ public class hijo extends ActionBarActivity {
                         SharedPreferences.Editor e = pref.edit();
                         e.putInt("karori_num", i);
                         e.commit();
+
+                        //最終入力日の日付記録
+                        SharedPreferences lastyearpref = getSharedPreferences("lastyearpref", MODE_PRIVATE);
+                        SharedPreferences lastmonthpref = getSharedPreferences("lastmonthpref", MODE_PRIVATE);
+                        SharedPreferences lastdaypref = getSharedPreferences("lastdaypref", MODE_PRIVATE);
+
+                        SharedPreferences.Editor lastyear_e = lastyearpref.edit();
+                        SharedPreferences.Editor lastmonth_e = lastmonthpref.edit();
+                        SharedPreferences.Editor lastday_e = lastdaypref.edit();
+
+                        lastyear_e.putInt("lastyear_key", mYear);
+                        lastmonth_e.putInt("lastmonth_key", mMonth);
+                        lastday_e.putInt("lastday_key",mDay);
+
+                        lastyear_e.commit();
+                        lastmonth_e.commit();
+                        lastday_e.commit();
                     }
                 });
                 alert.setView(viw);
@@ -1159,6 +1329,23 @@ public class hijo extends ActionBarActivity {
                         SharedPreferences.Editor e = pref.edit();
                         e.putInt("okasi_num", i);
                         e.commit();
+
+                        //最終入力日の日付記録
+                        SharedPreferences lastyearpref = getSharedPreferences("lastyearpref", MODE_PRIVATE);
+                        SharedPreferences lastmonthpref = getSharedPreferences("lastmonthpref", MODE_PRIVATE);
+                        SharedPreferences lastdaypref = getSharedPreferences("lastdaypref", MODE_PRIVATE);
+
+                        SharedPreferences.Editor lastyear_e = lastyearpref.edit();
+                        SharedPreferences.Editor lastmonth_e = lastmonthpref.edit();
+                        SharedPreferences.Editor lastday_e = lastdaypref.edit();
+
+                        lastyear_e.putInt("lastyear_key", mYear);
+                        lastmonth_e.putInt("lastmonth_key", mMonth);
+                        lastday_e.putInt("lastday_key",mDay);
+
+                        lastyear_e.commit();
+                        lastmonth_e.commit();
+                        lastday_e.commit();
                     }
                 });
                 alert.setView(viw);
@@ -1217,6 +1404,131 @@ public class hijo extends ActionBarActivity {
                 });
             }
         });
+
+        //粉ミルクポップ
+        ImageButton btnkonamilk = (ImageButton) findViewById(R.id.konamilkbutton);
+        btnkonamilk.setOnClickListener(new OnClickListener() {
+            public void onClick(View v) {
+                // アラートダイアログの出力
+                AlertDialog.Builder alert = new AlertDialog.Builder(hijo.this);
+                alert.setTitle("粉ミルク");
+                LayoutInflater inflater = LayoutInflater.from(hijo.this);
+                final View viw = inflater.inflate(R.layout.activity_konamilk, null);
+                // プリファレンスの生成
+                SharedPreferences pref = getSharedPreferences("Preferences", MODE_PRIVATE);
+                int i = 0;
+                i = pref.getInt("konamilk_num", i);
+                String str = String.valueOf(i);
+                // 必ずView変数で生成したデータを使うこと
+                EditText et = (EditText) viw.findViewById(R.id.konamilktext);
+                // 値をいれる
+                et.setText(str);
+
+                //人数の表示
+                SharedPreferences adult_pref = getSharedPreferences("adult_pref", MODE_PRIVATE);
+                SharedPreferences children_pref = getSharedPreferences("children_pref", MODE_PRIVATE);
+                SharedPreferences baby_pref = getSharedPreferences("baby_pref", MODE_PRIVATE);
+                int a = adult_pref.getInt("adult_key", 0);
+                int b = children_pref.getInt("children_key", 0);
+                int c = baby_pref.getInt("baby_key", 0);
+                String adult_str = "大人" + String.valueOf(a) + "人";
+                String children_str = "小人" + String.valueOf(b) + "人";
+                String baby_str = "幼児" + String.valueOf(c) + "人";
+                TextView adult_tv = (TextView) viw.findViewById(R.id.adulttext);
+                TextView children_tv = (TextView) viw.findViewById(R.id.childrentext);
+                TextView baby_tv = (TextView) viw.findViewById(R.id.babytext);
+                adult_tv.setText(adult_str);
+                children_tv.setText(children_str);
+                baby_tv.setText(baby_str);
+
+                // 決定ボタンを押された時の処理
+                alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        SharedPreferences pref = getSharedPreferences("Preferences", MODE_PRIVATE);
+                        EditText et = (EditText) viw.findViewById(R.id.konamilktext);
+                        String str = et.getText().toString();
+                        int i = Integer.parseInt(str);
+
+                        SharedPreferences.Editor e = pref.edit();
+                        e.putInt("konamilk_num", i);
+                        e.commit();
+
+                        //最終入力日の日付記録
+                        SharedPreferences lastyearpref = getSharedPreferences("lastyearpref", MODE_PRIVATE);
+                        SharedPreferences lastmonthpref = getSharedPreferences("lastmonthpref", MODE_PRIVATE);
+                        SharedPreferences lastdaypref = getSharedPreferences("lastdaypref", MODE_PRIVATE);
+
+                        SharedPreferences.Editor lastyear_e = lastyearpref.edit();
+                        SharedPreferences.Editor lastmonth_e = lastmonthpref.edit();
+                        SharedPreferences.Editor lastday_e = lastdaypref.edit();
+
+                        lastyear_e.putInt("lastyear_key", mYear);
+                        lastmonth_e.putInt("lastmonth_key", mMonth);
+                        lastday_e.putInt("lastday_key",mDay);
+
+                        lastyear_e.commit();
+                        lastmonth_e.commit();
+                        lastday_e.commit();
+                    }
+                });
+                alert.setView(viw);
+                alert.show();
+
+                //カレンダー設定
+                SharedPreferences year_pref12 = getSharedPreferences("year_pref12",MODE_PRIVATE);
+                SharedPreferences month_pref12 = getSharedPreferences("month_pref12", MODE_PRIVATE);
+                SharedPreferences day_pref12 = getSharedPreferences("day_pref12", MODE_PRIVATE);
+                int limit_year12 = year_pref12.getInt("year_key12",mYear);
+                int limit_month12 = month_pref12.getInt("month_key12",mMonth);
+                int limit_day12 = day_pref12.getInt("day_key12",mDay);
+                String limit_str12 = "賞味期限は" + String.valueOf(limit_year12) + "年" + String.valueOf(limit_month12+1) + "月" + String.valueOf(limit_day12) + "日です。";
+                TextView limit_tv12 = (TextView)viw.findViewById(R.id.textView30);
+                limit_tv12.setText(limit_str12);
+
+                Button calbutton = (Button)viw.findViewById(R.id.calbutton);
+                calbutton.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //DatePickerDialog の日付が変更されたときに呼び出されるコールバックを登録
+                        DatePickerDialog.OnDateSetListener listener = new DatePickerDialog.OnDateSetListener() {
+                            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                                mYear = year;
+                                mMonth = monthOfYear;
+                                mDay = dayOfMonth;
+
+                                SharedPreferences year_pref12 = getSharedPreferences("year_pref12",MODE_PRIVATE);
+                                SharedPreferences month_pref12 = getSharedPreferences("month_pref12", MODE_PRIVATE);
+                                SharedPreferences day_pref12 = getSharedPreferences("day_pref12", MODE_PRIVATE);
+
+                                SharedPreferences.Editor year_e12 = year_pref12.edit();
+                                SharedPreferences.Editor month_e12 = month_pref12.edit();
+                                SharedPreferences.Editor day_e12 = day_pref12.edit();
+                                year_e12.putInt("year_key12", mYear);
+                                month_e12.putInt("month_key12", mMonth);
+                                day_e12.putInt("day_key12", mDay);
+                                year_e12.commit();
+                                month_e12.commit();
+                                day_e12.commit();
+
+                                int limit_year12 = year_pref12.getInt("year_key12",mYear);
+                                int limit_month12 = month_pref12.getInt("month_key12",mMonth);
+                                int limit_day12 = day_pref12.getInt("day_key12",mDay);
+                                String limit_str12 = "賞味期限は" + String.valueOf(limit_year12) + "年" + String.valueOf(limit_month12+1) + "月" + String.valueOf(limit_day12) + "日です。";
+                                TextView limit_tv12 = (TextView)viw.findViewById(R.id.textView30);
+                                limit_tv12.setText(limit_str12);
+                            }
+                        };
+                        // DatePickerDialog の作成
+                        DatePickerDialog datePickerDialog12 = new DatePickerDialog(hijo.this, listener, mYear, mMonth, mDay);
+
+                        //DatePickerDialog の表示
+                        datePickerDialog12.show();
+                    }
+                });
+            }
+        });
+
 
         //ボタン場所指定(ホーム)
         Button btnhome = (Button)findViewById(R.id.homeb);
