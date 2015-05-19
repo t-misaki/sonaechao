@@ -24,133 +24,189 @@
         android:layout_below="@+id/textView12"
         android:layout_centerHorizontal="true" />
 
-    <TextView
+    <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="食べ物"
-        android:id="@+id/textView24"
-        android:textSize="25dp"
+        android:id="@+id/scrollView"
+        android:layout_centerHorizontal="true"
         android:layout_below="@+id/textView17"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_above="@+id/HomeButton1">
 
-    <ImageButton
-        android:layout_width="80dp"
-        android:layout_height="90dp"
-        android:id="@+id/ImageButton"
-        android:src="@drawable/retoruto_gohan"
-        android:layout_below="@+id/textView24"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        <GridLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/textView24"
+            android:layout_centerHorizontal="true"
+            android:layout_above="@+id/HomeButton1">
 
-    <ImageButton
-        android:layout_width="80dp"
-        android:layout_height="90dp"
-        android:id="@+id/kandumebutton"
-        android:src="@drawable/kandume"
-        android:layout_alignTop="@+id/ImageButton"
-        android:layout_toRightOf="@+id/ImageButton"
-        android:layout_toEndOf="@+id/ImageButton" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="食べ物"
+                android:id="@+id/textView24"
+                android:textSize="25dp"
+                android:layout_below="@+id/textView17"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_row="0"
+                android:layout_column="0"/>
 
-    <ImageButton
-        android:layout_width="80dp"
-        android:layout_height="90dp"
-        android:id="@+id/kanmenbutton"
-        android:src="@drawable/kanmen"
-        android:layout_alignTop="@+id/kandumebutton"
-        android:layout_toRightOf="@+id/kandumebutton"
-        android:layout_toEndOf="@+id/kandumebutton" />
+            <ImageButton
+                android:layout_width="80dp"
+                android:layout_height="90dp"
+                android:id="@+id/ImageButton"
+                android:src="@drawable/retoruto_gohan"
+                android:layout_below="@+id/textView24"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_row="1"
+                android:layout_column="0" />
 
-    <ImageButton
-        android:layout_width="80dp"
-        android:layout_height="90dp"
-        android:id="@+id/kanpanbutton"
-        android:src="@drawable/kanpan"
-        android:layout_alignTop="@+id/kanmenbutton"
-        android:layout_toRightOf="@+id/kanmenbutton"
-        android:layout_toEndOf="@+id/kanmenbutton" />
+            <ImageButton
+                android:layout_width="80dp"
+                android:layout_height="90dp"
+                android:id="@+id/kandumebutton"
+                android:src="@drawable/kandume"
+                android:layout_alignTop="@+id/ImageButton"
+                android:layout_toRightOf="@+id/ImageButton"
+                android:layout_toEndOf="@+id/ImageButton"
+                android:layout_row="1"
+                android:layout_column="1" />
 
-    <ImageButton
-        android:layout_width="80dp"
-        android:layout_height="90dp"
-        android:id="@+id/kandumebutton2"
-        android:src="@drawable/kandume"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/ImageButton" />
+            <ImageButton
+                android:layout_width="80dp"
+                android:layout_height="90dp"
+                android:id="@+id/kanmenbutton"
+                android:src="@drawable/kanmen"
+                android:layout_alignTop="@+id/kandumebutton"
+                android:layout_toRightOf="@+id/kandumebutton"
+                android:layout_toEndOf="@+id/kandumebutton"
+                android:layout_row="1"
+                android:layout_column="2" />
 
-    <ImageButton
-        android:layout_width="80dp"
-        android:layout_height="90dp"
-        android:id="@+id/retorutobutton"
-        android:src="@drawable/retoruto"
-        android:layout_below="@+id/kandumebutton"
-        android:layout_alignLeft="@+id/kandumebutton"
-        android:layout_alignStart="@+id/kandumebutton" />
+            <ImageButton
+                android:layout_width="80dp"
+                android:layout_height="90dp"
+                android:id="@+id/kanpanbutton"
+                android:src="@drawable/kanpan"
+                android:layout_alignTop="@+id/kanmenbutton"
+                android:layout_toRightOf="@+id/kanmenbutton"
+                android:layout_toEndOf="@+id/kanmenbutton"
+                android:layout_row="1"
+                android:layout_column="3" />
 
-    <ImageButton
-        android:layout_width="80dp"
-        android:layout_height="90dp"
-        android:id="@+id/freazedry_button"
-        android:src="@drawable/furizu_dorai"
-        android:layout_below="@+id/kandumebutton"
-        android:layout_toRightOf="@+id/kandumebutton"
-        android:layout_toEndOf="@+id/kandumebutton" />
+            <ImageButton
+                android:layout_width="80dp"
+                android:layout_height="90dp"
+                android:id="@+id/kandumebutton2"
+                android:src="@drawable/kandume2"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/ImageButton"
+                android:layout_row="2"
+                android:layout_column="0" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="水"
-        android:id="@+id/textView28"
-        android:textSize="25dp"
-        android:layout_alignTop="@+id/konamilkbutton"
-        android:layout_alignRight="@+id/textView17"
-        android:layout_alignEnd="@+id/textView17" />
+            <ImageButton
+                android:layout_width="80dp"
+                android:layout_height="90dp"
+                android:id="@+id/retorutobutton"
+                android:src="@drawable/retoruto"
+                android:layout_below="@+id/kandumebutton"
+                android:layout_alignLeft="@+id/kandumebutton"
+                android:layout_alignStart="@+id/kandumebutton"
+                android:layout_row="2"
+                android:layout_column="1" />
 
-    <ImageButton
-        android:layout_width="80dp"
-        android:layout_height="90dp"
-        android:id="@+id/mizu_button"
-        android:src="@drawable/mizu"
-        android:layout_below="@+id/textView28"
-        android:layout_alignRight="@+id/textView12"
-        android:layout_alignEnd="@+id/textView12" />
+            <ImageButton
+                android:layout_width="80dp"
+                android:layout_height="90dp"
+                android:id="@+id/freazedry_button"
+                android:src="@drawable/furizu_dorai"
+                android:layout_below="@+id/kandumebutton"
+                android:layout_toRightOf="@+id/kandumebutton"
+                android:layout_toEndOf="@+id/kandumebutton"
+                android:layout_row="2"
+                android:layout_column="2" />
 
-    <ImageButton
-        android:layout_width="80dp"
-        android:layout_height="90dp"
-        android:id="@+id/rinyubutton"
-        android:src="@drawable/rinyu"
-        android:layout_below="@+id/retorutobutton"
-        android:layout_toRightOf="@+id/karoributton"
-        android:layout_toEndOf="@+id/karoributton" />
+            <ImageButton
+                android:layout_width="80dp"
+                android:layout_height="90dp"
+                android:id="@+id/karoributton"
+                android:src="@drawable/karori_meito"
+                android:layout_below="@+id/kandumebutton2"
+                android:layout_toLeftOf="@+id/retorutobutton"
+                android:layout_toStartOf="@+id/retorutobutton"
+                android:layout_row="2"
+                android:layout_column="3" />
 
-    <ImageButton
-        android:layout_width="80dp"
-        android:layout_height="90dp"
-        android:id="@+id/karoributton"
-        android:src="@drawable/karori_meito"
-        android:layout_below="@+id/kandumebutton2"
-        android:layout_toLeftOf="@+id/retorutobutton"
-        android:layout_toStartOf="@+id/retorutobutton" />
+            <ImageButton
+                android:layout_width="80dp"
+                android:layout_height="90dp"
+                android:id="@+id/okasibutton"
+                android:src="@drawable/okasi"
+                android:layout_below="@+id/kanpanbutton"
+                android:layout_toRightOf="@+id/kanmenbutton"
+                android:layout_toEndOf="@+id/kanmenbutton"
+                android:layout_row="3"
+                android:layout_column="0" />
 
-    <ImageButton
-        android:layout_width="80dp"
-        android:layout_height="90dp"
-        android:id="@+id/okasibutton"
-        android:src="@drawable/okasi"
-        android:layout_below="@+id/kanpanbutton"
-        android:layout_toRightOf="@+id/kanmenbutton"
-        android:layout_toEndOf="@+id/kanmenbutton" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="乳児用"
+                android:id="@+id/textView29"
+                android:textSize="25dp"
+                android:layout_row="5"
+                android:layout_column="0" />
 
-    <ImageButton
-        android:layout_width="80dp"
-        android:layout_height="90dp"
-        android:id="@+id/konamilkbutton"
-        android:layout_below="@+id/freazedry_button"
-        android:layout_toRightOf="@+id/rinyubutton"
-        android:layout_toEndOf="@+id/rinyubutton"
-        android:src="@drawable/konamilk" />
+            <ImageButton
+                android:layout_width="80dp"
+                android:layout_height="90dp"
+                android:id="@+id/rinyubutton"
+                android:src="@drawable/rinyu"
+                android:layout_below="@+id/retorutobutton"
+                android:layout_toRightOf="@+id/karoributton"
+                android:layout_toEndOf="@+id/karoributton"
+                android:layout_row="6"
+                android:layout_column="0" />
+
+            <ImageButton
+                android:layout_width="80dp"
+                android:layout_height="90dp"
+                android:id="@+id/konamilkbutton"
+                android:layout_below="@+id/freazedry_button"
+                android:layout_toRightOf="@+id/rinyubutton"
+                android:layout_toEndOf="@+id/rinyubutton"
+                android:src="@drawable/konamilk"
+                android:layout_row="6"
+                android:layout_column="1" />
+
+            <ImageButton
+                android:layout_width="80dp"
+                android:layout_height="90dp"
+                android:id="@+id/mizu_button"
+                android:src="@drawable/mizu"
+                android:layout_below="@+id/textView28"
+                android:layout_alignRight="@+id/textView12"
+                android:layout_alignEnd="@+id/textView12"
+                android:layout_row="9"
+                android:layout_column="0" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="水"
+                android:id="@+id/textView28"
+                android:textSize="25dp"
+                android:layout_alignTop="@+id/konamilkbutton"
+                android:layout_alignRight="@+id/textView17"
+                android:layout_alignEnd="@+id/textView17"
+                android:layout_row="8"
+                android:layout_column="0" />
+
+        </GridLayout>
+    </ScrollView>
 
     <TextView
         android:layout_width="fill_parent"
@@ -175,10 +231,10 @@
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:id="@+id/HijoButton1"
-        android:layout_alignBottom="@+id/HomeButton1"
-        android:layout_alignLeft="@+id/rinyubutton"
-        android:layout_alignStart="@+id/rinyubutton"
-        android:src="@drawable/hijo" />
+        android:src="@drawable/hijo"
+        android:layout_above="@+id/textView25"
+        android:layout_toRightOf="@+id/HomeButton1"
+        android:layout_toEndOf="@+id/HomeButton1" />
 
     <ImageButton
         android:layout_width="80dp"

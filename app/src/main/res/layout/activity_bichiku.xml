@@ -66,7 +66,7 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:id="@+id/pop7"
-        android:src="@drawable/sitagi"
+        android:src="@drawable/otona"
         android:layout_below="@+id/pop5"
         android:layout_alignLeft="@+id/pop5"
         android:layout_alignStart="@+id/pop5" />

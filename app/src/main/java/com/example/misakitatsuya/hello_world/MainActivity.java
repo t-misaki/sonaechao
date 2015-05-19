@@ -19,6 +19,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -67,93 +69,108 @@ public class MainActivity extends Activity {
         double food_meter = 0.0;
         double mizu_meter = 0.0;
 
-        if ( setting_day == 1 ) { // 設定日数が1日の場合
-            // 非常食
-            double adult_fnumber = adult_need[0][0] * adult_n; // A = 大人必要数 x 大人人数
-            double children_fnumber = children_need[0][0] * children_n; // C = 小人必要数 x 小人人数
-            double baby_fnumber = baby_need[0][0] * baby_n; // B　=　幼児必要数　ｘ　幼児人数　
-            // 入力されている量　=　乾パンｘ3　＋　カロリーメイトｘ3　＋　他・・・
-            double sumfood = ( kanpan * 3.0 ) + ( karori * 3.0 ) + retorutogohan + kandume + kanmen + kan2 + retoruto + freaze + okasi;
-            // 入力されている量　=　離乳食ｘ１　＋　粉ミルクｘ3
-            double sumfood_baby = rinyu + ( konamilk * 3 );
-            // 入力されている量　＞＝　A　→　50％
-            if ( (sumfood + sumfood_baby) >= (adult_fnumber + children_fnumber + baby_fnumber) ) {
-                food_meter = 50.0;
-            } else { // 入力されている量　＜　A　→　入力されている量　÷　必要数　ｘ　100　÷　2
-                food_meter = ( (sumfood + sumfood_baby) / (adult_fnumber + children_fnumber + baby_fnumber) ) * 100.0 / 2.0;
-            }
+        if ( (adult_n + children_n + baby_n) == 0 ) { // 人数が0人だった場合の処理
+            ImageView hijograph = (ImageView) findViewById(R.id.hijoview);
+            hijograph.setImageResource(R.drawable.graph0);
+        } else {
+            if (setting_day == 1) { // 設定日数が1日の場合
+                // 非常食
+                double adult_fnumber = adult_need[0][0] * adult_n; // A = 大人必要数 x 大人人数
+                double children_fnumber = children_need[0][0] * children_n; // C = 小人必要数 x 小人人数
+                double baby_fnumber = baby_need[0][0] * baby_n; // B　=　幼児必要数　ｘ　幼児人数　
+                // 入力されている量　=　乾パンｘ3　＋　カロリーメイトｘ3　＋　他・・・
+                double sumfood = (kanpan * 3.0) + (karori * 3.0) + retorutogohan + kandume + kanmen + kan2 + retoruto + freaze + okasi;
+                // 入力されている量　=　離乳食ｘ１　＋　粉ミルクｘ3
+                double sumfood_baby = rinyu + (konamilk * 3);
+                // 入力されている量　＞＝　A　→　50％
+                if ((sumfood + sumfood_baby) >= (adult_fnumber + children_fnumber + baby_fnumber)) {
+                    food_meter = 50.0;
+                } else { // 入力されている量　＜　A　→　入力されている量　÷　必要数　ｘ　100　÷　2
+                    food_meter = ((sumfood + sumfood_baby) / (adult_fnumber + children_fnumber + baby_fnumber)) * 100.0 / 2.0;
+                }
 
-            // 水
-            double adult_mnumber = adult_need[1][0] * adult_n; // A　=　大人必要数　ｘ　大人人数
-            double children_mnumber = children_need[1][0] * children_n; // C　=　小人必要数　ｘ　小人人数
-            double baby_mnumber = baby_need[1][0] * baby_n; // B　=　幼児必要数　ｘ　幼児人数　
-            // 入力されている量　=　水の量（本数？）
-            double summizu = mizu * 1.0;
-            // 入力されている量　＞＝　A　→　50％
-            if ( summizu >= (adult_mnumber + children_mnumber + baby_mnumber) ) {
-                mizu_meter = 50.0;
-            } else { // 入力されている量　＜　A　→　入力されている量　÷　必要数　ｘ　100　÷　2
-                mizu_meter = ( summizu / (adult_mnumber + children_mnumber + baby_mnumber) ) * 100.0 / 2.0;
-            }
-        }
-
-        if ( setting_day == 3 ) { // 設定日数が3日の場合
-            // 非常食
-            double adult_fnumber = adult_need[0][1] * adult_n; // A = 大人必要数 x 大人人数
-            double children_fnumber = children_need[0][1] * children_n; // C = 小人必要数 x 小人人数
-            double baby_fnumber = baby_need[0][1] * baby_n; // B　=　幼児必要数　ｘ　幼児人数　
-            // 入力されている量　=　乾パンｘ3　＋　カロリーメイトｘ3　＋　他・・・
-            double sumfood = ( kanpan * 3.0 ) + ( karori * 3.0 ) + retorutogohan + kandume + kanmen + kan2 + retoruto + freaze + okasi;
-            // 入力されている量　=　離乳食ｘ１　＋　粉ミルクｘ3
-            double sumfood_baby = rinyu + ( konamilk * 3 );
-            // 入力されている量　＞＝　A　→　50％
-            if ( (sumfood + sumfood_baby) >= (adult_fnumber + children_fnumber + baby_fnumber) ) {
-                food_meter = 50.0;
-            } else { // 入力されている量　＜　A　→　入力されている量　÷　必要数　ｘ　100　÷　2
-                food_meter = ( (sumfood + sumfood_baby) / (adult_fnumber + children_fnumber + baby_fnumber) ) * 100.0 / 2.0;
-            }
-
-            // 水
-            double adult_mnumber = adult_need[1][1] * adult_n; // A　=　大人必要数　ｘ　大人人数
-            double children_mnumber = children_need[1][1] * children_n; // C　=　小人必要数　ｘ　小人人数
-            double baby_mnumber = baby_need[1][1] * baby_n; // B　=　幼児必要数　ｘ　幼児人数　
-            // 入力されている量　=　水の量（本数？）
-            double summizu = mizu * 1.0;
-            // 入力されている量　＞＝　A　→　50％
-            if ( summizu >= (adult_mnumber + children_mnumber + baby_mnumber) ) {
-                mizu_meter = 50.0;
-            } else { // 入力されている量　＜　A　→　入力されている量　÷　必要数　ｘ　100　÷　2
-                mizu_meter = ( summizu / (adult_mnumber + children_mnumber + baby_mnumber) ) * 100.0 / 2.0;
+                // 水
+                double adult_mnumber = adult_need[1][0] * adult_n; // A　=　大人必要数　ｘ　大人人数
+                double children_mnumber = children_need[1][0] * children_n; // C　=　小人必要数　ｘ　小人人数
+                double baby_mnumber = baby_need[1][0] * baby_n; // B　=　幼児必要数　ｘ　幼児人数　
+                // 入力されている量　=　水の量（本数？）
+                double summizu = mizu * 1.0;
+                // 入力されている量　＞＝　A　→　50％
+                if (summizu >= (adult_mnumber + children_mnumber + baby_mnumber)) {
+                    mizu_meter = 50.0;
+                } else { // 入力されている量　＜　A　→　入力されている量　÷　必要数　ｘ　100　÷　2
+                    mizu_meter = (summizu / (adult_mnumber + children_mnumber + baby_mnumber)) * 100.0 / 2.0;
+                }
             }
         }
 
-        if ( setting_day == 7 ) { // 設定日数が7日の場合
-            // 非常食
-            double adult_fnumber = adult_need[0][2] * adult_n; // A = 大人必要数 x 大人人数
-            double children_fnumber = children_need[0][2] * children_n; // C = 小人必要数 x 小人人数
-            double baby_fnumber = baby_need[0][2] * baby_n; // B　=　幼児必要数　ｘ　幼児人数　
-            // 入力されている量　=　乾パンｘ3　＋　カロリーメイトｘ3　＋　他・・・
-            double sumfood = ( kanpan * 3.0 ) + ( karori * 3.0 ) + retorutogohan + kandume + kanmen + kan2 + retoruto + freaze + okasi;
-            // 入力されている量　=　離乳食ｘ１　＋　粉ミルクｘ3
-            double sumfood_baby = rinyu + ( konamilk * 3 );
-            // 入力されている量　＞＝　A　→　50％
-            if ( (sumfood + sumfood_baby) >= (adult_fnumber + children_fnumber + baby_fnumber) ) {
-                food_meter = 50.0;
-            } else { // 入力されている量　＜　A　→　入力されている量　÷　必要数　ｘ　100　÷　2
-                food_meter = ( (sumfood + sumfood_baby) / (adult_fnumber + children_fnumber + baby_fnumber) ) * 100.0 / 2.0;
-            }
+        if ( (adult_n + children_n + baby_n) == 0 ) { // 人数が0人だった場合の処理
+            ImageView hijograph = (ImageView) findViewById(R.id.hijoview);
+            hijograph.setImageResource(R.drawable.graph0);
+        } else {
+            if (setting_day == 3) { // 設定日数が3日の場合
+                // 非常食
+                double adult_fnumber = adult_need[0][1] * adult_n; // A = 大人必要数 x 大人人数
+                double children_fnumber = children_need[0][1] * children_n; // C = 小人必要数 x 小人人数
+                double baby_fnumber = baby_need[0][1] * baby_n; // B　=　幼児必要数　ｘ　幼児人数　
+                // 入力されている量　=　乾パンｘ3　＋　カロリーメイトｘ3　＋　他・・・
+                double sumfood = (kanpan * 3.0) + (karori * 3.0) + retorutogohan + kandume + kanmen + kan2 + retoruto + freaze + okasi;
+                // 入力されている量　=　離乳食ｘ１　＋　粉ミルクｘ3
+                double sumfood_baby = rinyu + (konamilk * 3);
+                // 入力されている量　＞＝　A　→　50％
+                if ((sumfood + sumfood_baby) >= (adult_fnumber + children_fnumber + baby_fnumber)) {
+                    food_meter = 50.0;
+                } else { // 入力されている量　＜　A　→　入力されている量　÷　必要数　ｘ　100　÷　2
+                    food_meter = ((sumfood + sumfood_baby) / (adult_fnumber + children_fnumber + baby_fnumber)) * 100.0 / 2.0;
+                }
 
-            // 水
-            double adult_mnumber = adult_need[1][2] * adult_n; // A　=　大人必要数　ｘ　大人人数
-            double children_mnumber = children_need[1][2] * children_n; // C　=　小人必要数　ｘ　小人人数
-            double baby_mnumber = baby_need[1][2] * baby_n; // B　=　幼児必要数　ｘ　幼児人数　
-            // 入力されている量　=　水の量（本数？）
-            double summizu = mizu * 1.0;
-            // 入力されている量　＞＝　A　→　50％
-            if ( summizu >= (adult_mnumber + children_mnumber + baby_mnumber) ) {
-                mizu_meter = 50.0;
-            } else { // 入力されている量　＜　A　→　入力されている量　÷　必要数　ｘ　100　÷　2
-                mizu_meter = ( summizu / (adult_mnumber + children_mnumber + baby_mnumber) ) * 100.0 / 2.0;
+                // 水
+                double adult_mnumber = adult_need[1][1] * adult_n; // A　=　大人必要数　ｘ　大人人数
+                double children_mnumber = children_need[1][1] * children_n; // C　=　小人必要数　ｘ　小人人数
+                double baby_mnumber = baby_need[1][1] * baby_n; // B　=　幼児必要数　ｘ　幼児人数　
+                // 入力されている量　=　水の量（本数？）
+                double summizu = mizu * 1.0;
+                // 入力されている量　＞＝　A　→　50％
+                if (summizu >= (adult_mnumber + children_mnumber + baby_mnumber)) {
+                    mizu_meter = 50.0;
+                } else { // 入力されている量　＜　A　→　入力されている量　÷　必要数　ｘ　100　÷　2
+                    mizu_meter = (summizu / (adult_mnumber + children_mnumber + baby_mnumber)) * 100.0 / 2.0;
+                }
+            }
+        }
+
+        if ( (adult_n + children_n + baby_n) == 0 ) { // 人数が0人だった場合の処理
+            ImageView hijograph = (ImageView) findViewById(R.id.hijoview);
+            hijograph.setImageResource(R.drawable.graph0);
+        } else {
+            if (setting_day == 7) { // 設定日数が7日の場合
+                // 非常食
+                double adult_fnumber = adult_need[0][2] * adult_n; // A = 大人必要数 x 大人人数
+                double children_fnumber = children_need[0][2] * children_n; // C = 小人必要数 x 小人人数
+                double baby_fnumber = baby_need[0][2] * baby_n; // B　=　幼児必要数　ｘ　幼児人数　
+                // 入力されている量　=　乾パンｘ3　＋　カロリーメイトｘ3　＋　他・・・
+                double sumfood = (kanpan * 3.0) + (karori * 3.0) + retorutogohan + kandume + kanmen + kan2 + retoruto + freaze + okasi;
+                // 入力されている量　=　離乳食ｘ１　＋　粉ミルクｘ3
+                double sumfood_baby = rinyu + (konamilk * 3);
+                // 入力されている量　＞＝　A　→　50％
+                if ((sumfood + sumfood_baby) >= (adult_fnumber + children_fnumber + baby_fnumber)) {
+                    food_meter = 50.0;
+                } else { // 入力されている量　＜　A　→　入力されている量　÷　必要数　ｘ　100　÷　2
+                    food_meter = ((sumfood + sumfood_baby) / (adult_fnumber + children_fnumber + baby_fnumber)) * 100.0 / 2.0;
+                }
+
+                // 水
+                double adult_mnumber = adult_need[1][2] * adult_n; // A　=　大人必要数　ｘ　大人人数
+                double children_mnumber = children_need[1][2] * children_n; // C　=　小人必要数　ｘ　小人人数
+                double baby_mnumber = baby_need[1][2] * baby_n; // B　=　幼児必要数　ｘ　幼児人数　
+                // 入力されている量　=　水の量（本数？）
+                double summizu = mizu * 1.0;
+                // 入力されている量　＞＝　A　→　50％
+                if (summizu >= (adult_mnumber + children_mnumber + baby_mnumber)) {
+                    mizu_meter = 50.0;
+                } else { // 入力されている量　＜　A　→　入力されている量　÷　必要数　ｘ　100　÷　2
+                    mizu_meter = (summizu / (adult_mnumber + children_mnumber + baby_mnumber)) * 100.0 / 2.0;
+                }
             }
         }
 
@@ -192,22 +209,48 @@ public class MainActivity extends Activity {
             hijograph.setImageResource(R.drawable.graph10);
         }
 
+        // 非常食のパーセント表示
+        TextView hijopercent = (TextView)findViewById(R.id.hijopercent);
+        hijopercent.setText( "非常食:" + String.valueOf((int)food_meter + (int)mizu_meter) + "%" );
+
+        // 備蓄品のパーセント表示
+
+
         // 非常食が60％以下の場合のアラート警告
         AlertDialog.Builder hijo60alert;
         hijo60alert = new AlertDialog.Builder(MainActivity.this);
         if ( (food_meter + mizu_meter) < 60.0 ) {
             hijo60alert.setTitle("警告");
             hijo60alert.setMessage("非常食が60％未満です。");
+            // 決定ボタンが押された時の処理
+            hijo60alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Intent intent = new Intent();
+                    intent.setClassName("com.example.misakitatsuya.hello_world", "com.example.misakitatsuya.hello_world.hijo");
+                    startActivity(intent);//画面を出す
+                }
+            });
             hijo60alert.show();
         }
 
-        //日付表示
-        Calendar cal = Calendar.getInstance();
-        TextView tv = (TextView) findViewById(R.id.textView3);
-        int year = cal.get(Calendar.YEAR);
-        int month = cal.get(Calendar.MONTH);
-        int day = cal.get(Calendar.DAY_OF_MONTH);
-        tv.setText(year + "年" + (month+1) + "月" + day + "日");
+        // 設定人数が0人の場合のアラート警告
+        AlertDialog.Builder ninzu0alert;
+        ninzu0alert = new AlertDialog.Builder(MainActivity.this);
+        if ( (adult_n == 0 && children_n == 0 && baby_n == 0) ) {
+            ninzu0alert.setTitle("警告");
+            ninzu0alert.setMessage("初期設定を行ってください。");
+            // 決定ボタンが押された時の処理
+            ninzu0alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Intent intent = new Intent();
+                    intent.setClassName("com.example.misakitatsuya.hello_world", "com.example.misakitatsuya.hello_world.setting");
+                    startActivity(intent);//画面を出す
+                }
+            });
+            ninzu0alert.show();
+        }
 
         //非常食最終入力日表示
         SharedPreferences lastyearpref = getSharedPreferences("lastyearpref", MODE_PRIVATE);
@@ -217,9 +260,15 @@ public class MainActivity extends Activity {
         int lastmonth = lastmonthpref.getInt("lastmonth_key", 0);
         int lastday = lastdaypref.getInt("lastday_key", 0);
         lastmonth += 1;
-        String laststr = "非常食最終変更日:" + lastyear + "年" + lastmonth + "月" + lastday + "日";
-        TextView lasttv = (TextView)findViewById(R.id.hijolasttext);
-        lasttv.setText(laststr);
+        if ( lastyear == 0 && lastmonth == 1 && lastday == 0 ) {
+            String laststr = "最終入力日:まだ入力されていません";
+            TextView lasttv = (TextView) findViewById(R.id.hijolasttext);
+            lasttv.setText(laststr);
+        } else {
+            String laststr = "最終入力日:" + lastyear + "年" + lastmonth + "月" + lastday + "日";
+            TextView lasttv = (TextView) findViewById(R.id.hijolasttext);
+            lasttv.setText(laststr);
+        }
 
         //備蓄品最終入力日表示
         SharedPreferences lastyearprefb = getSharedPreferences("lastyearprefb", MODE_PRIVATE);
@@ -229,9 +278,15 @@ public class MainActivity extends Activity {
         int lastmonthb = lastmonthprefb.getInt("lastmonth_keyb", 0);
         int lastdayb = lastdayprefb.getInt("lastday_keyb", 0);
         lastmonthb += 1;
-        String laststrb = "備蓄品最終変更日:" + lastyearb + "年" + lastmonthb + "月" + lastdayb + "日";
-        TextView lasttvb = (TextView)findViewById(R.id.bichikulasttext);
-        lasttvb.setText(laststrb);
+        if ( lastyearb == 0 && lastmonthb == 1 && lastdayb == 0 ) {
+            String laststrb = "最終入力日:まだ入力されていません";
+            TextView lasttvb = (TextView)findViewById(R.id.bichikulasttext);
+            lasttvb.setText(laststrb);
+        } else {
+            String laststrb = "最終入力日:" + lastyearb + "年" + lastmonthb + "月" + lastdayb + "日";
+            TextView lasttvb = (TextView) findViewById(R.id.bichikulasttext);
+            lasttvb.setText(laststrb);
+        }
 
         //非常食合計
         int hijosum = retorutogohan + kandume + kanmen + kanpan + kan2 + retoruto + freaze + karori + rinyu + konamilk + okasi + mizu;
@@ -632,6 +687,27 @@ public class MainActivity extends Activity {
             }
         }
 
+        // 非常食グラフ画面遷移
+        ImageView hijographview = (ImageView)findViewById(R.id.hijoview);
+        hijographview.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClassName("com.example.misakitatsuya.hello_world", "com.example.misakitatsuya.hello_world.hijo");
+                startActivity(intent);//画面を出す
+            }
+        });
+
+        // 備蓄品グラフ画面遷移
+        ImageView bichikugraphview = (ImageView)findViewById(R.id.bichikuview);
+        bichikugraphview.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClassName("com.example.misakitatsuya.hello_world", "com.example.misakitatsuya.hello_world.bichiku");
+                startActivity(intent);//画面を出す
+            }
+        });
 
         // テキスト画面遷移(Clickable)　レトルトご飯
         TextView retorutogalerttext = (TextView)findViewById(R.id.retorutog);
