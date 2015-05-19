@@ -11,12 +11,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 import java.util.Calendar;
 
@@ -622,7 +619,7 @@ public class bichiku extends Activity {
         });
 
         //ボタン場所指定(ホーム)
-        Button btnhome = (Button)findViewById(R.id.button12);
+        ImageButton btnhome = (ImageButton)findViewById(R.id.HomeButton);
         btnhome.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent();
@@ -632,7 +629,7 @@ public class bichiku extends Activity {
         });
 
         //ボタン場所指定(非常食)
-        Button btnhijo = (Button)findViewById(R.id.button13);
+        ImageButton btnhijo = (ImageButton)findViewById(R.id.HijoButton);
         btnhijo.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent();
@@ -642,7 +639,7 @@ public class bichiku extends Activity {
         });
 
         //ボタン場所指定(設定)
-        Button btnsetting = (Button)findViewById(R.id.button15);
+        ImageButton btnsetting = (ImageButton)findViewById(R.id.SettingButton);
         btnsetting.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent();

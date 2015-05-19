@@ -5,15 +5,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
 
-    <Button
-        android:text="設定"
-        android:id="@+id/button_segue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/button3"
-        android:layout_toEndOf="@+id/button3" />
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -21,7 +12,7 @@
         android:text="HelloWorld!"
         android:id="@+id/textView"
         android:textSize="20sp"
-        android:layout_below="@+id/hijolasttext"
+        android:layout_below="@+id/scrollView2"
         android:layout_centerHorizontal="true" />
 
     <TextView
@@ -54,54 +45,27 @@
         android:layout_toEndOf="@+id/textView3"
         android:textSize="20sp" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ホーム"
-        android:id="@+id/button"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/button2"
-        android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/button"
-        android:layout_toEndOf="@+id/button"
-        android:text="非常食" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/button3"
-        android:layout_alignTop="@+id/button2"
-        android:layout_toRightOf="@+id/button2"
-        android:layout_toEndOf="@+id/button2"
-        android:text="備蓄品" />
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/hijosum"
-        android:layout_alignParentTop="true"
-        android:layout_above="@+id/editText"
+        android:layout_alignBottom="@+id/bichikusum"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_toLeftOf="@+id/bichikuview"
-        android:layout_toStartOf="@+id/bichikuview" />
+        android:layout_alignTop="@+id/bichikusum"
+        android:layout_alignRight="@+id/hijoview"
+        android:layout_alignEnd="@+id/hijoview" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/bichikusum"
-        android:layout_alignBottom="@+id/hijosum"
         android:layout_alignParentTop="true"
         android:layout_alignRight="@+id/bichikuview"
         android:layout_alignEnd="@+id/bichikuview"
-        android:layout_toRightOf="@+id/hijoview"
-        android:layout_toEndOf="@+id/hijoview" />
+        android:layout_above="@+id/editText2"
+        android:layout_alignLeft="@+id/bichikuview"
+        android:layout_alignStart="@+id/bichikuview" />
 
     <ImageView
         android:layout_width="165dp"
@@ -142,154 +106,211 @@
         android:layout_alignRight="@+id/textView4"
         android:layout_alignEnd="@+id/textView4" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/test"
-        android:layout_below="@+id/hijoview"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="32dp" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:id="@+id/scrollView2"
+        android:layout_gravity="center_horizontal"
+        android:layout_below="@+id/hijoview">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/retorutog"
-        android:text="レトルトご飯"
-        android:layout_marginTop="21dp"
-        android:textSize="10dp"
-        android:layout_below="@+id/test"
-        android:layout_alignLeft="@+id/kandume"
-        android:layout_alignStart="@+id/kandume"
-        android:clickable="true" />
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_below="@+id/textView2"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:id="@+id/linearLayout"
+            android:background="#fffff0bb">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/kandume"
-        android:text="缶詰（ご飯）"
-        android:textSize="10dp"
-        android:layout_below="@+id/retorutog"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/retorutog"
+                android:text="レトルトご飯"
+                android:textSize="10dp"
+                android:clickable="true"
+                android:layout_below="@+id/test"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/kanmen"
-        android:text="乾麺"
-        android:textSize="10dp"
-        android:layout_below="@+id/kandume"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/kandume"
+                android:text="缶詰（ご飯）"
+                android:textSize="10dp"
+                android:layout_below="@+id/retorutog"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/kanpan"
-        android:text="乾パン"
-        android:textSize="10dp"
-        android:layout_below="@+id/kanmen"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/kanmen"
+                android:text="乾麺"
+                android:textSize="10dp"
+                android:layout_below="@+id/kandume"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/kandume2"
-        android:text="缶詰（肉、魚）"
-        android:textSize="10dp"
-        android:layout_below="@+id/kanpan"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/kanpan"
+                android:text="乾パン"
+                android:textSize="10dp"
+                android:layout_below="@+id/kanmen"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/retoruto"
-        android:text="レトルト"
-        android:textSize="10dp"
-        android:layout_below="@+id/kandume2"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/kandume2"
+                android:text="缶詰（肉、魚）"
+                android:textSize="10dp"
+                android:layout_below="@+id/kanpan"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/freaze"
-        android:text="フリーズドライ"
-        android:textSize="10dp"
-        android:layout_below="@+id/retoruto"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/retoruto"
+                android:text="レトルト"
+                android:textSize="10dp"
+                android:layout_below="@+id/kandume2"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/kasi"
-        android:text="菓子類"
-        android:textSize="10dp"
-        android:layout_below="@+id/freaze"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/freaze"
+                android:text="フリーズドライ"
+                android:textSize="10dp"
+                android:layout_below="@+id/retoruto"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/karori"
-        android:text="カロリーメイト"
-        android:textSize="10dp"
-        android:layout_below="@+id/kasi"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/kasi"
+                android:text="菓子類"
+                android:textSize="10dp"
+                android:layout_below="@+id/freaze"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/rinyu"
-        android:text="離乳食"
-        android:textSize="10dp"
-        android:layout_below="@+id/karori"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/karori"
+                android:text="カロリーメイト"
+                android:textSize="10dp"
+                android:layout_below="@+id/kasi"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/konamilk"
-        android:text="粉ミルク"
-        android:textSize="10dp"
-        android:layout_below="@+id/rinyu"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/rinyu"
+                android:text="離乳食"
+                android:textSize="10dp"
+                android:layout_below="@+id/karori"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/mizu"
-        android:text="水"
-        android:textSize="10dp"
-        android:layout_below="@+id/konamilk"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/konamilk"
+                android:text="粉ミルク"
+                android:textSize="10dp"
+                android:layout_below="@+id/rinyu"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/mizu"
+                android:text="水"
+                android:textSize="10dp"
+                android:layout_below="@+id/konamilk"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+        </LinearLayout>
+    </ScrollView>
+
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/hijolasttext"
         android:text="a"
-        android:layout_above="@+id/test"
+        android:textSize="10dp"
+        android:layout_alignBottom="@+id/hijoview"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:textSize="10dp" />
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/bichikulasttext"
         android:text="b"
-        android:layout_above="@+id/test"
-        android:layout_alignRight="@+id/bichikuview"
-        android:layout_alignEnd="@+id/bichikuview"
-        android:textSize="10dp" />
+        android:textSize="10dp"
+        android:layout_alignBottom="@+id/bichikuview"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:text="広告"
+        android:id="@+id/textView25"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:background="#ff9aff98" />
+
+    <ImageButton
+        android:layout_width="85dp"
+        android:layout_height="85dp"
+        android:id="@+id/HomeButton"
+        android:layout_above="@+id/textView25"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:src="@drawable/home" />
+
+    <ImageButton
+        android:layout_width="85dp"
+        android:layout_height="85dp"
+        android:id="@+id/HijoButton"
+        android:layout_above="@+id/textView25"
+        android:layout_toRightOf="@+id/HomeButton"
+        android:layout_toEndOf="@+id/HomeButton"
+        android:src="@drawable/hijo" />
+
+    <ImageButton
+        android:layout_width="85dp"
+        android:layout_height="85dp"
+        android:id="@+id/SettingButton"
+        android:layout_alignBottom="@+id/HijoButton"
+        android:layout_alignRight="@+id/bichikulasttext"
+        android:layout_alignEnd="@+id/bichikulasttext"
+        android:src="@drawable/setting" />
+
+    <ImageButton
+        android:layout_width="85dp"
+        android:layout_height="85dp"
+        android:id="@+id/BichikuButton"
+        android:layout_alignBottom="@+id/SettingButton"
+        android:layout_toLeftOf="@+id/SettingButton"
+        android:layout_toStartOf="@+id/SettingButton"
+        android:src="@drawable/bichiku" />
 
 </RelativeLayout>

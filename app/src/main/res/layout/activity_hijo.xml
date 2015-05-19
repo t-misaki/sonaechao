@@ -13,10 +13,9 @@
         android:layout_height="wrap_content"
         android:text="ホーム"
         android:id="@+id/homeb"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/mizu_button"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="39dp" />
+        android:layout_alignParentStart="true" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -144,7 +143,7 @@
         android:text="水"
         android:id="@+id/textView28"
         android:textSize="25dp"
-        android:layout_above="@+id/mizu_button"
+        android:layout_alignBottom="@+id/konamilkbutton"
         android:layout_alignLeft="@+id/settingb"
         android:layout_alignStart="@+id/settingb" />
 
@@ -153,7 +152,7 @@
         android:layout_height="90dp"
         android:id="@+id/mizu_button"
         android:src="@drawable/mizu"
-        android:layout_above="@+id/homeb"
+        android:layout_below="@+id/textView28"
         android:layout_alignRight="@+id/textView12"
         android:layout_alignEnd="@+id/textView12" />
 
@@ -192,5 +191,15 @@
         android:layout_toRightOf="@+id/rinyubutton"
         android:layout_toEndOf="@+id/rinyubutton"
         android:src="@drawable/konamilk" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:text="広告欄"
+        android:id="@+id/textView27"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:background="#00ff00" />
 
 </RelativeLayout>

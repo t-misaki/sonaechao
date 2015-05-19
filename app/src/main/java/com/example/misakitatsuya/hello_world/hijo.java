@@ -1531,7 +1531,7 @@ public class hijo extends ActionBarActivity {
 
 
         //ボタン場所指定(ホーム)
-        Button btnhome = (Button)findViewById(R.id.homeb);
+        ImageButton btnhome = (ImageButton)findViewById(R.id.HomeButton);
 
         btnhome.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
@@ -1543,7 +1543,7 @@ public class hijo extends ActionBarActivity {
         });
 
         //ボタン場所指定(備蓄品)
-        Button btnbichiku = (Button)findViewById(R.id.bichikub);
+        ImageButton btnbichiku = (ImageButton)findViewById(R.id.BichikuButton);
 
         btnbichiku.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
@@ -1555,7 +1555,7 @@ public class hijo extends ActionBarActivity {
         });
 
         //ボタン場所指定(設定)
-        Button btnsetting = (Button)findViewById(R.id.settingb);
+        ImageButton btnsetting = (ImageButton)findViewById(R.id.SettingButton);
 
         btnsetting.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {

@@ -4,11 +4,11 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 
 
@@ -71,7 +71,7 @@ public class setting extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
 
-        Button btnhome = (Button)findViewById(R.id.button5);
+        ImageButton btnhome = (ImageButton)findViewById(R.id.HomeButton);
         btnhome.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -124,7 +124,7 @@ public class setting extends Activity {
         });
 
 
-        Button btnhijo = (Button)findViewById(R.id.button6);
+        ImageButton btnhijo = (ImageButton)findViewById(R.id.HijoButton);
         btnhijo.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -176,7 +176,7 @@ public class setting extends Activity {
             }
         });
 
-        Button btnbichiku = (Button)findViewById(R.id.button7);
+        ImageButton btnbichiku = (ImageButton)findViewById(R.id.BichikuButton);
         btnbichiku.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
