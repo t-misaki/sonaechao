@@ -185,28 +185,28 @@ public class bichiku extends Activity {
                 LayoutInflater inflater = LayoutInflater.from(bichiku.this);
                 final View viw = inflater.inflate(R.layout.activity_popup3, null);
                 // プリファレンスの生成
-                SharedPreferences pref = getSharedPreferences("Preferences",MODE_PRIVATE);
+                SharedPreferences pref = getSharedPreferences("Preferences", MODE_PRIVATE);
                 int i = 0;
-                i = pref.getInt("pop3num",i);
+                i = pref.getInt("pop3num", i);
                 String str = String.valueOf(i);
                 // 必ずView変数で生成したデータを使うこと
-                EditText et = (EditText)viw.findViewById(R.id.textView18);
+                EditText et = (EditText) viw.findViewById(R.id.textView18);
                 // 値をいれる
                 et.setText(str);
 
                 //人数の表示
-                SharedPreferences adult_pref = getSharedPreferences("adult_pref",MODE_PRIVATE);
-                SharedPreferences children_pref = getSharedPreferences("children_pref",MODE_PRIVATE);
-                SharedPreferences baby_pref = getSharedPreferences("baby_pref",MODE_PRIVATE);
-                int a = adult_pref.getInt("adult_key",0);
-                int b = children_pref.getInt("children_key",0);
-                int c = baby_pref.getInt("baby_key",0);
-                String adult_str = "大人"+String.valueOf(a)+"人";
-                String children_str = "小人"+String.valueOf(b)+"人";
-                String baby_str = "幼児"+String.valueOf(c)+"人";
-                TextView adult_tv = (TextView)viw.findViewById(R.id.adulttext);
-                TextView children_tv = (TextView)viw.findViewById(R.id.childrentext);
-                TextView baby_tv = (TextView)viw.findViewById(R.id.babytext);
+                SharedPreferences adult_pref = getSharedPreferences("adult_pref", MODE_PRIVATE);
+                SharedPreferences children_pref = getSharedPreferences("children_pref", MODE_PRIVATE);
+                SharedPreferences baby_pref = getSharedPreferences("baby_pref", MODE_PRIVATE);
+                int a = adult_pref.getInt("adult_key", 0);
+                int b = children_pref.getInt("children_key", 0);
+                int c = baby_pref.getInt("baby_key", 0);
+                String adult_str = "大人" + String.valueOf(a) + "人";
+                String children_str = "小人" + String.valueOf(b) + "人";
+                String baby_str = "幼児" + String.valueOf(c) + "人";
+                TextView adult_tv = (TextView) viw.findViewById(R.id.adulttext);
+                TextView children_tv = (TextView) viw.findViewById(R.id.childrentext);
+                TextView baby_tv = (TextView) viw.findViewById(R.id.babytext);
                 adult_tv.setText(adult_str);
                 children_tv.setText(children_str);
                 baby_tv.setText(baby_str);
@@ -215,13 +215,13 @@ public class bichiku extends Activity {
                 alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        SharedPreferences pref = getSharedPreferences("Preferences",MODE_PRIVATE);
-                        EditText et = (EditText)viw.findViewById(R.id.textView18);
+                        SharedPreferences pref = getSharedPreferences("Preferences", MODE_PRIVATE);
+                        EditText et = (EditText) viw.findViewById(R.id.textView18);
                         String str = et.getText().toString();
                         int i = Integer.parseInt(str);
 
                         SharedPreferences.Editor e = pref.edit();
-                        e.putInt("pop3num",i);
+                        e.putInt("pop3num", i);
                         e.commit();
 
                         //最終入力日の日付記録
@@ -235,7 +235,7 @@ public class bichiku extends Activity {
 
                         lastyear_eb.putInt("lastyear_keyb", mYear);
                         lastmonth_eb.putInt("lastmonth_keyb", mMonth);
-                        lastday_eb.putInt("lastday_keyb",mDay);
+                        lastday_eb.putInt("lastday_keyb", mDay);
 
                         lastyear_eb.commit();
                         lastmonth_eb.commit();
@@ -619,7 +619,7 @@ public class bichiku extends Activity {
         });
 
         //ボタン場所指定(ホーム)
-        ImageButton btnhome = (ImageButton)findViewById(R.id.HomeButton);
+        ImageButton btnhome = (ImageButton)findViewById(R.id.HomeButton2);
         btnhome.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent();
@@ -629,7 +629,7 @@ public class bichiku extends Activity {
         });
 
         //ボタン場所指定(非常食)
-        ImageButton btnhijo = (ImageButton)findViewById(R.id.HijoButton);
+        ImageButton btnhijo = (ImageButton)findViewById(R.id.HijoButton2);
         btnhijo.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent();
@@ -639,7 +639,7 @@ public class bichiku extends Activity {
         });
 
         //ボタン場所指定(設定)
-        ImageButton btnsetting = (ImageButton)findViewById(R.id.SettingButton);
+        ImageButton btnsetting = (ImageButton)findViewById(R.id.SettingButton2);
         btnsetting.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent();

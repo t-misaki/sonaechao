@@ -71,7 +71,7 @@ public class setting extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
 
-        ImageButton btnhome = (ImageButton)findViewById(R.id.HomeButton);
+        ImageButton btnhome = (ImageButton)findViewById(R.id.HomeButton3);
         btnhome.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -124,73 +124,21 @@ public class setting extends Activity {
         });
 
 
-        ImageButton btnhijo = (ImageButton)findViewById(R.id.HijoButton);
+        ImageButton btnhijo = (ImageButton)findViewById(R.id.HijoButton3);
         btnhijo.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 //ホーム画面移動
                 //大人、小人、幼児の人数を保存
-                SharedPreferences adult_pref = getSharedPreferences("adult_pref",MODE_PRIVATE);
+                SharedPreferences adult_pref = getSharedPreferences("adult_pref", MODE_PRIVATE);
                 SharedPreferences children_pref = getSharedPreferences("children_pref", MODE_PRIVATE);
                 SharedPreferences baby_pref = getSharedPreferences("baby_pref", MODE_PRIVATE);
-                Spinner adult_sp = (Spinner)findViewById(R.id.adultspinner);
-                Spinner children_sp = (Spinner)findViewById(R.id.childrenspinner);
-                Spinner baby_sp = (Spinner)findViewById(R.id.babyspinner);
-                String adult_str = (String)adult_sp.getSelectedItem();
-                String children_str = (String)children_sp.getSelectedItem();
-                String baby_str = (String)baby_sp.getSelectedItem();
-                int a = Integer.parseInt(adult_str);
-                int b = Integer.parseInt(children_str);
-                int c = Integer.parseInt(baby_str);
-                SharedPreferences.Editor adult_e = adult_pref.edit();
-                SharedPreferences.Editor children_e = children_pref.edit();
-                SharedPreferences.Editor baby_e = baby_pref.edit();
-                adult_e.putInt("adult_key", a);
-                children_e.putInt("children_key", b);
-                baby_e.putInt("baby_key", c);
-                adult_e.commit();
-                children_e.commit();
-                baby_e.commit();
-
-                //期日の値保存
-                SharedPreferences limit_pref = getSharedPreferences("limit_pref",MODE_PRIVATE);
-                Spinner limit_sp = (Spinner)findViewById(R.id.limitspinner);
-                String limit_str = (String)limit_sp.getSelectedItem();
-                int d = Integer.parseInt(limit_str);
-                SharedPreferences.Editor limit_e = limit_pref.edit();
-                limit_e.putInt("limit_key", d);
-                limit_e.commit();
-
-                //設定日数の値の保存
-                SharedPreferences setting_pref = getSharedPreferences("setting_pref",MODE_PRIVATE);
-                Spinner setting_sp = (Spinner)findViewById(R.id.settingspinner);
-                String setting_str = (String)setting_sp.getSelectedItem();
-                int e = Integer.parseInt(setting_str);
-                SharedPreferences.Editor setting_e = setting_pref.edit();
-                setting_e.putInt("setting_key", e);
-                setting_e.commit();
-
-                Intent intent = new Intent();
-                intent.setClassName("com.example.misakitatsuya.hello_world", "com.example.misakitatsuya.hello_world.hijo");
-                startActivity(intent);
-            }
-        });
-
-        ImageButton btnbichiku = (ImageButton)findViewById(R.id.BichikuButton);
-        btnbichiku.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //ホーム画面移動
-                //大人、小人、幼児の人数を保存
-                SharedPreferences adult_pref = getSharedPreferences("adult_pref",MODE_PRIVATE);
-                SharedPreferences children_pref = getSharedPreferences("children_pref", MODE_PRIVATE);
-                SharedPreferences baby_pref = getSharedPreferences("baby_pref", MODE_PRIVATE);
-                Spinner adult_sp = (Spinner)findViewById(R.id.adultspinner);
-                Spinner children_sp = (Spinner)findViewById(R.id.childrenspinner);
-                Spinner baby_sp = (Spinner)findViewById(R.id.babyspinner);
-                String adult_str = (String)adult_sp.getSelectedItem();
-                String children_str = (String)children_sp.getSelectedItem();
-                String baby_str = (String)baby_sp.getSelectedItem();
+                Spinner adult_sp = (Spinner) findViewById(R.id.adultspinner);
+                Spinner children_sp = (Spinner) findViewById(R.id.childrenspinner);
+                Spinner baby_sp = (Spinner) findViewById(R.id.babyspinner);
+                String adult_str = (String) adult_sp.getSelectedItem();
+                String children_str = (String) children_sp.getSelectedItem();
+                String baby_str = (String) baby_sp.getSelectedItem();
                 int a = Integer.parseInt(adult_str);
                 int b = Integer.parseInt(children_str);
                 int c = Integer.parseInt(baby_str);
@@ -206,17 +154,69 @@ public class setting extends Activity {
 
                 //期日の値保存
                 SharedPreferences limit_pref = getSharedPreferences("limit_pref", MODE_PRIVATE);
-                Spinner limit_sp = (Spinner)findViewById(R.id.limitspinner);
-                String limit_str = (String)limit_sp.getSelectedItem();
+                Spinner limit_sp = (Spinner) findViewById(R.id.limitspinner);
+                String limit_str = (String) limit_sp.getSelectedItem();
                 int d = Integer.parseInt(limit_str);
                 SharedPreferences.Editor limit_e = limit_pref.edit();
                 limit_e.putInt("limit_key", d);
                 limit_e.commit();
 
                 //設定日数の値の保存
-                SharedPreferences setting_pref = getSharedPreferences("setting_pref",MODE_PRIVATE);
-                Spinner setting_sp = (Spinner)findViewById(R.id.settingspinner);
-                String setting_str = (String)setting_sp.getSelectedItem();
+                SharedPreferences setting_pref = getSharedPreferences("setting_pref", MODE_PRIVATE);
+                Spinner setting_sp = (Spinner) findViewById(R.id.settingspinner);
+                String setting_str = (String) setting_sp.getSelectedItem();
+                int e = Integer.parseInt(setting_str);
+                SharedPreferences.Editor setting_e = setting_pref.edit();
+                setting_e.putInt("setting_key", e);
+                setting_e.commit();
+
+                Intent intent = new Intent();
+                intent.setClassName("com.example.misakitatsuya.hello_world", "com.example.misakitatsuya.hello_world.hijo");
+                startActivity(intent);
+            }
+        });
+
+        ImageButton btnbichiku = (ImageButton)findViewById(R.id.BichikuButton3);
+        btnbichiku.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //ホーム画面移動
+                //大人、小人、幼児の人数を保存
+                SharedPreferences adult_pref = getSharedPreferences("adult_pref", MODE_PRIVATE);
+                SharedPreferences children_pref = getSharedPreferences("children_pref", MODE_PRIVATE);
+                SharedPreferences baby_pref = getSharedPreferences("baby_pref", MODE_PRIVATE);
+                Spinner adult_sp = (Spinner) findViewById(R.id.adultspinner);
+                Spinner children_sp = (Spinner) findViewById(R.id.childrenspinner);
+                Spinner baby_sp = (Spinner) findViewById(R.id.babyspinner);
+                String adult_str = (String) adult_sp.getSelectedItem();
+                String children_str = (String) children_sp.getSelectedItem();
+                String baby_str = (String) baby_sp.getSelectedItem();
+                int a = Integer.parseInt(adult_str);
+                int b = Integer.parseInt(children_str);
+                int c = Integer.parseInt(baby_str);
+                SharedPreferences.Editor adult_e = adult_pref.edit();
+                SharedPreferences.Editor children_e = children_pref.edit();
+                SharedPreferences.Editor baby_e = baby_pref.edit();
+                adult_e.putInt("adult_key", a);
+                children_e.putInt("children_key", b);
+                baby_e.putInt("baby_key", c);
+                adult_e.commit();
+                children_e.commit();
+                baby_e.commit();
+
+                //期日の値保存
+                SharedPreferences limit_pref = getSharedPreferences("limit_pref", MODE_PRIVATE);
+                Spinner limit_sp = (Spinner) findViewById(R.id.limitspinner);
+                String limit_str = (String) limit_sp.getSelectedItem();
+                int d = Integer.parseInt(limit_str);
+                SharedPreferences.Editor limit_e = limit_pref.edit();
+                limit_e.putInt("limit_key", d);
+                limit_e.commit();
+
+                //設定日数の値の保存
+                SharedPreferences setting_pref = getSharedPreferences("setting_pref", MODE_PRIVATE);
+                Spinner setting_sp = (Spinner) findViewById(R.id.settingspinner);
+                String setting_str = (String) setting_sp.getSelectedItem();
                 int e = Integer.parseInt(setting_str);
                 SharedPreferences.Editor setting_e = setting_pref.edit();
                 setting_e.putInt("setting_key", e);

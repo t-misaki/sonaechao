@@ -7,46 +7,6 @@
     tools:context="com.example.misakitatsuya.hello_world.hijo"
     android:id="@+id/in">
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ホーム"
-        android:id="@+id/homeb"
-        android:layout_below="@+id/mizu_button"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="非常食"
-        android:id="@+id/hijob"
-        android:layout_below="@+id/mizu_button"
-        android:layout_toRightOf="@+id/textView24"
-        android:layout_toEndOf="@+id/textView24" />
-
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="備蓄品"
-        android:id="@+id/bichikub"
-        android:layout_alignTop="@+id/hijob"
-        android:layout_toLeftOf="@+id/okasibutton"
-        android:layout_toStartOf="@+id/okasibutton" />
-
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="設定"
-        android:id="@+id/settingb"
-        android:layout_alignTop="@+id/bichikub"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -143,9 +103,9 @@
         android:text="水"
         android:id="@+id/textView28"
         android:textSize="25dp"
-        android:layout_alignBottom="@+id/konamilkbutton"
-        android:layout_alignLeft="@+id/settingb"
-        android:layout_alignStart="@+id/settingb" />
+        android:layout_alignTop="@+id/konamilkbutton"
+        android:layout_alignRight="@+id/textView17"
+        android:layout_alignEnd="@+id/textView17" />
 
     <ImageButton
         android:layout_width="80dp"
@@ -171,8 +131,8 @@
         android:id="@+id/karoributton"
         android:src="@drawable/karori_meito"
         android:layout_below="@+id/kandumebutton2"
-        android:layout_alignLeft="@+id/textView12"
-        android:layout_alignStart="@+id/textView12" />
+        android:layout_toLeftOf="@+id/retorutobutton"
+        android:layout_toStartOf="@+id/retorutobutton" />
 
     <ImageButton
         android:layout_width="80dp"
@@ -195,11 +155,47 @@
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="50dp"
-        android:text="広告欄"
-        android:id="@+id/textView27"
+        android:text="広告"
+        android:id="@+id/textView25"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:background="#00ff00" />
+        android:background="#ff9aff98" />
+
+    <ImageButton
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:id="@+id/HomeButton1"
+        android:layout_above="@+id/textView25"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:src="@drawable/home" />
+
+    <ImageButton
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:id="@+id/HijoButton1"
+        android:layout_alignBottom="@+id/HomeButton1"
+        android:layout_alignLeft="@+id/rinyubutton"
+        android:layout_alignStart="@+id/rinyubutton"
+        android:src="@drawable/hijo" />
+
+    <ImageButton
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:id="@+id/BichikuButton1"
+        android:src="@drawable/bichiku"
+        android:layout_above="@+id/textView25"
+        android:layout_toLeftOf="@+id/SettingButton1"
+        android:layout_toStartOf="@+id/SettingButton1" />
+
+    <ImageButton
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:id="@+id/SettingButton1"
+        android:layout_alignBottom="@+id/HijoButton1"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:src="@drawable/setting" />
 
 </RelativeLayout>

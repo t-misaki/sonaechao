@@ -344,7 +344,7 @@ public class hijo extends ActionBarActivity {
 
                         lastyear_e.putInt("lastyear_key", mYear);
                         lastmonth_e.putInt("lastmonth_key", mMonth);
-                        lastday_e.putInt("lastday_key",mDay);
+                        lastday_e.putInt("lastday_key", mDay);
 
                         lastyear_e.commit();
                         lastmonth_e.commit();
@@ -355,17 +355,17 @@ public class hijo extends ActionBarActivity {
                 alert.show();
 
                 //カレンダー設定
-                SharedPreferences year_pref3 = getSharedPreferences("year_pref3",MODE_PRIVATE);
+                SharedPreferences year_pref3 = getSharedPreferences("year_pref3", MODE_PRIVATE);
                 SharedPreferences month_pref3 = getSharedPreferences("month_pref3", MODE_PRIVATE);
                 SharedPreferences day_pref3 = getSharedPreferences("day_pref3", MODE_PRIVATE);
-                int limit_year3 = year_pref3.getInt("year_key3",mYear);
-                int limit_month3 = month_pref3.getInt("month_key3",mMonth);
-                int limit_day3 = day_pref3.getInt("day_key3",mDay);
-                String limit_str3 = "賞味期限は" + String.valueOf(limit_year3) + "年" + String.valueOf(limit_month3+1) + "月" + String.valueOf(limit_day3) + "日です。";
-                TextView limit_tv3 = (TextView)viw.findViewById(R.id.textView30);
+                int limit_year3 = year_pref3.getInt("year_key3", mYear);
+                int limit_month3 = month_pref3.getInt("month_key3", mMonth);
+                int limit_day3 = day_pref3.getInt("day_key3", mDay);
+                String limit_str3 = "賞味期限は" + String.valueOf(limit_year3) + "年" + String.valueOf(limit_month3 + 1) + "月" + String.valueOf(limit_day3) + "日です。";
+                TextView limit_tv3 = (TextView) viw.findViewById(R.id.textView30);
                 limit_tv3.setText(limit_str3);
 
-                Button calbutton = (Button)viw.findViewById(R.id.calbutton);
+                Button calbutton = (Button) viw.findViewById(R.id.calbutton);
                 calbutton.setOnClickListener(new OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -377,7 +377,7 @@ public class hijo extends ActionBarActivity {
                                 mMonth = monthOfYear;
                                 mDay = dayOfMonth;
 
-                                SharedPreferences year_pref3 = getSharedPreferences("year_pref3",MODE_PRIVATE);
+                                SharedPreferences year_pref3 = getSharedPreferences("year_pref3", MODE_PRIVATE);
                                 SharedPreferences month_pref3 = getSharedPreferences("month_pref3", MODE_PRIVATE);
                                 SharedPreferences day_pref3 = getSharedPreferences("day_pref3", MODE_PRIVATE);
 
@@ -391,11 +391,11 @@ public class hijo extends ActionBarActivity {
                                 month_e3.commit();
                                 day_e3.commit();
 
-                                int limit_year3 = year_pref3.getInt("year_key3",mYear);
-                                int limit_month3 = month_pref3.getInt("month_key3",mMonth);
-                                int limit_day3 = day_pref3.getInt("day_key3",mDay);
-                                String limit_str3 = "賞味期限は" + String.valueOf(limit_year3) + "年" + String.valueOf(limit_month3+1) + "月" + String.valueOf(limit_day3) + "日です。";
-                                TextView limit_tv3 = (TextView)viw.findViewById(R.id.textView30);
+                                int limit_year3 = year_pref3.getInt("year_key3", mYear);
+                                int limit_month3 = month_pref3.getInt("month_key3", mMonth);
+                                int limit_day3 = day_pref3.getInt("day_key3", mDay);
+                                String limit_str3 = "賞味期限は" + String.valueOf(limit_year3) + "年" + String.valueOf(limit_month3 + 1) + "月" + String.valueOf(limit_day3) + "日です。";
+                                TextView limit_tv3 = (TextView) viw.findViewById(R.id.textView30);
                                 limit_tv3.setText(limit_str3);
                             }
                         };
@@ -1531,7 +1531,7 @@ public class hijo extends ActionBarActivity {
 
 
         //ボタン場所指定(ホーム)
-        ImageButton btnhome = (ImageButton)findViewById(R.id.HomeButton);
+        ImageButton btnhome = (ImageButton)findViewById(R.id.HomeButton1);
 
         btnhome.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
@@ -1543,7 +1543,7 @@ public class hijo extends ActionBarActivity {
         });
 
         //ボタン場所指定(備蓄品)
-        ImageButton btnbichiku = (ImageButton)findViewById(R.id.BichikuButton);
+        ImageButton btnbichiku = (ImageButton)findViewById(R.id.BichikuButton1);
 
         btnbichiku.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
@@ -1555,7 +1555,7 @@ public class hijo extends ActionBarActivity {
         });
 
         //ボタン場所指定(設定)
-        ImageButton btnsetting = (ImageButton)findViewById(R.id.SettingButton);
+        ImageButton btnsetting = (ImageButton)findViewById(R.id.SettingButton1);
 
         btnsetting.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {

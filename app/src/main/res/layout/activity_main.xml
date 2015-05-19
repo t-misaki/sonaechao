@@ -278,8 +278,8 @@
         android:background="#ff9aff98" />
 
     <ImageButton
-        android:layout_width="85dp"
-        android:layout_height="85dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:id="@+id/HomeButton"
         android:layout_above="@+id/textView25"
         android:layout_alignParentLeft="true"
@@ -287,8 +287,8 @@
         android:src="@drawable/home" />
 
     <ImageButton
-        android:layout_width="85dp"
-        android:layout_height="85dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:id="@+id/HijoButton"
         android:layout_above="@+id/textView25"
         android:layout_toRightOf="@+id/HomeButton"
@@ -296,8 +296,8 @@
         android:src="@drawable/hijo" />
 
     <ImageButton
-        android:layout_width="85dp"
-        android:layout_height="85dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:id="@+id/SettingButton"
         android:layout_alignBottom="@+id/HijoButton"
         android:layout_alignRight="@+id/bichikulasttext"
@@ -305,8 +305,8 @@
         android:src="@drawable/setting" />
 
     <ImageButton
-        android:layout_width="85dp"
-        android:layout_height="85dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:id="@+id/BichikuButton"
         android:layout_alignBottom="@+id/SettingButton"
         android:layout_toLeftOf="@+id/SettingButton"
