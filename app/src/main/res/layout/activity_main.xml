@@ -5,28 +5,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/hijosum"
-        android:layout_alignBottom="@+id/bichikusum"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignTop="@+id/bichikusum"
-        android:layout_alignRight="@+id/hijoview"
-        android:layout_alignEnd="@+id/hijoview" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/bichikusum"
-        android:layout_alignParentTop="true"
-        android:layout_alignRight="@+id/bichikuview"
-        android:layout_alignEnd="@+id/bichikuview"
-        android:layout_above="@+id/editText2"
-        android:layout_alignLeft="@+id/bichikuview"
-        android:layout_alignStart="@+id/bichikuview" />
-
     <ImageView
         android:layout_width="165dp"
         android:layout_height="wrap_content"

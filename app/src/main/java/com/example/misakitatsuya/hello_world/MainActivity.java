@@ -288,27 +288,6 @@ public class MainActivity extends Activity {
             lasttvb.setText(laststrb);
         }
 
-        //非常食合計
-        int hijosum = retorutogohan + kandume + kanmen + kanpan + kan2 + retoruto + freaze + karori + rinyu + konamilk + okasi + mizu;
-        String hijostr = "非常食の合計　"+String.valueOf(hijosum)+"個";
-        TextView hijosum_tv = (TextView)findViewById(R.id.hijosum);
-        hijosum_tv.setText(hijostr);
-
-        //備蓄品合計
-        SharedPreferences bichikupref = getSharedPreferences("Preferences",MODE_PRIVATE);
-        int m = bichikupref.getInt("pop1num",0);
-        int n = bichikupref.getInt("pop2num",0);
-        int o = bichikupref.getInt("pop3num",0);
-        int pp = bichikupref.getInt("pop4num",0);
-        int q = bichikupref.getInt("pop5num",0);
-        int r = bichikupref.getInt("pop6num",0);
-        int s = bichikupref.getInt("pop7num",0);
-        int t = bichikupref.getInt("pop8num",0);
-        int bichikusum = m+n+o+pp+q+r+s+t;
-        String bichikustr = "備蓄品の合計　"+String.valueOf(bichikusum)+"個";
-        TextView bichikusum_tv = (TextView)findViewById(R.id.bichikusum);
-        bichikusum_tv.setText(bichikustr);
-
         //アラート設定（レトルトご飯）
         Calendar today = Calendar.getInstance();
         SharedPreferences limit_pref = getSharedPreferences("limit_pref", MODE_PRIVATE);
@@ -778,6 +757,10 @@ public class MainActivity extends Activity {
                             lastyear_e.commit();
                             lastmonth_e.commit();
                             lastday_e.commit();
+
+                            Intent intent = new Intent();
+                            intent.setClassName("com.example.misakitatsuya.hello_world", "com.example.misakitatsuya.hello_world.MainActivity");
+                            startActivity(intent);//画面を出す
                         }
                     });
                     alert.setView(viw);
@@ -908,6 +891,10 @@ public class MainActivity extends Activity {
                             lastyear_e.commit();
                             lastmonth_e.commit();
                             lastday_e.commit();
+
+                            Intent intent = new Intent();
+                            intent.setClassName("com.example.misakitatsuya.hello_world", "com.example.misakitatsuya.hello_world.MainActivity");
+                            startActivity(intent);//画面を出す
                         }
                     });
                     alert.setView(viw);
@@ -1037,6 +1024,10 @@ public class MainActivity extends Activity {
                             lastyear_e.commit();
                             lastmonth_e.commit();
                             lastday_e.commit();
+
+                            Intent intent = new Intent();
+                            intent.setClassName("com.example.misakitatsuya.hello_world", "com.example.misakitatsuya.hello_world.MainActivity");
+                            startActivity(intent);//画面を出す
                         }
                     });
                     alert.setView(viw);
@@ -1167,6 +1158,10 @@ public class MainActivity extends Activity {
                             lastyear_e.commit();
                             lastmonth_e.commit();
                             lastday_e.commit();
+
+                            Intent intent = new Intent();
+                            intent.setClassName("com.example.misakitatsuya.hello_world", "com.example.misakitatsuya.hello_world.MainActivity");
+                            startActivity(intent);//画面を出す
                         }
                     });
                     alert.setView(viw);
@@ -1297,6 +1292,10 @@ public class MainActivity extends Activity {
                             lastyear_e.commit();
                             lastmonth_e.commit();
                             lastday_e.commit();
+
+                            Intent intent = new Intent();
+                            intent.setClassName("com.example.misakitatsuya.hello_world", "com.example.misakitatsuya.hello_world.MainActivity");
+                            startActivity(intent);//画面を出す
                         }
                     });
                     alert.setView(viw);
@@ -1427,6 +1426,10 @@ public class MainActivity extends Activity {
                             lastyear_e.commit();
                             lastmonth_e.commit();
                             lastday_e.commit();
+
+                            Intent intent = new Intent();
+                            intent.setClassName("com.example.misakitatsuya.hello_world", "com.example.misakitatsuya.hello_world.MainActivity");
+                            startActivity(intent);//画面を出す
                         }
                     });
                     alert.setView(viw);
@@ -1557,6 +1560,10 @@ public class MainActivity extends Activity {
                             lastyear_e.commit();
                             lastmonth_e.commit();
                             lastday_e.commit();
+
+                            Intent intent = new Intent();
+                            intent.setClassName("com.example.misakitatsuya.hello_world", "com.example.misakitatsuya.hello_world.MainActivity");
+                            startActivity(intent);//画面を出す
                         }
                     });
                     alert.setView(viw);
@@ -1687,6 +1694,10 @@ public class MainActivity extends Activity {
                             lastyear_e.commit();
                             lastmonth_e.commit();
                             lastday_e.commit();
+
+                            Intent intent = new Intent();
+                            intent.setClassName("com.example.misakitatsuya.hello_world", "com.example.misakitatsuya.hello_world.MainActivity");
+                            startActivity(intent);//画面を出す
                         }
                     });
                     alert.setView(viw);
@@ -1816,6 +1827,10 @@ public class MainActivity extends Activity {
                             lastyear_e.commit();
                             lastmonth_e.commit();
                             lastday_e.commit();
+
+                            Intent intent = new Intent();
+                            intent.setClassName("com.example.misakitatsuya.hello_world", "com.example.misakitatsuya.hello_world.MainActivity");
+                            startActivity(intent);//画面を出す
                         }
                     });
                     alert.setView(viw);
@@ -1945,6 +1960,10 @@ public class MainActivity extends Activity {
                             lastyear_e.commit();
                             lastmonth_e.commit();
                             lastday_e.commit();
+
+                            Intent intent = new Intent();
+                            intent.setClassName("com.example.misakitatsuya.hello_world", "com.example.misakitatsuya.hello_world.MainActivity");
+                            startActivity(intent);//画面を出す
                         }
                     });
                     alert.setView(viw);
@@ -2074,6 +2093,10 @@ public class MainActivity extends Activity {
                             lastyear_e.commit();
                             lastmonth_e.commit();
                             lastday_e.commit();
+
+                            Intent intent = new Intent();
+                            intent.setClassName("com.example.misakitatsuya.hello_world", "com.example.misakitatsuya.hello_world.MainActivity");
+                            startActivity(intent);//画面を出す
                         }
                     });
                     alert.setView(viw);
@@ -2203,6 +2226,10 @@ public class MainActivity extends Activity {
                             lastyear_e.commit();
                             lastmonth_e.commit();
                             lastday_e.commit();
+
+                            Intent intent = new Intent();
+                            intent.setClassName("com.example.misakitatsuya.hello_world", "com.example.misakitatsuya.hello_world.MainActivity");
+                            startActivity(intent);//画面を出す
                         }
                     });
                     alert.setView(viw);

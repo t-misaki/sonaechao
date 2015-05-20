@@ -55,19 +55,14 @@ public class hijo extends ActionBarActivity {
                 //人数の表示
                 SharedPreferences adult_pref = getSharedPreferences("adult_pref", MODE_PRIVATE);
                 SharedPreferences children_pref = getSharedPreferences("children_pref", MODE_PRIVATE);
-                SharedPreferences baby_pref = getSharedPreferences("baby_pref", MODE_PRIVATE);
                 int a = adult_pref.getInt("adult_key", 0);
                 int b = children_pref.getInt("children_key", 0);
-                int c = baby_pref.getInt("baby_key", 0);
                 String adult_str = "大人" + String.valueOf(a) + "人";
                 String children_str = "小人" + String.valueOf(b) + "人";
-                String baby_str = "幼児" + String.valueOf(c) + "人";
                 TextView adult_tv = (TextView) viw.findViewById(R.id.adulttext);
                 TextView children_tv = (TextView) viw.findViewById(R.id.childrentext);
-                TextView baby_tv = (TextView) viw.findViewById(R.id.babytext);
                 adult_tv.setText(adult_str);
                 children_tv.setText(children_str);
-                baby_tv.setText(baby_str);
 
                 // 決定ボタンを押された時の処理
                 alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -181,19 +176,14 @@ public class hijo extends ActionBarActivity {
                 //人数の表示
                 SharedPreferences adult_pref = getSharedPreferences("adult_pref", MODE_PRIVATE);
                 SharedPreferences children_pref = getSharedPreferences("children_pref", MODE_PRIVATE);
-                SharedPreferences baby_pref = getSharedPreferences("baby_pref", MODE_PRIVATE);
                 int a = adult_pref.getInt("adult_key", 0);
                 int b = children_pref.getInt("children_key", 0);
-                int c = baby_pref.getInt("baby_key", 0);
                 String adult_str = "大人" + String.valueOf(a) + "人";
                 String children_str = "小人" + String.valueOf(b) + "人";
-                String baby_str = "幼児" + String.valueOf(c) + "人";
                 TextView adult_tv = (TextView) viw.findViewById(R.id.adulttext);
                 TextView children_tv = (TextView) viw.findViewById(R.id.childrentext);
-                TextView baby_tv = (TextView) viw.findViewById(R.id.babytext);
                 adult_tv.setText(adult_str);
                 children_tv.setText(children_str);
-                baby_tv.setText(baby_str);
 
                 // 決定ボタンを押された時の処理
                 alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -306,19 +296,14 @@ public class hijo extends ActionBarActivity {
                 //人数の表示
                 SharedPreferences adult_pref = getSharedPreferences("adult_pref", MODE_PRIVATE);
                 SharedPreferences children_pref = getSharedPreferences("children_pref", MODE_PRIVATE);
-                SharedPreferences baby_pref = getSharedPreferences("baby_pref", MODE_PRIVATE);
                 int a = adult_pref.getInt("adult_key", 0);
                 int b = children_pref.getInt("children_key", 0);
-                int c = baby_pref.getInt("baby_key", 0);
                 String adult_str = "大人" + String.valueOf(a) + "人";
                 String children_str = "小人" + String.valueOf(b) + "人";
-                String baby_str = "幼児" + String.valueOf(c) + "人";
                 TextView adult_tv = (TextView) viw.findViewById(R.id.adulttext);
                 TextView children_tv = (TextView) viw.findViewById(R.id.childrentext);
-                TextView baby_tv = (TextView) viw.findViewById(R.id.babytext);
                 adult_tv.setText(adult_str);
                 children_tv.setText(children_str);
-                baby_tv.setText(baby_str);
 
                 // 決定ボタンを押された時の処理
                 alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -431,19 +416,14 @@ public class hijo extends ActionBarActivity {
                 //人数の表示
                 SharedPreferences adult_pref = getSharedPreferences("adult_pref", MODE_PRIVATE);
                 SharedPreferences children_pref = getSharedPreferences("children_pref", MODE_PRIVATE);
-                SharedPreferences baby_pref = getSharedPreferences("baby_pref", MODE_PRIVATE);
                 int a = adult_pref.getInt("adult_key", 0);
                 int b = children_pref.getInt("children_key", 0);
-                int c = baby_pref.getInt("baby_key", 0);
                 String adult_str = "大人" + String.valueOf(a) + "人";
                 String children_str = "小人" + String.valueOf(b) + "人";
-                String baby_str = "幼児" + String.valueOf(c) + "人";
                 TextView adult_tv = (TextView) viw.findViewById(R.id.adulttext);
                 TextView children_tv = (TextView) viw.findViewById(R.id.childrentext);
-                TextView baby_tv = (TextView) viw.findViewById(R.id.babytext);
                 adult_tv.setText(adult_str);
                 children_tv.setText(children_str);
-                baby_tv.setText(baby_str);
 
                 // 決定ボタンを押された時の処理
                 alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -556,19 +536,14 @@ public class hijo extends ActionBarActivity {
                 //人数の表示
                 SharedPreferences adult_pref = getSharedPreferences("adult_pref", MODE_PRIVATE);
                 SharedPreferences children_pref = getSharedPreferences("children_pref", MODE_PRIVATE);
-                SharedPreferences baby_pref = getSharedPreferences("baby_pref", MODE_PRIVATE);
                 int a = adult_pref.getInt("adult_key", 0);
                 int b = children_pref.getInt("children_key", 0);
-                int c = baby_pref.getInt("baby_key", 0);
                 String adult_str = "大人" + String.valueOf(a) + "人";
                 String children_str = "小人" + String.valueOf(b) + "人";
-                String baby_str = "幼児" + String.valueOf(c) + "人";
                 TextView adult_tv = (TextView) viw.findViewById(R.id.adulttext);
                 TextView children_tv = (TextView) viw.findViewById(R.id.childrentext);
-                TextView baby_tv = (TextView) viw.findViewById(R.id.babytext);
                 adult_tv.setText(adult_str);
                 children_tv.setText(children_str);
-                baby_tv.setText(baby_str);
 
                 // 決定ボタンを押された時の処理
                 alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -681,19 +656,14 @@ public class hijo extends ActionBarActivity {
                 //人数の表示
                 SharedPreferences adult_pref = getSharedPreferences("adult_pref", MODE_PRIVATE);
                 SharedPreferences children_pref = getSharedPreferences("children_pref", MODE_PRIVATE);
-                SharedPreferences baby_pref = getSharedPreferences("baby_pref", MODE_PRIVATE);
                 int a = adult_pref.getInt("adult_key", 0);
                 int b = children_pref.getInt("children_key", 0);
-                int c = baby_pref.getInt("baby_key", 0);
                 String adult_str = "大人" + String.valueOf(a) + "人";
                 String children_str = "小人" + String.valueOf(b) + "人";
-                String baby_str = "幼児" + String.valueOf(c) + "人";
                 TextView adult_tv = (TextView) viw.findViewById(R.id.adulttext);
                 TextView children_tv = (TextView) viw.findViewById(R.id.childrentext);
-                TextView baby_tv = (TextView) viw.findViewById(R.id.babytext);
                 adult_tv.setText(adult_str);
                 children_tv.setText(children_str);
-                baby_tv.setText(baby_str);
 
                 // 決定ボタンを押された時の処理
                 alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -806,19 +776,14 @@ public class hijo extends ActionBarActivity {
                 //人数の表示
                 SharedPreferences adult_pref = getSharedPreferences("adult_pref", MODE_PRIVATE);
                 SharedPreferences children_pref = getSharedPreferences("children_pref", MODE_PRIVATE);
-                SharedPreferences baby_pref = getSharedPreferences("baby_pref", MODE_PRIVATE);
                 int a = adult_pref.getInt("adult_key", 0);
                 int b = children_pref.getInt("children_key", 0);
-                int c = baby_pref.getInt("baby_key", 0);
                 String adult_str = "大人" + String.valueOf(a) + "人";
                 String children_str = "小人" + String.valueOf(b) + "人";
-                String baby_str = "幼児" + String.valueOf(c) + "人";
                 TextView adult_tv = (TextView) viw.findViewById(R.id.adulttext);
                 TextView children_tv = (TextView) viw.findViewById(R.id.childrentext);
-                TextView baby_tv = (TextView) viw.findViewById(R.id.babytext);
                 adult_tv.setText(adult_str);
                 children_tv.setText(children_str);
-                baby_tv.setText(baby_str);
 
                 // 決定ボタンを押された時の処理
                 alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -1053,20 +1018,10 @@ public class hijo extends ActionBarActivity {
                 et.setText(str);
 
                 //人数の表示
-                SharedPreferences adult_pref = getSharedPreferences("adult_pref", MODE_PRIVATE);
-                SharedPreferences children_pref = getSharedPreferences("children_pref", MODE_PRIVATE);
                 SharedPreferences baby_pref = getSharedPreferences("baby_pref", MODE_PRIVATE);
-                int a = adult_pref.getInt("adult_key", 0);
-                int b = children_pref.getInt("children_key", 0);
                 int c = baby_pref.getInt("baby_key", 0);
-                String adult_str = "大人" + String.valueOf(a) + "人";
-                String children_str = "小人" + String.valueOf(b) + "人";
                 String baby_str = "幼児" + String.valueOf(c) + "人";
-                TextView adult_tv = (TextView) viw.findViewById(R.id.adulttext);
-                TextView children_tv = (TextView) viw.findViewById(R.id.childrentext);
                 TextView baby_tv = (TextView) viw.findViewById(R.id.babytext);
-                adult_tv.setText(adult_str);
-                children_tv.setText(children_str);
                 baby_tv.setText(baby_str);
 
                 // 決定ボタンを押された時の処理
@@ -1179,19 +1134,14 @@ public class hijo extends ActionBarActivity {
                 //人数の表示
                 SharedPreferences adult_pref = getSharedPreferences("adult_pref", MODE_PRIVATE);
                 SharedPreferences children_pref = getSharedPreferences("children_pref", MODE_PRIVATE);
-                SharedPreferences baby_pref = getSharedPreferences("baby_pref", MODE_PRIVATE);
                 int a = adult_pref.getInt("adult_key", 0);
                 int b = children_pref.getInt("children_key", 0);
-                int c = baby_pref.getInt("baby_key", 0);
                 String adult_str = "大人" + String.valueOf(a) + "人";
                 String children_str = "小人" + String.valueOf(b) + "人";
-                String baby_str = "幼児" + String.valueOf(c) + "人";
                 TextView adult_tv = (TextView) viw.findViewById(R.id.adulttext);
                 TextView children_tv = (TextView) viw.findViewById(R.id.childrentext);
-                TextView baby_tv = (TextView) viw.findViewById(R.id.babytext);
                 adult_tv.setText(adult_str);
                 children_tv.setText(children_str);
-                baby_tv.setText(baby_str);
 
                 // 決定ボタンを押された時の処理
                 alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -1303,19 +1253,14 @@ public class hijo extends ActionBarActivity {
                 //人数の表示
                 SharedPreferences adult_pref = getSharedPreferences("adult_pref", MODE_PRIVATE);
                 SharedPreferences children_pref = getSharedPreferences("children_pref", MODE_PRIVATE);
-                SharedPreferences baby_pref = getSharedPreferences("baby_pref", MODE_PRIVATE);
                 int a = adult_pref.getInt("adult_key", 0);
                 int b = children_pref.getInt("children_key", 0);
-                int c = baby_pref.getInt("baby_key", 0);
                 String adult_str = "大人" + String.valueOf(a) + "人";
                 String children_str = "小人" + String.valueOf(b) + "人";
-                String baby_str = "幼児" + String.valueOf(c) + "人";
                 TextView adult_tv = (TextView) viw.findViewById(R.id.adulttext);
                 TextView children_tv = (TextView) viw.findViewById(R.id.childrentext);
-                TextView baby_tv = (TextView) viw.findViewById(R.id.babytext);
                 adult_tv.setText(adult_str);
                 children_tv.setText(children_str);
-                baby_tv.setText(baby_str);
 
                 // 決定ボタンを押された時の処理
                 alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -1425,20 +1370,10 @@ public class hijo extends ActionBarActivity {
                 et.setText(str);
 
                 //人数の表示
-                SharedPreferences adult_pref = getSharedPreferences("adult_pref", MODE_PRIVATE);
-                SharedPreferences children_pref = getSharedPreferences("children_pref", MODE_PRIVATE);
                 SharedPreferences baby_pref = getSharedPreferences("baby_pref", MODE_PRIVATE);
-                int a = adult_pref.getInt("adult_key", 0);
-                int b = children_pref.getInt("children_key", 0);
                 int c = baby_pref.getInt("baby_key", 0);
-                String adult_str = "大人" + String.valueOf(a) + "人";
-                String children_str = "小人" + String.valueOf(b) + "人";
                 String baby_str = "幼児" + String.valueOf(c) + "人";
-                TextView adult_tv = (TextView) viw.findViewById(R.id.adulttext);
-                TextView children_tv = (TextView) viw.findViewById(R.id.childrentext);
                 TextView baby_tv = (TextView) viw.findViewById(R.id.babytext);
-                adult_tv.setText(adult_str);
-                children_tv.setText(children_str);
                 baby_tv.setText(baby_str);
 
                 // 決定ボタンを押された時の処理
