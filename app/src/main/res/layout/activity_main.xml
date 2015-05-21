@@ -171,6 +171,34 @@
                 android:layout_below="@+id/konamilk"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/denti"
+                android:textSize="10dp"
+                android:layout_below="@+id/mizu"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/gasbomb"
+                android:textSize="10dp"
+                android:layout_below="@+id/denti"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/babyerror"
+                android:textSize="10dp"
+                android:layout_below="@id/gasbomb"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
         </LinearLayout>
     </ScrollView>
 

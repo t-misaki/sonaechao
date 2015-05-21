@@ -6,6 +6,7 @@ import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -18,8 +19,6 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -38,33 +37,33 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //グラフ画像の設定
-        SharedPreferences pref = getSharedPreferences("Preferences", MODE_PRIVATE); // 非常食のプリファレンス
+        // 非常食グラフ画像の設定
+        SharedPreferences hijopref = getSharedPreferences("Preferences", MODE_PRIVATE); // 非常食のプリファレンス
         SharedPreferences setting_pref = getSharedPreferences("setting_pref", MODE_PRIVATE); // 設定日数のプリファレンス
         SharedPreferences adult_pref = getSharedPreferences("adult_pref", MODE_PRIVATE); // 大人人数のプリファレンス
         SharedPreferences children_pref = getSharedPreferences("children_pref", MODE_PRIVATE); // 小人人数のプリファレンス
         SharedPreferences baby_pref = getSharedPreferences("baby_pref", MODE_PRIVATE); // 幼児人数のプリファレンス
-        int retorutogohan = pref.getInt("retorutogohan_num", 0);
-        int kandume = pref.getInt("kandume_num", 0);
-        int kanmen = pref.getInt("kanmen_num", 0);
-        int kanpan = pref.getInt("kanpan_num", 0);
-        int kan2 = pref.getInt("kandume2_num", 0);
-        int retoruto = pref.getInt("retoruto_num", 0);
-        int freaze = pref.getInt("freaze_num", 0);
-        int mizu = pref.getInt("mizu_num", 0);
-        int rinyu = pref.getInt("rinyu_num", 0);
-        int konamilk = pref.getInt("konamilk_num", 0);
-        int karori = pref.getInt("karori_num", 0);
-        int okasi = pref.getInt("okasi_num",0);
+        int retorutogohan = hijopref.getInt("retorutogohan_num", 0); // レトルトご飯
+        int kandume = hijopref.getInt("kandume_num", 0); // 缶詰（ご飯）
+        int kanmen = hijopref.getInt("kanmen_num", 0); // 乾麺
+        int kanpan = hijopref.getInt("kanpan_num", 0); // 乾パン
+        int kan2 = hijopref.getInt("kandume2_num", 0); // 缶詰（魚、肉）
+        int retoruto = hijopref.getInt("retoruto_num", 0); // レトルト食品
+        int freaze = hijopref.getInt("freaze_num", 0); // フリーズドライ
+        int mizu = hijopref.getInt("mizu_num", 0); // 水
+        int rinyu = hijopref.getInt("rinyu_num", 0); // 離乳食
+        int konamilk = hijopref.getInt("konamilk_num", 0); // 粉ミルク
+        int karori = hijopref.getInt("karori_num", 0); // カロリーメイト
+        int okasi = hijopref.getInt("okasi_num",0); // お菓子
 
         int setting_day = setting_pref.getInt("setting_key", 0); // 設定日数
         int adult_n = adult_pref.getInt("adult_key", 0); // 大人の人数
         int children_n = children_pref.getInt("children_key", 0); // 小人の人数
         int baby_n = baby_pref.getInt("baby_key", 0); // 幼児の人数
 
-        double adult_need[][] =    {{  3.0,  9.0, 21.0},{  3.0,  9.0, 21.0}}; // 大人の必要数 {{非常食1.3.7日分},{水1.3.7日分}}
-        double children_need[][] = {{  2.0,  6.0, 14.0},{  2.0,  6.0, 14.0}}; // 小人の必要数 {{非常食1.3.7日分},{水1.3.7日分}}
-        double baby_need[][] =     {{  3.0,  9.0, 21.0},{  2.0,  6.0, 14.0}}; // 幼児の必要数 {{非常食1.3.7日分},{水1.3.7日分}}
+        double adult_food_need[][] =    {{  3.0,  9.0, 21.0},{  3.0,  9.0, 21.0}}; // 大人の必要数 {{非常食1.3.7日分},{水1.3.7日分}}
+        double children_food_need[][] = {{  2.0,  6.0, 14.0},{  2.0,  6.0, 14.0}}; // 小人の必要数 {{非常食1.3.7日分},{水1.3.7日分}}
+        double baby_food_need[][] =     {{  3.0,  9.0, 21.0},{  2.0,  6.0, 14.0}}; // 幼児の必要数 {{非常食1.3.7日分},{水1.3.7日分}}
 
         double food_meter = 0.0;
         double mizu_meter = 0.0;
@@ -75,9 +74,9 @@ public class MainActivity extends Activity {
         } else {
             if (setting_day == 1) { // 設定日数が1日の場合
                 // 非常食
-                double adult_fnumber = adult_need[0][0] * adult_n; // A = 大人必要数 x 大人人数
-                double children_fnumber = children_need[0][0] * children_n; // C = 小人必要数 x 小人人数
-                double baby_fnumber = baby_need[0][0] * baby_n; // B　=　幼児必要数　ｘ　幼児人数　
+                double adult_fnumber = adult_food_need[0][0] * adult_n; // A = 大人必要数 x 大人人数
+                double children_fnumber = children_food_need[0][0] * children_n; // C = 小人必要数 x 小人人数
+                double baby_fnumber = baby_food_need[0][0] * baby_n; // B　=　幼児必要数　ｘ　幼児人数　
                 // 入力されている量　=　乾パンｘ3　＋　カロリーメイトｘ3　＋　他・・・
                 double sumfood = (kanpan * 3.0) + (karori * 3.0) + retorutogohan + kandume + kanmen + kan2 + retoruto + freaze + okasi;
                 // 入力されている量　=　離乳食ｘ１　＋　粉ミルクｘ3
@@ -90,9 +89,9 @@ public class MainActivity extends Activity {
                 }
 
                 // 水
-                double adult_mnumber = adult_need[1][0] * adult_n; // A　=　大人必要数　ｘ　大人人数
-                double children_mnumber = children_need[1][0] * children_n; // C　=　小人必要数　ｘ　小人人数
-                double baby_mnumber = baby_need[1][0] * baby_n; // B　=　幼児必要数　ｘ　幼児人数　
+                double adult_mnumber = adult_food_need[1][0] * adult_n; // A　=　大人必要数　ｘ　大人人数
+                double children_mnumber = children_food_need[1][0] * children_n; // C　=　小人必要数　ｘ　小人人数
+                double baby_mnumber = baby_food_need[1][0] * baby_n; // B　=　幼児必要数　ｘ　幼児人数　
                 // 入力されている量　=　水の量（本数？）
                 double summizu = mizu * 1.0;
                 // 入力されている量　＞＝　A　→　50％
@@ -110,9 +109,9 @@ public class MainActivity extends Activity {
         } else {
             if (setting_day == 3) { // 設定日数が3日の場合
                 // 非常食
-                double adult_fnumber = adult_need[0][1] * adult_n; // A = 大人必要数 x 大人人数
-                double children_fnumber = children_need[0][1] * children_n; // C = 小人必要数 x 小人人数
-                double baby_fnumber = baby_need[0][1] * baby_n; // B　=　幼児必要数　ｘ　幼児人数　
+                double adult_fnumber = adult_food_need[0][1] * adult_n; // A = 大人必要数 x 大人人数
+                double children_fnumber = children_food_need[0][1] * children_n; // C = 小人必要数 x 小人人数
+                double baby_fnumber = baby_food_need[0][1] * baby_n; // B　=　幼児必要数　ｘ　幼児人数　
                 // 入力されている量　=　乾パンｘ3　＋　カロリーメイトｘ3　＋　他・・・
                 double sumfood = (kanpan * 3.0) + (karori * 3.0) + retorutogohan + kandume + kanmen + kan2 + retoruto + freaze + okasi;
                 // 入力されている量　=　離乳食ｘ１　＋　粉ミルクｘ3
@@ -125,9 +124,9 @@ public class MainActivity extends Activity {
                 }
 
                 // 水
-                double adult_mnumber = adult_need[1][1] * adult_n; // A　=　大人必要数　ｘ　大人人数
-                double children_mnumber = children_need[1][1] * children_n; // C　=　小人必要数　ｘ　小人人数
-                double baby_mnumber = baby_need[1][1] * baby_n; // B　=　幼児必要数　ｘ　幼児人数　
+                double adult_mnumber = adult_food_need[1][1] * adult_n; // A　=　大人必要数　ｘ　大人人数
+                double children_mnumber = children_food_need[1][1] * children_n; // C　=　小人必要数　ｘ　小人人数
+                double baby_mnumber = baby_food_need[1][1] * baby_n; // B　=　幼児必要数　ｘ　幼児人数　
                 // 入力されている量　=　水の量（本数？）
                 double summizu = mizu * 1.0;
                 // 入力されている量　＞＝　A　→　50％
@@ -145,9 +144,9 @@ public class MainActivity extends Activity {
         } else {
             if (setting_day == 7) { // 設定日数が7日の場合
                 // 非常食
-                double adult_fnumber = adult_need[0][2] * adult_n; // A = 大人必要数 x 大人人数
-                double children_fnumber = children_need[0][2] * children_n; // C = 小人必要数 x 小人人数
-                double baby_fnumber = baby_need[0][2] * baby_n; // B　=　幼児必要数　ｘ　幼児人数　
+                double adult_fnumber = adult_food_need[0][2] * adult_n; // A = 大人必要数 x 大人人数
+                double children_fnumber = children_food_need[0][2] * children_n; // C = 小人必要数 x 小人人数
+                double baby_fnumber = baby_food_need[0][2] * baby_n; // B　=　幼児必要数　ｘ　幼児人数　
                 // 入力されている量　=　乾パンｘ3　＋　カロリーメイトｘ3　＋　他・・・
                 double sumfood = (kanpan * 3.0) + (karori * 3.0) + retorutogohan + kandume + kanmen + kan2 + retoruto + freaze + okasi;
                 // 入力されている量　=　離乳食ｘ１　＋　粉ミルクｘ3
@@ -160,9 +159,9 @@ public class MainActivity extends Activity {
                 }
 
                 // 水
-                double adult_mnumber = adult_need[1][2] * adult_n; // A　=　大人必要数　ｘ　大人人数
-                double children_mnumber = children_need[1][2] * children_n; // C　=　小人必要数　ｘ　小人人数
-                double baby_mnumber = baby_need[1][2] * baby_n; // B　=　幼児必要数　ｘ　幼児人数　
+                double adult_mnumber = adult_food_need[1][2] * adult_n; // A　=　大人必要数　ｘ　大人人数
+                double children_mnumber = children_food_need[1][2] * children_n; // C　=　小人必要数　ｘ　小人人数
+                double baby_mnumber = baby_food_need[1][2] * baby_n; // B　=　幼児必要数　ｘ　幼児人数　
                 // 入力されている量　=　水の量（本数？）
                 double summizu = mizu * 1.0;
                 // 入力されている量　＞＝　A　→　50％
@@ -209,11 +208,216 @@ public class MainActivity extends Activity {
             hijograph.setImageResource(R.drawable.graph10);
         }
 
+
+
+        // 備蓄品グラフ画像の設定
+        SharedPreferences bichikupref = getSharedPreferences("Preferences", MODE_PRIVATE); // 備蓄品のプリファレンス
+
+        // 必需品
+        double otona = bichikupref.getInt("otona_num", 0); // 大人下着
+        double kodomo = bichikupref.getInt("kodomo_num", 0); // 小人下着
+        double raito = bichikupref.getInt("raito_num", 0); // 懐中電灯
+        double koppu = bichikupref.getInt("koppu_num", 0); // コップ
+        double utuwa = bichikupref.getInt("utuwa_num", 0); // 器
+        double taoru = bichikupref.getInt("taoru_num", 0); // タオル
+        double almi = bichikupref.getInt("almi_num", 0); // アルミホイル
+        double rappu = bichikupref.getInt("rappu_num", 0); // ラップ
+        double gasbomb = bichikupref.getInt("gasbomb_num", 0); // ガスボンベ
+        double gas = bichikupref.getInt("gas_num", 0); // ガスコンロ・鍋
+        double thissyu = bichikupref.getInt("thissyu_num", 0); // ティッシュ
+        double hukuro = bichikupref.getInt("hukuro_num", 0); // 袋
+        double spoon = bichikupref.getInt("spoon_num", 0); // スプーン
+        double hasi = bichikupref.getInt("hasi_num", 0); // 箸
+        double denti = bichikupref.getInt("denti_num", 0); // 乾電池
+
+        // 便利品
+        int gunte = bichikupref.getInt("gunte_num", 0); // 軍手
+        int hue = bichikupref.getInt("hue_num", 0); // 笛
+        int matti = bichikupref.getInt("matti_num", 0); // マッチ・ライター
+        int radio = bichikupref.getInt("radio_num", 0); // ラジオ
+        int kankiri = bichikupref.getInt("kankiri_num", 0); // 缶切り
+        int masuku = bichikupref.getInt("masuku_num", 0); // マスク
+        int zyuden = bichikupref.getInt("zyuden_num", 0); // 充電器
+        int nebukuro = bichikupref.getInt("nebukuro_num", 0); // 寝袋
+
+        // 乳児用
+        int bin = bichikupref.getInt("bin_num", 0); // 哺乳瓶
+        int omutu = bichikupref.getInt("omutu_num" ,0); // おむつ
+
+        // 必需品(個人用)
+        double otona_need[] =   { 0.0, 1.0, 2.0}; // 大人下着の必要数 {1.3.7日分}
+        double kodomo_need[] =  { 1.0, 1.0, 2.0}; // 小人下着の必要数 {1.3.7日分}}
+        double koppu_need[][] = {{1.0, 1.0, 1.0},{1.0, 1.0, 1.0},{1.0, 1.0, 1.0 }}; // コップの必要数 {{大人1.3.7日分},{小人1.3.7日分},{幼児1.3.7日分}}
+        double utuwa_need[][] = {{1.0, 1.0, 1.0},{1.0, 1.0, 1.0},{1.0, 1.0, 1.0 }}; // 器の必要数 {{大人1.3.7日分},{小人1.3.7日分},{幼児1.3.7日分}}
+        double taoru_need[][] = {{1.0, 1.0, 3.0},{1.0, 1.0, 3.0},{1.0, 2.0, 6.0 }}; // タオルの必要数 {{大人1.3.7日分},{小人1.3.7日分},{幼児1.3.7日分}}
+
+        // 必需品(家族用)
+        double raito_need[] =   {1.0, 1.0, 1.0}; // 懐中電灯の必要数 {1.3.7日分}
+        double almi_need[] =    {1.0, 1.0, 2.0}; // アルミホイルの必要数 {1.3.7日分}
+        double rappu_need[] =   {1.0, 1.0, 3.0}; // ラップの必要数 {1.3.7日分}
+        double gasbomb_need[] = {1.0, 2.0, 5.0}; // ガスボンベの必要数 {1.3.7日分}
+        double gas_need[] =     {1.0, 1.0, 1.0}; // ガスコンロの必要数 {1.3.7日分}
+        double thissyu_need[] = {1.0, 1.0, 3.0}; // ティッシュの必要数 {1.3.7日分}
+        double hukuro_need[] =  {1.0, 1.0, 1.0}; // 袋の必要数 {1.3.7日分}
+        double spoon_need[] =   {1.0, 1.0, 1.0}; // スプーンの必要数 {1.3.7日分}
+        double hasi_need[] =    {1.0, 1.0, 1.0}; // 箸の必要数 {1.3.7日分}
+        double denti_need[] =   {2.0, 2.0, 4.0}; // 乾電池の必要数
+
+        // 便利品(個人用)
+        double gunte_need[][] = {{1.0, 1.0, 1.0},{1.0, 1.0, 1.0},{0.0, 0.0, 0.0 }}; // 軍手の必要数 {{大人1.3.7日分},{小人1.3.7日分},{幼児1.3.7日分}}
+
+        // 便利品(家族用)
+        double hue_need[] =     {1.0, 1.0, 1.0}; // 笛の必要数 {1.3.7日分}
+        double matti_need[] =   {1.0, 1.0, 1.0}; // マッチの必要数 {1.3.7日分}}
+        double radio_need[] =   {1.0, 1.0, 1.0}; // ラジオの必要数 {1.3.7日分}}
+        double kankiri_need[] = {0.0, 1.0, 1.0}; // 缶切りの必要数 {1.3.7日分}}
+        double masuku_need[] =  {1.0, 1.0, 1.0}; // マスクの必要数 {1.3.7日分}}
+        double zyuden_need[] =  {1.0, 1.0, 1.0}; // 充電器の必要数 {1.3.7日分}}
+
+        // 乳児用(個人)
+        double bin_need[] =     {1.0, 1.0, 1.0 }; // 哺乳瓶の必要数 {1.3.7日分}
+        double omutu_need[] =   {2.0, 5.0, 10.0}; // おむつの必要数 {1.3.7日分}
+
+        double hitsuzyu_meter = 0.0;
+        double benri_meter =    0.0;
+        double nyuzi_meter =    0.0;
+
+        if ( (adult_n + children_n + baby_n) == 0 ) { // 人数が0だった場合の処理
+            ImageView bichikugraph = (ImageView) findViewById(R.id.bichikuview);
+            bichikugraph.setImageResource(R.drawable.rightgraph0);
+        } else {
+            if ( setting_day == 1 ) { // 設定日数が1日の場合
+                // 必需品
+                if ( otona * adult_n >= otona_need[0] ) { // 大人下着が必要数以上ならば必要数以上にならないようにする
+                    otona = otona_need[0];
+                }
+                if ( kodomo * children_n >= kodomo_need[0] ) { // 小人下着が必要数以上ならば必要数以上にならないようにする
+                    kodomo = kodomo_need[0];
+                }
+                if ( raito >= raito_need[0] ) { // 懐中電灯が必要数以上ならば必要数以上にならないようにする
+                    raito = raito_need[0];
+                }
+                double koppu_sum = koppu;
+                double koppu_n = 0.0;
+                if ( koppu_sum >= adult_n * koppu_need[0][0] ) { // コップの数が大人必要数以上だったら大人必要数分を引く
+                    koppu_sum -= adult_n * koppu_need[0][0];
+                    koppu_n += adult_n * koppu_need[0][0];
+                    if ( koppu_sum >= children_n * koppu_need[0][1] ) { // 小人必要数分を引く
+                        koppu_sum += children_n * koppu_need[0][1];
+                        koppu_n += children_n * koppu_need[0][1];
+                        if ( koppu_sum >= baby_n * koppu_need[0][2] ) { // 幼児必要数分を引く
+                            koppu_sum -= baby_n * koppu_need[0][2];
+                            koppu_n += baby_n * koppu_need[0][2];
+                        }
+                    }
+                }
+                double utuwa_sum = utuwa;
+                double utuwa_n = 0.0;
+                if ( utuwa_sum >= adult_n * utuwa_need[0][0] ) { // 器の数が大人必要数以上だったら大人必要分を引く
+                    utuwa_sum -= adult_n * utuwa_need[0][0];
+                    utuwa_n += adult_n * utuwa_need[0][0];
+                    if ( utuwa_sum >= children_n * utuwa_need[0][1] ) { // 小人必要数分を引く
+                        utuwa_sum -= children_n * utuwa_need[0][1];
+                        utuwa_n += children_n * utuwa_need[0][1];
+                        if ( utuwa_sum >= baby_n * utuwa_need[0][2] ) { // 幼児必要数分を引く
+                            utuwa_sum -= baby_n * utuwa_need[0][2];
+                            utuwa_n += baby_n * utuwa_need[0][2];
+                        }
+                    }
+                }
+                double taoru_sum = taoru;
+                double taoru_n = 0.0;
+                if ( taoru_sum >= adult_n * taoru_need[0][0] ) { // タオルの数が大人必要数以上だったら大人必要分を引く
+                    taoru_sum -= adult_n * taoru_need[0][0];
+                    taoru_n += adult_n * taoru_need[0][0];
+                    if (taoru_sum >= children_n * taoru_need[0][1]) { // 小人必要数分を引く
+                        taoru_sum -= children_n * taoru_need[0][1];
+                        taoru_n += children_n * taoru_need[0][1];
+                        if (taoru_sum >= baby_n * taoru_need[0][2]) { // 幼児必要数分を引く
+                            taoru_sum -= baby_n * taoru_need[0][2];
+                            taoru_n += baby_n * taoru_need[0][2];
+                        }
+                    }
+                }
+                if ( almi >= almi_need[0] ) { // アルミの数が必要数以上ならば必要数以上にならないようにする
+                    almi = almi_need[0];
+                }
+                if ( rappu >= rappu_need[0] ) { // ラップの数が必要数以上ならば必要数以上にならないようにする
+                    rappu = rappu_need[0];
+                }
+                if ( gasbomb >= gasbomb_need[0] ) { // ガスボンベの数が必要数以上ならば必要数以上にならないようにする
+                    gasbomb = gasbomb_need[0];
+                }
+                if ( gas >= gas_need[0] ) { // ガスコンロの数が必要数以上ならば必要数以上にならないようにする
+                    gas = gas_need[0];
+                }
+                if ( thissyu >= thissyu_need[0] ) { // ティッシュの数が必要数以上ならば必要数以上にならないようにする
+                    thissyu = thissyu_need[0];
+                }
+                if ( hukuro >= hukuro_need[0] ) { // 袋の数が必要数以上ならば必要数以上にならないようにする
+                    hukuro = hukuro_need[0];
+                }
+                if ( spoon >= spoon_need[0] ) { // スプーンの数が必要数以上ならば必要数以上にならないようにする
+                    spoon = spoon_need[0];
+                }
+                if ( hasi >= hasi_need[0] ) { // 箸の数が必要数以上ならば必要数以上にならないようにする
+                    hasi = hasi_need[0];
+                }
+                if ( denti >= denti_need[0] ) { // 乾電池の数が必要数以上ならば必要数以上にならないようにする
+                    denti = denti_need[0];
+                }
+
+                double hitsuzyu_sum = otona + kodomo + raito + koppu_n + utuwa_n + taoru_n + almi + rappu + gasbomb + gas + thissyu + hukuro + spoon + hasi + denti;
+                double hitsuyo_sum = otona_need[0] + kodomo_need[0] + raito_need[0] + koppu_need[0][0] + koppu_need[1][0] + koppu_need[2][0] +
+                        utuwa_need[0][0] + utuwa_need[1][0] + utuwa_need[2][0] + taoru_need[0][0] + taoru_need[1][0] + taoru_need[2][0] + almi_need[0] +
+                        rappu_need[0] + gasbomb_need[0] + gas_need[0] + thissyu_need[0] + hukuro_need[0] + spoon_need[0] + hasi_need[0] + denti_need[0];
+                hitsuzyu_meter = ( hitsuzyu_sum / hitsuyo_sum * 0.6);
+            }
+        }
+
+        if ( 0.0 <= (hitsuzyu_meter + benri_meter + nyuzi_meter) && (hitsuzyu_meter + benri_meter + nyuzi_meter) < 10.0 ) {
+            ImageView bichikugraph = (ImageView)findViewById(R.id.bichikuview);
+            bichikugraph.setImageResource(R.drawable.rightgraph0);
+        } else if ( (hitsuzyu_meter + benri_meter + nyuzi_meter) < 20.0 ) {
+            ImageView bichikugraph = (ImageView)findViewById(R.id.bichikuview);
+            bichikugraph.setImageResource(R.drawable.rightgraph1);
+        } else if ( (hitsuzyu_meter + benri_meter + nyuzi_meter) < 30.0 ) {
+            ImageView bichikugraph = (ImageView)findViewById(R.id.bichikuview);
+            bichikugraph.setImageResource(R.drawable.rightgraph2);
+        } else if ( (hitsuzyu_meter + benri_meter + nyuzi_meter) < 40.0 ) {
+            ImageView bichikugraph = (ImageView)findViewById(R.id.bichikuview);
+            bichikugraph.setImageResource(R.drawable.rightgraph3);
+        } else if ( (hitsuzyu_meter + benri_meter + nyuzi_meter) < 50.0 ) {
+            ImageView bichikugraph = (ImageView)findViewById(R.id.bichikuview);
+            bichikugraph.setImageResource(R.drawable.rightgraph4);
+        } else if ( (hitsuzyu_meter + benri_meter + nyuzi_meter) < 60.0 ) {
+            ImageView bichikugraph = (ImageView)findViewById(R.id.bichikuview);
+            bichikugraph.setImageResource(R.drawable.rightgraph5);
+        } else if ( (hitsuzyu_meter + benri_meter + nyuzi_meter) < 70.0 ) {
+            ImageView bichikugraph = (ImageView)findViewById(R.id.bichikuview);
+            bichikugraph.setImageResource(R.drawable.rightgraph6);
+        } else if ( (hitsuzyu_meter + benri_meter + nyuzi_meter) < 80.0 ) {
+            ImageView bichikugraph = (ImageView)findViewById(R.id.bichikuview);
+            bichikugraph.setImageResource(R.drawable.rightgraph7);
+        } else if ( (hitsuzyu_meter + benri_meter + nyuzi_meter) < 90.0 ) {
+            ImageView bichikugraph = (ImageView)findViewById(R.id.bichikuview);
+            bichikugraph.setImageResource(R.drawable.rightgraph8);
+        } else if ( (hitsuzyu_meter + benri_meter + nyuzi_meter) < 100.0 ) {
+            ImageView bichikugraph = (ImageView)findViewById(R.id.bichikuview);
+            bichikugraph.setImageResource(R.drawable.rightgraph9);
+        } else {
+            ImageView bichikugraph = (ImageView)findViewById(R.id.bichikuview);
+            bichikugraph.setImageResource(R.drawable.rightgraph10);
+        }
+
+
         // 非常食のパーセント表示
         TextView hijopercent = (TextView)findViewById(R.id.hijopercent);
         hijopercent.setText( "非常食:" + String.valueOf((int)food_meter + (int)mizu_meter) + "%" );
 
         // 備蓄品のパーセント表示
+        //TextView bichikupercent = (TextView)findViewById(R.id.bichikupercent);
+        //bichikupercent.setText( "備蓄品:" + String.valueOf((int)hitsuzyu_meter + (int)benri_meter + (int)nyuzi_meter) + "%" );
 
 
         // 非常食が60％以下の場合のアラート警告
@@ -288,8 +492,7 @@ public class MainActivity extends Activity {
             lasttvb.setText(laststrb);
         }
 
-        //アラート設定（レトルトご飯）
-        Calendar today = Calendar.getInstance();
+        //要チェック欄、賞味期限設定（レトルトご飯)
         SharedPreferences limit_pref = getSharedPreferences("limit_pref", MODE_PRIVATE);
         SharedPreferences year_pref1 = getSharedPreferences("year_pref1", MODE_PRIVATE);
         SharedPreferences month_pref1 = getSharedPreferences("month_pref1", MODE_PRIVATE);
@@ -298,9 +501,9 @@ public class MainActivity extends Activity {
         String lyearstr1 = String.valueOf(year_pref1.getInt("year_key1", 0));
         String lmonthstr1 = String.valueOf(month_pref1.getInt("month_key1", 0));
         String ldaystr1 = String.valueOf(day_pref1.getInt("day_key1", 0));
-        String toyearstr = String.valueOf(today.get(calendar.YEAR));
-        String tomonthstr = String.valueOf(today.get(Calendar.MONTH));
-        String todaystr = String.valueOf(today.get(calendar.DATE));
+        String toyearstr = String.valueOf(mYear);
+        String tomonthstr = String.valueOf(mMonth);
+        String todaystr = String.valueOf(mDay);
         double sa1 = 0.0;
 
         try{
@@ -311,21 +514,30 @@ public class MainActivity extends Activity {
 
         if ( sa1 == 0.0 ) {
             TextView alert = (TextView)findViewById(R.id.retorutog);
-            alert.setText("レトルトご飯の賞味期限は今日です。");
+            Drawable bikkuri = getResources().getDrawable(R.drawable.bikkuri);
+            bikkuri.setBounds(0, 0, bikkuri.getIntrinsicWidth(), bikkuri.getIntrinsicHeight());
+            alert.setCompoundDrawables(bikkuri, null, null, null);
+            alert.setText("レトルトご飯は賞味期限当日です。");
         } else if ( sa1 < 0.0 ) {
             TextView alert = (TextView)findViewById(R.id.retorutog);
-            alert.setText("レトルトご飯の賞味期限が" + (int)sa1 * -1 + "日過ぎています。");
+            Drawable batu = getResources().getDrawable(R.drawable.batsu);
+            batu.setBounds(0, 0, batu.getIntrinsicWidth(), batu.getIntrinsicHeight());
+            alert.setCompoundDrawables(batu, null, null, null);
+            alert.setText("レトルトご飯の賞味期限が切れています。");
         } else {
             if ( sa1 < limit ) {
                 TextView alert = (TextView)findViewById(R.id.retorutog);
-                alert.setText("レトルトご飯の賞味期限は残り" + (int)sa1 + "日です。");
+                Drawable bikkuri = getResources().getDrawable(R.drawable.bikkuri);
+                bikkuri.setBounds(0, 0, bikkuri.getIntrinsicWidth(), bikkuri.getIntrinsicHeight());
+                alert.setCompoundDrawables(bikkuri, null, null, null);
+                alert.setText("レトルトご飯の賞味期限まで残り" + (int)sa1 + "日です。");
             } else {
                 TextView alert = (TextView)findViewById(R.id.retorutog);
                 alert.setText("");
             }
         }
 
-        //アラート設定（缶詰（ご飯））
+        //要チェック欄、賞味期限設定（缶詰（ご飯））
         SharedPreferences year_pref2 = getSharedPreferences("year_pref2", MODE_PRIVATE);
         SharedPreferences month_pref2 = getSharedPreferences("month_pref2", MODE_PRIVATE);
         SharedPreferences day_pref2 = getSharedPreferences("day_pref2", MODE_PRIVATE);
@@ -342,21 +554,30 @@ public class MainActivity extends Activity {
 
         if ( sa2 == 0.0 ) {
             TextView alert = (TextView)findViewById(R.id.kandume);
-            alert.setText("缶詰（ご飯）の賞味期限は今日です。");
+            Drawable bikkuri = getResources().getDrawable(R.drawable.bikkuri);
+            bikkuri.setBounds(0, 0, bikkuri.getIntrinsicWidth(), bikkuri.getIntrinsicHeight());
+            alert.setCompoundDrawables(bikkuri, null, null, null);
+            alert.setText("缶詰（ご飯）は賞味期限当日です。");
         } else if ( sa2 < 0.0 ) {
             TextView alert = (TextView)findViewById(R.id.kandume);
-            alert.setText("缶詰（ご飯）の賞味期限が" + (int)sa2 * -1 + "日過ぎています。");
+            Drawable batu = getResources().getDrawable(R.drawable.batsu);
+            batu.setBounds(0, 0, batu.getIntrinsicWidth(), batu.getIntrinsicHeight());
+            alert.setCompoundDrawables(batu, null, null, null);
+            alert.setText("缶詰（ご飯）の賞味期限が切れています。");
         } else {
             if ( sa2 < limit ) {
                 TextView alert = (TextView)findViewById(R.id.kandume);
-                alert.setText("缶詰（ご飯）の賞味期限は残り" + (int)sa2 + "日です。");
+                Drawable bikkuri = getResources().getDrawable(R.drawable.bikkuri);
+                bikkuri.setBounds(0, 0, bikkuri.getIntrinsicWidth(), bikkuri.getIntrinsicHeight());
+                alert.setCompoundDrawables(bikkuri, null, null, null);
+                alert.setText("缶詰（ご飯）の賞味期限まで残り" + (int)sa2 + "日です。");
             } else {
                 TextView alert = (TextView)findViewById(R.id.kandume);
                 alert.setText("");
             }
         }
 
-        //アラート設定（乾麺）
+        //要チェック欄、賞味期限設定（乾麺）
         SharedPreferences year_pref3 = getSharedPreferences("year_pref3", MODE_PRIVATE);
         SharedPreferences month_pref3 = getSharedPreferences("month_pref3", MODE_PRIVATE);
         SharedPreferences day_pref3 = getSharedPreferences("day_pref3", MODE_PRIVATE);
@@ -373,21 +594,30 @@ public class MainActivity extends Activity {
 
         if ( sa3 == 0.0 ) {
             TextView alert = (TextView)findViewById(R.id.kanmen);
-            alert.setText("乾麺の賞味期限は今日です。");
+            Drawable bikkuri = getResources().getDrawable(R.drawable.bikkuri);
+            bikkuri.setBounds(0, 0, bikkuri.getIntrinsicWidth(), bikkuri.getIntrinsicHeight());
+            alert.setCompoundDrawables(bikkuri, null, null, null);
+            alert.setText("乾麺は賞味期限当日です。");
         } else if ( sa3 < 0.0 ) {
             TextView alert = (TextView)findViewById(R.id.kanmen);
-            alert.setText("乾麺の賞味期限が" + (int)sa3 * -1 + "日過ぎています。");
+            Drawable batu = getResources().getDrawable(R.drawable.batsu);
+            batu.setBounds(0, 0, batu.getIntrinsicWidth(), batu.getIntrinsicHeight());
+            alert.setCompoundDrawables(batu, null, null, null);
+            alert.setText("乾麺の賞味期限が切れています");
         } else {
             if ( sa3 < limit ) {
                 TextView alert = (TextView)findViewById(R.id.kanmen);
-                alert.setText("乾麺の賞味期限は残り" + (int)sa3 + "日です。");
+                Drawable bikkuri = getResources().getDrawable(R.drawable.bikkuri);
+                bikkuri.setBounds(0, 0, bikkuri.getIntrinsicWidth(), bikkuri.getIntrinsicHeight());
+                alert.setCompoundDrawables(bikkuri, null, null, null);
+                alert.setText("乾麺の賞味期限まで残り" + (int)sa3 + "日です。");
             } else {
                 TextView alert = (TextView)findViewById(R.id.kanmen);
                 alert.setText("");
             }
         }
 
-        //アラート設定（乾パン）
+        //要チェック欄、賞味期限設定（乾パン）
         SharedPreferences year_pref4 = getSharedPreferences("year_pref4", MODE_PRIVATE);
         SharedPreferences month_pref4 = getSharedPreferences("month_pref4", MODE_PRIVATE);
         SharedPreferences day_pref4 = getSharedPreferences("day_pref4", MODE_PRIVATE);
@@ -404,21 +634,30 @@ public class MainActivity extends Activity {
 
         if ( sa4 == 0.0 ) {
             TextView alert = (TextView)findViewById(R.id.kanpan);
-            alert.setText("乾パンの賞味期限は今日です。");
+            Drawable bikkuri = getResources().getDrawable(R.drawable.bikkuri);
+            bikkuri.setBounds(0, 0, bikkuri.getIntrinsicWidth(), bikkuri.getIntrinsicHeight());
+            alert.setCompoundDrawables(bikkuri, null, null, null);
+            alert.setText("乾パンは賞味期限当日です。");
         } else if ( sa4 < 0.0 ) {
             TextView alert = (TextView)findViewById(R.id.kanpan);
-            alert.setText("乾パンの賞味期限が" + (int)sa4 * -1 + "日過ぎています。");
+            Drawable batu = getResources().getDrawable(R.drawable.batsu);
+            batu.setBounds(0, 0, batu.getIntrinsicWidth(), batu.getIntrinsicHeight());
+            alert.setCompoundDrawables(batu, null, null, null);
+            alert.setText("乾パンの賞味期限が切れています。。");
         } else {
             if ( sa4 < limit ) {
                 TextView alert = (TextView)findViewById(R.id.kanpan);
-                alert.setText("乾パンの賞味期限は残り" + (int)sa4 + "日です。");
+                Drawable bikkuri = getResources().getDrawable(R.drawable.bikkuri);
+                bikkuri.setBounds(0, 0, bikkuri.getIntrinsicWidth(), bikkuri.getIntrinsicHeight());
+                alert.setCompoundDrawables(bikkuri, null, null, null);
+                alert.setText("乾パンの賞味期限まで残り" + (int)sa4 + "日です。");
             } else {
                 TextView alert = (TextView)findViewById(R.id.kanpan);
                 alert.setText("");
             }
         }
 
-        //アラート設定（缶詰（肉、魚））
+        //要チェック欄、賞味期限設定（缶詰（肉、魚））
         SharedPreferences year_pref5 = getSharedPreferences("year_pref5", MODE_PRIVATE);
         SharedPreferences month_pref5 = getSharedPreferences("month_pref5", MODE_PRIVATE);
         SharedPreferences day_pref5 = getSharedPreferences("day_pref5", MODE_PRIVATE);
@@ -435,21 +674,30 @@ public class MainActivity extends Activity {
 
         if ( sa5 == 0.0 ) {
             TextView alert = (TextView)findViewById(R.id.kandume2);
-            alert.setText("缶詰（肉、魚）の賞味期限は今日です。");
+            Drawable bikkuri = getResources().getDrawable(R.drawable.bikkuri);
+            bikkuri.setBounds(0, 0, bikkuri.getIntrinsicWidth(), bikkuri.getIntrinsicHeight());
+            alert.setCompoundDrawables(bikkuri, null, null, null);
+            alert.setText("缶詰（肉、魚）は賞味期限当日です。");
         } else if ( sa5 < 0.0 ) {
             TextView alert = (TextView)findViewById(R.id.kandume2);
-            alert.setText("缶詰（肉、魚）の賞味期限が" + (int)sa5 * -1 + "日過ぎています。");
+            Drawable batu = getResources().getDrawable(R.drawable.batsu);
+            batu.setBounds(0, 0, batu.getIntrinsicWidth(), batu.getIntrinsicHeight());
+            alert.setCompoundDrawables(batu, null, null, null);
+            alert.setText("缶詰（肉、魚）の賞味期限が切れています。");
         } else {
             if ( sa5 < limit ) {
                 TextView alert = (TextView)findViewById(R.id.kandume2);
-                alert.setText("缶詰（肉、魚）の賞味期限は残り" + (int)sa5 + "日です。");
+                Drawable bikkuri = getResources().getDrawable(R.drawable.bikkuri);
+                bikkuri.setBounds(0, 0, bikkuri.getIntrinsicWidth(), bikkuri.getIntrinsicHeight());
+                alert.setCompoundDrawables(bikkuri, null, null, null);
+                alert.setText("缶詰（肉、魚）の賞味期限まで残り" + (int)sa5 + "日です。");
             } else {
                 TextView alert = (TextView)findViewById(R.id.kandume2);
                 alert.setText("");
             }
         }
 
-        //アラート設定（レトルト）
+        //要チェック欄、賞味期限設定（レトルト）
         SharedPreferences year_pref6 = getSharedPreferences("year_pref6", MODE_PRIVATE);
         SharedPreferences month_pref6 = getSharedPreferences("month_pref6", MODE_PRIVATE);
         SharedPreferences day_pref6 = getSharedPreferences("day_pref6", MODE_PRIVATE);
@@ -466,21 +714,30 @@ public class MainActivity extends Activity {
 
         if ( sa6 == 0.0 ) {
             TextView alert = (TextView)findViewById(R.id.retoruto);
-            alert.setText("レトルトの賞味期限は今日です。");
+            Drawable bikkuri = getResources().getDrawable(R.drawable.bikkuri);
+            bikkuri.setBounds(0, 0, bikkuri.getIntrinsicWidth(), bikkuri.getIntrinsicHeight());
+            alert.setCompoundDrawables(bikkuri, null, null, null);
+            alert.setText("レトルトは賞味期限当日です。");
         } else if ( sa6 < 0.0 ) {
             TextView alert = (TextView)findViewById(R.id.retoruto);
-            alert.setText("レトルトの賞味期限が" + (int)sa6 * -1 + "日過ぎています。");
+            Drawable batu = getResources().getDrawable(R.drawable.batsu);
+            batu.setBounds(0, 0, batu.getIntrinsicWidth(), batu.getIntrinsicHeight());
+            alert.setCompoundDrawables(batu, null, null, null);
+            alert.setText("レトルトの賞味期限が切れています。");
         } else {
             if ( sa6 < limit ) {
                 TextView alert = (TextView)findViewById(R.id.retoruto);
-                alert.setText("レトルトの賞味期限は残り" + (int)sa6 + "日です。");
+                Drawable bikkuri = getResources().getDrawable(R.drawable.bikkuri);
+                bikkuri.setBounds(0, 0, bikkuri.getIntrinsicWidth(), bikkuri.getIntrinsicHeight());
+                alert.setCompoundDrawables(bikkuri, null, null, null);
+                alert.setText("レトルトの賞味期限まで残り" + (int)sa6 + "日です。");
             } else {
                 TextView alert = (TextView)findViewById(R.id.retoruto);
                 alert.setText("");
             }
         }
 
-        //アラート設定（フリーズドライ）
+        //要チェック欄、賞味期限設定（フリーズドライ）
         SharedPreferences year_pref7 = getSharedPreferences("year_pref7", MODE_PRIVATE);
         SharedPreferences month_pref7 = getSharedPreferences("month_pref7", MODE_PRIVATE);
         SharedPreferences day_pref7 = getSharedPreferences("day_pref7", MODE_PRIVATE);
@@ -497,21 +754,30 @@ public class MainActivity extends Activity {
 
         if ( sa7 == 0.0 ) {
             TextView alert = (TextView)findViewById(R.id.freaze);
-            alert.setText("フリーズドライの賞味期限は今日です。");
+            Drawable bikkuri = getResources().getDrawable(R.drawable.bikkuri);
+            bikkuri.setBounds(0, 0, bikkuri.getIntrinsicWidth(), bikkuri.getIntrinsicHeight());
+            alert.setCompoundDrawables(bikkuri, null, null, null);
+            alert.setText("フリーズドライは賞味期限当日です。");
         } else if ( sa7 < 0.0 ) {
             TextView alert = (TextView)findViewById(R.id.freaze);
-            alert.setText("フリーズドライの賞味期限が" + (int)sa7 * -1 + "日過ぎています。");
+            Drawable batu = getResources().getDrawable(R.drawable.batsu);
+            batu.setBounds(0, 0, batu.getIntrinsicWidth(), batu.getIntrinsicHeight());
+            alert.setCompoundDrawables(batu, null, null, null);
+            alert.setText("フリーズドライの賞味期限が切れています。");
         } else {
             if ( sa7 < limit ) {
                 TextView alert = (TextView)findViewById(R.id.freaze);
-                alert.setText("フリーズドライの賞味期限は残り" + (int)sa7 + "日です。");
+                Drawable bikkuri = getResources().getDrawable(R.drawable.bikkuri);
+                bikkuri.setBounds(0, 0, bikkuri.getIntrinsicWidth(), bikkuri.getIntrinsicHeight());
+                alert.setCompoundDrawables(bikkuri, null, null, null);
+                alert.setText("フリーズドライの賞味期限まで残り" + (int)sa7 + "日です。");
             } else {
                 TextView alert = (TextView)findViewById(R.id.freaze);
                 alert.setText("");
             }
         }
 
-        //アラート設定（水）
+        //要チェック欄、賞味期限設定（水）
         SharedPreferences year_pref8 = getSharedPreferences("year_pref8", MODE_PRIVATE);
         SharedPreferences month_pref8 = getSharedPreferences("month_pref8", MODE_PRIVATE);
         SharedPreferences day_pref8 = getSharedPreferences("day_pref8", MODE_PRIVATE);
@@ -528,21 +794,30 @@ public class MainActivity extends Activity {
 
         if ( sa8 == 0.0 ) {
             TextView alert = (TextView)findViewById(R.id.mizu);
-            alert.setText("水の賞味期限は今日です。");
+            Drawable bikkuri = getResources().getDrawable(R.drawable.bikkuri);
+            bikkuri.setBounds(0, 0, bikkuri.getIntrinsicWidth(), bikkuri.getIntrinsicHeight());
+            alert.setCompoundDrawables(bikkuri, null, null, null);
+            alert.setText("水は賞味期限当日です。");
         } else if ( sa8 < 0.0 ) {
             TextView alert = (TextView)findViewById(R.id.mizu);
-            alert.setText("水の賞味期限が" + (int)sa8 * -1 + "日過ぎています。");
+            Drawable batu = getResources().getDrawable(R.drawable.batsu);
+            batu.setBounds(0, 0, batu.getIntrinsicWidth(), batu.getIntrinsicHeight());
+            alert.setCompoundDrawables(batu, null, null, null);
+            alert.setText("水の賞味期限が切れています。");
         } else {
             if ( sa8 < limit ) {
                 TextView alert = (TextView)findViewById(R.id.mizu);
-                alert.setText("水の賞味期限は残り" + (int)sa8 + "日です。");
+                Drawable bikkuri = getResources().getDrawable(R.drawable.bikkuri);
+                bikkuri.setBounds(0, 0, bikkuri.getIntrinsicWidth(), bikkuri.getIntrinsicHeight());
+                alert.setCompoundDrawables(bikkuri, null, null, null);
+                alert.setText("水の賞味期限まで残り" + (int)sa8 + "日です。");
             } else {
                 TextView alert = (TextView)findViewById(R.id.mizu);
                 alert.setText("");
             }
         }
 
-        //アラート設定（離乳食）
+        //要チェック欄、賞味期限設定（離乳食）
         SharedPreferences year_pref9 = getSharedPreferences("year_pref9", MODE_PRIVATE);
         SharedPreferences month_pref9 = getSharedPreferences("month_pref9", MODE_PRIVATE);
         SharedPreferences day_pref9 = getSharedPreferences("day_pref9", MODE_PRIVATE);
@@ -559,21 +834,30 @@ public class MainActivity extends Activity {
 
         if ( sa9 == 0.0 ) {
             TextView alert = (TextView)findViewById(R.id.rinyu);
-            alert.setText("離乳食の賞味期限は今日です。");
+            Drawable bikkuri = getResources().getDrawable(R.drawable.bikkuri);
+            bikkuri.setBounds(0, 0, bikkuri.getIntrinsicWidth(), bikkuri.getIntrinsicHeight());
+            alert.setCompoundDrawables(bikkuri, null, null, null);
+            alert.setText("離乳食は賞味期限当日です。");
         } else if ( sa9 < 0.0 ) {
             TextView alert = (TextView)findViewById(R.id.rinyu);
-            alert.setText("離乳食の賞味期限が" + (int)sa9 * -1 + "日過ぎています。");
+            Drawable batu = getResources().getDrawable(R.drawable.batsu);
+            batu.setBounds(0, 0, batu.getIntrinsicWidth(), batu.getIntrinsicHeight());
+            alert.setCompoundDrawables(batu, null, null, null);
+            alert.setText("離乳食の賞味期限が切れています。");
         } else {
             if ( sa9 < limit ) {
                 TextView alert = (TextView)findViewById(R.id.rinyu);
-                alert.setText("離乳食の賞味期限は残り" + (int)sa9 + "日です。");
+                Drawable bikkuri = getResources().getDrawable(R.drawable.bikkuri);
+                bikkuri.setBounds(0, 0, bikkuri.getIntrinsicWidth(), bikkuri.getIntrinsicHeight());
+                alert.setCompoundDrawables(bikkuri, null, null, null);
+                alert.setText("離乳食の賞味期限まで残り" + (int)sa9 + "日です。");
             } else {
                 TextView alert = (TextView)findViewById(R.id.rinyu);
                 alert.setText("");
             }
         }
 
-        //アラート設定（カロリーメイト）
+        //要チェック欄、賞味期限設定（カロリーメイト）
         SharedPreferences year_pref10 = getSharedPreferences("year_pref10", MODE_PRIVATE);
         SharedPreferences month_pref10 = getSharedPreferences("month_pref10", MODE_PRIVATE);
         SharedPreferences day_pref10 = getSharedPreferences("day_pref10", MODE_PRIVATE);
@@ -590,21 +874,30 @@ public class MainActivity extends Activity {
 
         if ( sa10 == 0.0 ) {
             TextView alert = (TextView)findViewById(R.id.karori);
-            alert.setText("カロリーメイトの賞味期限は今日です。");
+            Drawable bikkuri = getResources().getDrawable(R.drawable.bikkuri);
+            bikkuri.setBounds(0, 0, bikkuri.getIntrinsicWidth(), bikkuri.getIntrinsicHeight());
+            alert.setCompoundDrawables(bikkuri, null, null, null);
+            alert.setText("カロリーメイトは賞味期限当日です。");
         } else if ( sa10 < 0.0 ) {
             TextView alert = (TextView)findViewById(R.id.karori);
-            alert.setText("カロリーメイトの賞味期限が" + (int)sa10 * -1 + "日過ぎています。");
+            Drawable batu = getResources().getDrawable(R.drawable.batsu);
+            batu.setBounds(0, 0, batu.getIntrinsicWidth(), batu.getIntrinsicHeight());
+            alert.setCompoundDrawables(batu, null, null, null);
+            alert.setText("カロリーメイトの賞味期限が切れています。");
         } else {
             if ( sa10 < limit ) {
                 TextView alert = (TextView)findViewById(R.id.karori);
-                alert.setText("カロリーメイトの賞味期限は残り" + (int)sa10 + "日です。");
+                Drawable bikkuri = getResources().getDrawable(R.drawable.bikkuri);
+                bikkuri.setBounds(0, 0, bikkuri.getIntrinsicWidth(), bikkuri.getIntrinsicHeight());
+                alert.setCompoundDrawables(bikkuri, null, null, null);
+                alert.setText("カロリーメイトの賞味期限まで残り" + (int)sa10 + "日です。");
             } else {
                 TextView alert = (TextView)findViewById(R.id.karori);
                 alert.setText("");
             }
         }
 
-        //アラート設定（お菓子）
+        //要チェック欄、賞味期限設定（お菓子）
         SharedPreferences year_pref11 = getSharedPreferences("year_pref11", MODE_PRIVATE);
         SharedPreferences month_pref11 = getSharedPreferences("month_pref11", MODE_PRIVATE);
         SharedPreferences day_pref11 = getSharedPreferences("day_pref11", MODE_PRIVATE);
@@ -621,21 +914,30 @@ public class MainActivity extends Activity {
 
         if ( sa11 == 0.0 ) {
             TextView alert = (TextView)findViewById(R.id.kasi);
-            alert.setText("お菓子の賞味期限は今日です。");
+            Drawable bikkuri = getResources().getDrawable(R.drawable.bikkuri);
+            bikkuri.setBounds(0, 0, bikkuri.getIntrinsicWidth(), bikkuri.getIntrinsicHeight());
+            alert.setCompoundDrawables(bikkuri, null, null, null);
+            alert.setText("お菓子は賞味期限当日です。");
         } else if ( sa11 < 0.0 ) {
             TextView alert = (TextView)findViewById(R.id.kasi);
-            alert.setText("お菓子の賞味期限が" + (int)sa11 * -1 + "日過ぎています。");
+            Drawable batu = getResources().getDrawable(R.drawable.batsu);
+            batu.setBounds(0, 0, batu.getIntrinsicWidth(), batu.getIntrinsicHeight());
+            alert.setCompoundDrawables(batu, null, null, null);
+            alert.setText("お菓子の賞味期限が切れています。");
         } else {
             if ( sa11 < limit ) {
                 TextView alert = (TextView)findViewById(R.id.kasi);
-                alert.setText("お菓子の賞味期限は残り" + (int)sa11 + "日です。");
+                Drawable bikkuri = getResources().getDrawable(R.drawable.bikkuri);
+                bikkuri.setBounds(0, 0, bikkuri.getIntrinsicWidth(), bikkuri.getIntrinsicHeight());
+                alert.setCompoundDrawables(bikkuri, null, null, null);
+                alert.setText("お菓子の賞味期限まで残り" + (int)sa11 + "日です。");
             } else {
                 TextView alert = (TextView)findViewById(R.id.kasi);
                 alert.setText("");
             }
         }
 
-        //アラート設定（粉ミルク）
+        //要チェック欄、賞味期限設定（粉ミルク）
         SharedPreferences year_pref12 = getSharedPreferences("year_pref12", MODE_PRIVATE);
         SharedPreferences month_pref12 = getSharedPreferences("month_pref12", MODE_PRIVATE);
         SharedPreferences day_pref12 = getSharedPreferences("day_pref12", MODE_PRIVATE);
@@ -652,18 +954,116 @@ public class MainActivity extends Activity {
 
         if ( sa12 == 0.0 ) {
             TextView alert = (TextView)findViewById(R.id.konamilk);
-            alert.setText("粉ミルクの賞味期限は今日です。");
+            Drawable bikkuri = getResources().getDrawable(R.drawable.bikkuri);
+            bikkuri.setBounds(0, 0, bikkuri.getIntrinsicWidth(), bikkuri.getIntrinsicHeight());
+            alert.setCompoundDrawables(bikkuri, null, null, null);
+            alert.setText("粉ミルクは賞味期限当日です。");
         } else if ( sa12 < 0.0 ) {
             TextView alert = (TextView)findViewById(R.id.konamilk);
-            alert.setText("粉ミルクの賞味期限が" + (int)sa12 * -1 + "日過ぎています。");
+            Drawable batu = getResources().getDrawable(R.drawable.batsu);
+            batu.setBounds(0, 0, batu.getIntrinsicWidth(), batu.getIntrinsicHeight());
+            alert.setCompoundDrawables(batu, null, null, null);
+            alert.setText("粉ミルクの賞味期限が切れています。");
         } else {
             if ( sa12 < limit ) {
                 TextView alert = (TextView)findViewById(R.id.konamilk);
-                alert.setText("粉ミルクの賞味期限は残り" + (int)sa12 + "日です。");
+                Drawable bikkuri = getResources().getDrawable(R.drawable.bikkuri);
+                bikkuri.setBounds(0, 0, bikkuri.getIntrinsicWidth(), bikkuri.getIntrinsicHeight());
+                alert.setCompoundDrawables(bikkuri, null, null, null);
+                alert.setText("粉ミルクの賞味期限まで残り" + (int)sa12 + "日です。");
             } else {
                 TextView alert = (TextView)findViewById(R.id.konamilk);
                 alert.setText("");
             }
+        }
+
+        //要チェック欄、消費期限設定（乾電池）
+        SharedPreferences year_pref13 = getSharedPreferences("year_pref13", MODE_PRIVATE);
+        SharedPreferences month_pref13 = getSharedPreferences("month_pref13", MODE_PRIVATE);
+        SharedPreferences day_pref13 = getSharedPreferences("day_pref13", MODE_PRIVATE);
+        String lyearstr13 = String.valueOf(year_pref13.getInt("year_key13", 0));
+        String lmonthstr13 = String.valueOf(month_pref13.getInt("month_key13", 0));
+        String ldaystr13 = String.valueOf(day_pref13.getInt("day_key13", 0));
+        double sa13 = 0.0;
+
+        try{
+            sa13  = differenceDays(toyearstr + "/" + tomonthstr + "/" + todaystr, lyearstr13 + "/" + lmonthstr13 + "/" + ldaystr13);
+        } catch (ParseException e) {
+            System.out.println(e);
+        }
+
+        if ( sa13 == 0.0 ) {
+            TextView alert = (TextView)findViewById(R.id.denti);
+            Drawable bikkuri = getResources().getDrawable(R.drawable.bikkuri);
+            bikkuri.setBounds(0, 0, bikkuri.getIntrinsicWidth(), bikkuri.getIntrinsicHeight());
+            alert.setCompoundDrawables(bikkuri, null, null, null);
+            alert.setText("乾電池は消費期限当日です。");
+        } else if ( sa13 < 0.0 ) {
+            TextView alert = (TextView)findViewById(R.id.denti);
+            Drawable batu = getResources().getDrawable(R.drawable.batsu);
+            batu.setBounds(0, 0, batu.getIntrinsicWidth(), batu.getIntrinsicHeight());
+            alert.setCompoundDrawables(batu, null, null, null);
+            alert.setText("乾電池の消費期限が切れています。");
+        } else {
+            if ( sa13 < limit ) {
+                TextView alert = (TextView)findViewById(R.id.denti);
+                Drawable bikkuri = getResources().getDrawable(R.drawable.bikkuri);
+                bikkuri.setBounds(0, 0, bikkuri.getIntrinsicWidth(), bikkuri.getIntrinsicHeight());
+                alert.setCompoundDrawables(bikkuri, null, null, null);
+                alert.setText("乾電池の消費期限まで残り" + (int)sa13 + "日です。");
+            } else {
+                TextView alert = (TextView)findViewById(R.id.denti);
+                alert.setText("");
+            }
+        }
+
+        //要チェック欄、賞味期限設定（ガスボンベ）
+        SharedPreferences year_pref14 = getSharedPreferences("year_pref14", MODE_PRIVATE);
+        SharedPreferences month_pref14 = getSharedPreferences("month_pref14", MODE_PRIVATE);
+        SharedPreferences day_pref14 = getSharedPreferences("day_pref14", MODE_PRIVATE);
+        String lyearstr14 = String.valueOf(year_pref14.getInt("year_key14", 0));
+        String lmonthstr14 = String.valueOf(month_pref14.getInt("month_key14", 0));
+        String ldaystr14 = String.valueOf(day_pref14.getInt("day_key14", 0));
+        double sa14 = 0.0;
+
+        try{
+            sa14  = differenceDays(toyearstr + "/" + tomonthstr + "/" + todaystr, lyearstr14 + "/" + lmonthstr14 + "/" + ldaystr14);
+        } catch (ParseException e) {
+            System.out.println(e);
+        }
+
+        if ( sa14 == 0.0 ) {
+            TextView alert = (TextView)findViewById(R.id.gasbomb);
+            Drawable bikkuri = getResources().getDrawable(R.drawable.bikkuri);
+            bikkuri.setBounds(0, 0, bikkuri.getIntrinsicWidth(), bikkuri.getIntrinsicHeight());
+            alert.setCompoundDrawables(bikkuri, null, null, null);
+            alert.setText("ガスボンベは消費期限当日です。");
+        } else if ( sa14 < 0.0 ) {
+            TextView alert = (TextView)findViewById(R.id.gasbomb);
+            Drawable batu = getResources().getDrawable(R.drawable.batsu);
+            batu.setBounds(0, 0, batu.getIntrinsicWidth(), batu.getIntrinsicHeight());
+            alert.setCompoundDrawables(batu, null, null, null);
+            alert.setText("ガスボンベの消費期限が切れています。");
+        } else {
+            if ( sa14 < limit ) {
+                TextView alert = (TextView)findViewById(R.id.gasbomb);
+                Drawable bikkuri = getResources().getDrawable(R.drawable.bikkuri);
+                bikkuri.setBounds(0, 0, bikkuri.getIntrinsicWidth(), bikkuri.getIntrinsicHeight());
+                alert.setCompoundDrawables(bikkuri, null, null, null);
+                alert.setText("ガスボンベの消費期限まで残り" + (int)sa14 + "日です。");
+            } else {
+                TextView alert = (TextView)findViewById(R.id.gasbomb);
+                alert.setText("");
+            }
+        }
+
+        // 幼児が1人以上で幼児用の食べ物が0だった時の警告メッセージ
+        if ( baby_n > 0 && (rinyu + konamilk) == 0 ) {
+            TextView alert = (TextView)findViewById(R.id.babyerror);
+            Drawable bikkuri = getResources().getDrawable(R.drawable.bikkuri);
+            bikkuri.setBounds(0, 0, bikkuri.getIntrinsicWidth(), bikkuri.getIntrinsicHeight());
+            alert.setCompoundDrawables(bikkuri, null, null, null);
+            alert.setText("離乳食と粉ミルクが備蓄されていません！");
         }
 
         // 非常食グラフ画面遷移
@@ -695,7 +1095,6 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 if (v.getId() == R.id.retorutog) {
-                    //レトルトご飯ポップ
                     // アラートダイアログの出力
                     AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
                     alert.setTitle("レトルトご飯、炊き込みご飯");
@@ -714,19 +1113,14 @@ public class MainActivity extends Activity {
                     //人数の表示
                     SharedPreferences adult_pref = getSharedPreferences("adult_pref", MODE_PRIVATE);
                     SharedPreferences children_pref = getSharedPreferences("children_pref", MODE_PRIVATE);
-                    SharedPreferences baby_pref = getSharedPreferences("baby_pref", MODE_PRIVATE);
                     int a = adult_pref.getInt("adult_key", 0);
                     int b = children_pref.getInt("children_key", 0);
-                    int c = baby_pref.getInt("baby_key", 0);
                     String adult_str = "大人" + String.valueOf(a) + "人";
                     String children_str = "小人" + String.valueOf(b) + "人";
-                    String baby_str = "幼児" + String.valueOf(c) + "人";
                     TextView adult_tv = (TextView) viw.findViewById(R.id.adulttext);
                     TextView children_tv = (TextView) viw.findViewById(R.id.childrentext);
-                    TextView baby_tv = (TextView) viw.findViewById(R.id.babytext);
                     adult_tv.setText(adult_str);
                     children_tv.setText(children_str);
-                    baby_tv.setText(baby_str);
 
                     // 決定ボタンを押された時の処理
                     alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -848,19 +1242,14 @@ public class MainActivity extends Activity {
                     //人数の表示
                     SharedPreferences adult_pref = getSharedPreferences("adult_pref", MODE_PRIVATE);
                     SharedPreferences children_pref = getSharedPreferences("children_pref", MODE_PRIVATE);
-                    SharedPreferences baby_pref = getSharedPreferences("baby_pref", MODE_PRIVATE);
                     int a = adult_pref.getInt("adult_key", 0);
                     int b = children_pref.getInt("children_key", 0);
-                    int c = baby_pref.getInt("baby_key", 0);
                     String adult_str = "大人" + String.valueOf(a) + "人";
                     String children_str = "小人" + String.valueOf(b) + "人";
-                    String baby_str = "幼児" + String.valueOf(c) + "人";
                     TextView adult_tv = (TextView) viw.findViewById(R.id.adulttext);
                     TextView children_tv = (TextView) viw.findViewById(R.id.childrentext);
-                    TextView baby_tv = (TextView) viw.findViewById(R.id.babytext);
                     adult_tv.setText(adult_str);
                     children_tv.setText(children_str);
-                    baby_tv.setText(baby_str);
 
                     // 決定ボタンを押された時の処理
                     alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -901,17 +1290,17 @@ public class MainActivity extends Activity {
                     alert.show();
 
                     //カレンダー設定
-                    SharedPreferences year_pref2 = getSharedPreferences("year_pref2", MODE_PRIVATE);
+                    SharedPreferences year_pref2 = getSharedPreferences("year_pref2",MODE_PRIVATE);
                     SharedPreferences month_pref2 = getSharedPreferences("month_pref2", MODE_PRIVATE);
                     SharedPreferences day_pref2 = getSharedPreferences("day_pref2", MODE_PRIVATE);
-                    int limit_year2 = year_pref2.getInt("year_key2", mYear);
-                    int limit_month2 = month_pref2.getInt("month_key2", mMonth);
-                    int limit_day2 = day_pref2.getInt("day_key2", mDay);
-                    String limit_str2 = "賞味期限は" + String.valueOf(limit_year2) + "年" + String.valueOf(limit_month2 + 1) + "月" + String.valueOf(limit_day2) + "日です。";
-                    TextView limit_tv2 = (TextView) viw.findViewById(R.id.textView30);
+                    int limit_year2 = year_pref2.getInt("year_key2",mYear);
+                    int limit_month2 = month_pref2.getInt("month_key2",mMonth);
+                    int limit_day2 = day_pref2.getInt("day_key2",mDay);
+                    String limit_str2 = "賞味期限は" + String.valueOf(limit_year2) + "年" + String.valueOf(limit_month2+1) + "月" + String.valueOf(limit_day2) + "日です。";
+                    TextView limit_tv2 = (TextView)viw.findViewById(R.id.textView30);
                     limit_tv2.setText(limit_str2);
 
-                    Button calbutton = (Button) viw.findViewById(R.id.calbutton);
+                    Button calbutton = (Button)viw.findViewById(R.id.calbutton);
                     calbutton.setOnClickListener(new OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -923,7 +1312,7 @@ public class MainActivity extends Activity {
                                     mMonth = monthOfYear;
                                     mDay = dayOfMonth;
 
-                                    SharedPreferences year_pref2 = getSharedPreferences("year_pref2", MODE_PRIVATE);
+                                    SharedPreferences year_pref2 = getSharedPreferences("year_pref2",MODE_PRIVATE);
                                     SharedPreferences month_pref2 = getSharedPreferences("month_pref2", MODE_PRIVATE);
                                     SharedPreferences day_pref2 = getSharedPreferences("day_pref2", MODE_PRIVATE);
 
@@ -937,11 +1326,11 @@ public class MainActivity extends Activity {
                                     month_e2.commit();
                                     day_e2.commit();
 
-                                    int limit_year2 = year_pref2.getInt("year_key2", mYear);
-                                    int limit_month2 = month_pref2.getInt("month_key2", mMonth);
-                                    int limit_day2 = day_pref2.getInt("day_key2", mDay);
-                                    String limit_str2 = "賞味期限は" + String.valueOf(limit_year2) + "年" + String.valueOf(limit_month2 + 1) + "月" + String.valueOf(limit_day2) + "日です。";
-                                    TextView limit_tv2 = (TextView) viw.findViewById(R.id.textView30);
+                                    int limit_year2 = year_pref2.getInt("year_key2",mYear);
+                                    int limit_month2 = month_pref2.getInt("month_key2",mMonth);
+                                    int limit_day2 = day_pref2.getInt("day_key2",mDay);
+                                    String limit_str2 = "賞味期限は" + String.valueOf(limit_year2) + "年" + String.valueOf(limit_month2+1) + "月" + String.valueOf(limit_day2) + "日です。";
+                                    TextView limit_tv2 = (TextView)viw.findViewById(R.id.textView30);
                                     limit_tv2.setText(limit_str2);
                                 }
                             };
@@ -981,19 +1370,14 @@ public class MainActivity extends Activity {
                     //人数の表示
                     SharedPreferences adult_pref = getSharedPreferences("adult_pref", MODE_PRIVATE);
                     SharedPreferences children_pref = getSharedPreferences("children_pref", MODE_PRIVATE);
-                    SharedPreferences baby_pref = getSharedPreferences("baby_pref", MODE_PRIVATE);
                     int a = adult_pref.getInt("adult_key", 0);
                     int b = children_pref.getInt("children_key", 0);
-                    int c = baby_pref.getInt("baby_key", 0);
                     String adult_str = "大人" + String.valueOf(a) + "人";
                     String children_str = "小人" + String.valueOf(b) + "人";
-                    String baby_str = "幼児" + String.valueOf(c) + "人";
                     TextView adult_tv = (TextView) viw.findViewById(R.id.adulttext);
                     TextView children_tv = (TextView) viw.findViewById(R.id.childrentext);
-                    TextView baby_tv = (TextView) viw.findViewById(R.id.babytext);
                     adult_tv.setText(adult_str);
                     children_tv.setText(children_str);
-                    baby_tv.setText(baby_str);
 
                     // 決定ボタンを押された時の処理
                     alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -1019,7 +1403,7 @@ public class MainActivity extends Activity {
 
                             lastyear_e.putInt("lastyear_key", mYear);
                             lastmonth_e.putInt("lastmonth_key", mMonth);
-                            lastday_e.putInt("lastday_key",mDay);
+                            lastday_e.putInt("lastday_key", mDay);
 
                             lastyear_e.commit();
                             lastmonth_e.commit();
@@ -1034,17 +1418,17 @@ public class MainActivity extends Activity {
                     alert.show();
 
                     //カレンダー設定
-                    SharedPreferences year_pref3 = getSharedPreferences("year_pref3",MODE_PRIVATE);
+                    SharedPreferences year_pref3 = getSharedPreferences("year_pref3", MODE_PRIVATE);
                     SharedPreferences month_pref3 = getSharedPreferences("month_pref3", MODE_PRIVATE);
                     SharedPreferences day_pref3 = getSharedPreferences("day_pref3", MODE_PRIVATE);
-                    int limit_year3 = year_pref3.getInt("year_key3",mYear);
-                    int limit_month3 = month_pref3.getInt("month_key3",mMonth);
-                    int limit_day3 = day_pref3.getInt("day_key3",mDay);
-                    String limit_str3 = "賞味期限は" + String.valueOf(limit_year3) + "年" + String.valueOf(limit_month3+1) + "月" + String.valueOf(limit_day3) + "日です。";
-                    TextView limit_tv3 = (TextView)viw.findViewById(R.id.textView30);
+                    int limit_year3 = year_pref3.getInt("year_key3", mYear);
+                    int limit_month3 = month_pref3.getInt("month_key3", mMonth);
+                    int limit_day3 = day_pref3.getInt("day_key3", mDay);
+                    String limit_str3 = "賞味期限は" + String.valueOf(limit_year3) + "年" + String.valueOf(limit_month3 + 1) + "月" + String.valueOf(limit_day3) + "日です。";
+                    TextView limit_tv3 = (TextView) viw.findViewById(R.id.textView30);
                     limit_tv3.setText(limit_str3);
 
-                    Button calbutton = (Button)viw.findViewById(R.id.calbutton);
+                    Button calbutton = (Button) viw.findViewById(R.id.calbutton);
                     calbutton.setOnClickListener(new OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -1056,7 +1440,7 @@ public class MainActivity extends Activity {
                                     mMonth = monthOfYear;
                                     mDay = dayOfMonth;
 
-                                    SharedPreferences year_pref3 = getSharedPreferences("year_pref3",MODE_PRIVATE);
+                                    SharedPreferences year_pref3 = getSharedPreferences("year_pref3", MODE_PRIVATE);
                                     SharedPreferences month_pref3 = getSharedPreferences("month_pref3", MODE_PRIVATE);
                                     SharedPreferences day_pref3 = getSharedPreferences("day_pref3", MODE_PRIVATE);
 
@@ -1070,11 +1454,11 @@ public class MainActivity extends Activity {
                                     month_e3.commit();
                                     day_e3.commit();
 
-                                    int limit_year3 = year_pref3.getInt("year_key3",mYear);
-                                    int limit_month3 = month_pref3.getInt("month_key3",mMonth);
-                                    int limit_day3 = day_pref3.getInt("day_key3",mDay);
-                                    String limit_str3 = "賞味期限は" + String.valueOf(limit_year3) + "年" + String.valueOf(limit_month3+1) + "月" + String.valueOf(limit_day3) + "日です。";
-                                    TextView limit_tv3 = (TextView)viw.findViewById(R.id.textView30);
+                                    int limit_year3 = year_pref3.getInt("year_key3", mYear);
+                                    int limit_month3 = month_pref3.getInt("month_key3", mMonth);
+                                    int limit_day3 = day_pref3.getInt("day_key3", mDay);
+                                    String limit_str3 = "賞味期限は" + String.valueOf(limit_year3) + "年" + String.valueOf(limit_month3 + 1) + "月" + String.valueOf(limit_day3) + "日です。";
+                                    TextView limit_tv3 = (TextView) viw.findViewById(R.id.textView30);
                                     limit_tv3.setText(limit_str3);
                                 }
                             };
@@ -1115,19 +1499,14 @@ public class MainActivity extends Activity {
                     //人数の表示
                     SharedPreferences adult_pref = getSharedPreferences("adult_pref", MODE_PRIVATE);
                     SharedPreferences children_pref = getSharedPreferences("children_pref", MODE_PRIVATE);
-                    SharedPreferences baby_pref = getSharedPreferences("baby_pref", MODE_PRIVATE);
                     int a = adult_pref.getInt("adult_key", 0);
                     int b = children_pref.getInt("children_key", 0);
-                    int c = baby_pref.getInt("baby_key", 0);
                     String adult_str = "大人" + String.valueOf(a) + "人";
                     String children_str = "小人" + String.valueOf(b) + "人";
-                    String baby_str = "幼児" + String.valueOf(c) + "人";
                     TextView adult_tv = (TextView) viw.findViewById(R.id.adulttext);
                     TextView children_tv = (TextView) viw.findViewById(R.id.childrentext);
-                    TextView baby_tv = (TextView) viw.findViewById(R.id.babytext);
                     adult_tv.setText(adult_str);
                     children_tv.setText(children_str);
-                    baby_tv.setText(baby_str);
 
                     // 決定ボタンを押された時の処理
                     alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -1224,7 +1603,7 @@ public class MainActivity extends Activity {
             }
         });
 
-        // テキスト画面遷移(Clickable)　缶詰（ご飯）
+        // テキスト画面遷移(Clickable)　缶詰（魚・肉）
         TextView kandume2alerttext = (TextView)findViewById(R.id.kandume2);
         kandume2alerttext.setClickable(true);
         kandume2alerttext.setOnClickListener(new OnClickListener() {
@@ -1249,19 +1628,14 @@ public class MainActivity extends Activity {
                     //人数の表示
                     SharedPreferences adult_pref = getSharedPreferences("adult_pref", MODE_PRIVATE);
                     SharedPreferences children_pref = getSharedPreferences("children_pref", MODE_PRIVATE);
-                    SharedPreferences baby_pref = getSharedPreferences("baby_pref", MODE_PRIVATE);
                     int a = adult_pref.getInt("adult_key", 0);
                     int b = children_pref.getInt("children_key", 0);
-                    int c = baby_pref.getInt("baby_key", 0);
                     String adult_str = "大人" + String.valueOf(a) + "人";
                     String children_str = "小人" + String.valueOf(b) + "人";
-                    String baby_str = "幼児" + String.valueOf(c) + "人";
                     TextView adult_tv = (TextView) viw.findViewById(R.id.adulttext);
                     TextView children_tv = (TextView) viw.findViewById(R.id.childrentext);
-                    TextView baby_tv = (TextView) viw.findViewById(R.id.babytext);
                     adult_tv.setText(adult_str);
                     children_tv.setText(children_str);
-                    baby_tv.setText(baby_str);
 
                     // 決定ボタンを押された時の処理
                     alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -1287,7 +1661,7 @@ public class MainActivity extends Activity {
 
                             lastyear_e.putInt("lastyear_key", mYear);
                             lastmonth_e.putInt("lastmonth_key", mMonth);
-                            lastday_e.putInt("lastday_key",mDay);
+                            lastday_e.putInt("lastday_key", mDay);
 
                             lastyear_e.commit();
                             lastmonth_e.commit();
@@ -1383,19 +1757,14 @@ public class MainActivity extends Activity {
                     //人数の表示
                     SharedPreferences adult_pref = getSharedPreferences("adult_pref", MODE_PRIVATE);
                     SharedPreferences children_pref = getSharedPreferences("children_pref", MODE_PRIVATE);
-                    SharedPreferences baby_pref = getSharedPreferences("baby_pref", MODE_PRIVATE);
                     int a = adult_pref.getInt("adult_key", 0);
                     int b = children_pref.getInt("children_key", 0);
-                    int c = baby_pref.getInt("baby_key", 0);
                     String adult_str = "大人" + String.valueOf(a) + "人";
                     String children_str = "小人" + String.valueOf(b) + "人";
-                    String baby_str = "幼児" + String.valueOf(c) + "人";
                     TextView adult_tv = (TextView) viw.findViewById(R.id.adulttext);
                     TextView children_tv = (TextView) viw.findViewById(R.id.childrentext);
-                    TextView baby_tv = (TextView) viw.findViewById(R.id.babytext);
                     adult_tv.setText(adult_str);
                     children_tv.setText(children_str);
-                    baby_tv.setText(baby_str);
 
                     // 決定ボタンを押された時の処理
                     alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -1517,19 +1886,14 @@ public class MainActivity extends Activity {
                     //人数の表示
                     SharedPreferences adult_pref = getSharedPreferences("adult_pref", MODE_PRIVATE);
                     SharedPreferences children_pref = getSharedPreferences("children_pref", MODE_PRIVATE);
-                    SharedPreferences baby_pref = getSharedPreferences("baby_pref", MODE_PRIVATE);
                     int a = adult_pref.getInt("adult_key", 0);
                     int b = children_pref.getInt("children_key", 0);
-                    int c = baby_pref.getInt("baby_key", 0);
                     String adult_str = "大人" + String.valueOf(a) + "人";
                     String children_str = "小人" + String.valueOf(b) + "人";
-                    String baby_str = "幼児" + String.valueOf(c) + "人";
                     TextView adult_tv = (TextView) viw.findViewById(R.id.adulttext);
                     TextView children_tv = (TextView) viw.findViewById(R.id.childrentext);
-                    TextView baby_tv = (TextView) viw.findViewById(R.id.babytext);
                     adult_tv.setText(adult_str);
                     children_tv.setText(children_str);
-                    baby_tv.setText(baby_str);
 
                     // 決定ボタンを押された時の処理
                     alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -1759,7 +2123,7 @@ public class MainActivity extends Activity {
             }
         });
 
-        // テキスト画面遷移(Clickable)　缶詰（ご飯）
+        // テキスト画面遷移(Clickable)　離乳食
         TextView rinyualerttext = (TextView)findViewById(R.id.rinyu);
         rinyualerttext.setClickable(true);
         rinyualerttext.setOnClickListener(new OnClickListener() {
@@ -1782,20 +2146,10 @@ public class MainActivity extends Activity {
                     et.setText(str);
 
                     //人数の表示
-                    SharedPreferences adult_pref = getSharedPreferences("adult_pref", MODE_PRIVATE);
-                    SharedPreferences children_pref = getSharedPreferences("children_pref", MODE_PRIVATE);
                     SharedPreferences baby_pref = getSharedPreferences("baby_pref", MODE_PRIVATE);
-                    int a = adult_pref.getInt("adult_key", 0);
-                    int b = children_pref.getInt("children_key", 0);
                     int c = baby_pref.getInt("baby_key", 0);
-                    String adult_str = "大人" + String.valueOf(a) + "人";
-                    String children_str = "小人" + String.valueOf(b) + "人";
                     String baby_str = "幼児" + String.valueOf(c) + "人";
-                    TextView adult_tv = (TextView) viw.findViewById(R.id.adulttext);
-                    TextView children_tv = (TextView) viw.findViewById(R.id.childrentext);
                     TextView baby_tv = (TextView) viw.findViewById(R.id.babytext);
-                    adult_tv.setText(adult_str);
-                    children_tv.setText(children_str);
                     baby_tv.setText(baby_str);
 
                     // 決定ボタンを押された時の処理
@@ -1822,7 +2176,7 @@ public class MainActivity extends Activity {
 
                             lastyear_e.putInt("lastyear_key", mYear);
                             lastmonth_e.putInt("lastmonth_key", mMonth);
-                            lastday_e.putInt("lastday_key",mDay);
+                            lastday_e.putInt("lastday_key", mDay);
 
                             lastyear_e.commit();
                             lastmonth_e.commit();
@@ -1917,19 +2271,14 @@ public class MainActivity extends Activity {
                     //人数の表示
                     SharedPreferences adult_pref = getSharedPreferences("adult_pref", MODE_PRIVATE);
                     SharedPreferences children_pref = getSharedPreferences("children_pref", MODE_PRIVATE);
-                    SharedPreferences baby_pref = getSharedPreferences("baby_pref", MODE_PRIVATE);
                     int a = adult_pref.getInt("adult_key", 0);
                     int b = children_pref.getInt("children_key", 0);
-                    int c = baby_pref.getInt("baby_key", 0);
                     String adult_str = "大人" + String.valueOf(a) + "人";
                     String children_str = "小人" + String.valueOf(b) + "人";
-                    String baby_str = "幼児" + String.valueOf(c) + "人";
                     TextView adult_tv = (TextView) viw.findViewById(R.id.adulttext);
                     TextView children_tv = (TextView) viw.findViewById(R.id.childrentext);
-                    TextView baby_tv = (TextView) viw.findViewById(R.id.babytext);
                     adult_tv.setText(adult_str);
                     children_tv.setText(children_str);
-                    baby_tv.setText(baby_str);
 
                     // 決定ボタンを押された時の処理
                     alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -2050,19 +2399,14 @@ public class MainActivity extends Activity {
                     //人数の表示
                     SharedPreferences adult_pref = getSharedPreferences("adult_pref", MODE_PRIVATE);
                     SharedPreferences children_pref = getSharedPreferences("children_pref", MODE_PRIVATE);
-                    SharedPreferences baby_pref = getSharedPreferences("baby_pref", MODE_PRIVATE);
                     int a = adult_pref.getInt("adult_key", 0);
                     int b = children_pref.getInt("children_key", 0);
-                    int c = baby_pref.getInt("baby_key", 0);
                     String adult_str = "大人" + String.valueOf(a) + "人";
                     String children_str = "小人" + String.valueOf(b) + "人";
-                    String baby_str = "幼児" + String.valueOf(c) + "人";
                     TextView adult_tv = (TextView) viw.findViewById(R.id.adulttext);
                     TextView children_tv = (TextView) viw.findViewById(R.id.childrentext);
-                    TextView baby_tv = (TextView) viw.findViewById(R.id.babytext);
                     adult_tv.setText(adult_str);
                     children_tv.setText(children_str);
-                    baby_tv.setText(baby_str);
 
                     // 決定ボタンを押された時の処理
                     alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -2181,20 +2525,10 @@ public class MainActivity extends Activity {
                     et.setText(str);
 
                     //人数の表示
-                    SharedPreferences adult_pref = getSharedPreferences("adult_pref", MODE_PRIVATE);
-                    SharedPreferences children_pref = getSharedPreferences("children_pref", MODE_PRIVATE);
                     SharedPreferences baby_pref = getSharedPreferences("baby_pref", MODE_PRIVATE);
-                    int a = adult_pref.getInt("adult_key", 0);
-                    int b = children_pref.getInt("children_key", 0);
                     int c = baby_pref.getInt("baby_key", 0);
-                    String adult_str = "大人" + String.valueOf(a) + "人";
-                    String children_str = "小人" + String.valueOf(b) + "人";
                     String baby_str = "幼児" + String.valueOf(c) + "人";
-                    TextView adult_tv = (TextView) viw.findViewById(R.id.adulttext);
-                    TextView children_tv = (TextView) viw.findViewById(R.id.childrentext);
                     TextView baby_tv = (TextView) viw.findViewById(R.id.babytext);
-                    adult_tv.setText(adult_str);
-                    children_tv.setText(children_str);
                     baby_tv.setText(baby_str);
 
                     // 決定ボタンを押された時の処理
@@ -2291,6 +2625,256 @@ public class MainActivity extends Activity {
             }
         });
 
+        // テキスト画面遷移(Clickable)　ガスボンベ
+        TextView gasbombalerttext = (TextView)findViewById(R.id.gasbomb);
+        gasbombalerttext.setClickable(true);
+        gasbombalerttext.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (v.getId() == R.id.gasbomb) {
+                    // アラートダイアログの出力
+                    AlertDialog.Builder alert;
+                    alert = new AlertDialog.Builder(MainActivity.this);
+                    alert.setTitle("ガスボンベ");
+                    LayoutInflater inflater = LayoutInflater.from(MainActivity.this);
+                    final View viw = inflater.inflate(R.layout.activity_gasbomb, null);
+                    // プリファレンスの生成
+                    SharedPreferences pref = getSharedPreferences("Preferences", MODE_PRIVATE);
+                    int i = 0;
+                    i = pref.getInt("gasbomb_num", i);
+                    String str = String.valueOf(i);
+                    // 必ずView変数で生成したデータを使うこと
+                    EditText et = (EditText) viw.findViewById(R.id.gasbombtext);
+                    // 値をいれる
+                    et.setText(str);
+
+                    //人数の表示
+                    SharedPreferences adult_pref = getSharedPreferences("adult_pref", MODE_PRIVATE);
+                    int a = adult_pref.getInt("adult_key", 0);
+                    String adult_str = "大人" + String.valueOf(a) + "人";
+                    TextView adult_tv = (TextView) viw.findViewById(R.id.adulttext);
+                    adult_tv.setText(adult_str);
+
+                    // 決定ボタンを押す
+                    alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            SharedPreferences pref = getSharedPreferences("Preferences", MODE_PRIVATE);
+                            EditText et = (EditText) viw.findViewById(R.id.gasbombtext);
+                            String str = et.getText().toString();
+                            int i = Integer.parseInt(str);
+
+                            SharedPreferences.Editor e = pref.edit();
+                            e.putInt("gasbomb_num", i);
+                            e.commit();
+
+                            //最終入力日の日付記録
+                            SharedPreferences lastyearprefb = getSharedPreferences("lastyearprefb", MODE_PRIVATE);
+                            SharedPreferences lastmonthprefb = getSharedPreferences("lastmonthprefb", MODE_PRIVATE);
+                            SharedPreferences lastdayprefb = getSharedPreferences("lastdayprefb", MODE_PRIVATE);
+
+                            SharedPreferences.Editor lastyear_eb = lastyearprefb.edit();
+                            SharedPreferences.Editor lastmonth_eb = lastmonthprefb.edit();
+                            SharedPreferences.Editor lastday_eb = lastdayprefb.edit();
+
+                            lastyear_eb.putInt("lastyear_keyb", mYear);
+                            lastmonth_eb.putInt("lastmonth_keyb", mMonth);
+                            lastday_eb.putInt("lastday_keyb", mDay);
+
+                            lastyear_eb.commit();
+                            lastmonth_eb.commit();
+                            lastday_eb.commit();
+
+                            Intent intent = new Intent();
+                            intent.setClassName("com.example.misakitatsuya.hello_world", "com.example.misakitatsuya.hello_world.MainActivity");
+                            startActivity(intent);//画面を出す
+                        }
+                    });
+
+                    alert.setView(viw);
+                    alert.show();
+
+                    // 消費期限カレンダー設定
+                    SharedPreferences year_pref13 = getSharedPreferences("year_pref13", MODE_PRIVATE);
+                    SharedPreferences month_pref13 = getSharedPreferences("month_pref13", MODE_PRIVATE);
+                    SharedPreferences day_pref13 = getSharedPreferences("day_pref13", MODE_PRIVATE);
+                    int limit_year13 = year_pref13.getInt("year_key13", mYear);
+                    int limit_month13 = month_pref13.getInt("month_key130", mMonth);
+                    int limit_day13 = day_pref13.getInt("day_key13", mDay);
+                    String limit_str13 = "消費期限は" + String.valueOf(limit_year13) + "年" + String.valueOf(limit_month13 + 1) + "月" + String.valueOf(limit_day13) + "日です。";
+                    TextView limit_tv13 = (TextView) viw.findViewById(R.id.textView30);
+                    limit_tv13.setText(limit_str13);
+
+                    Button calbutton = (Button) viw.findViewById(R.id.calbutton);
+                    calbutton.setOnClickListener(new OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            //DatePickerDialog の日付が変更されたときに呼び出されるコールバックを登録
+                            DatePickerDialog.OnDateSetListener listener = new DatePickerDialog.OnDateSetListener() {
+                                public void onDateSet(
+                                        DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                                    mYear = year;
+                                    mMonth = monthOfYear;
+                                    mDay = dayOfMonth;
+
+                                    SharedPreferences year_pref13 = getSharedPreferences("year_pref13", MODE_PRIVATE);
+                                    SharedPreferences month_pref13 = getSharedPreferences("month_pref13", MODE_PRIVATE);
+                                    SharedPreferences day_pref13 = getSharedPreferences("day_pref13", MODE_PRIVATE);
+
+                                    SharedPreferences.Editor year_e13 = year_pref13.edit();
+                                    SharedPreferences.Editor month_e13 = month_pref13.edit();
+                                    SharedPreferences.Editor day_e13 = day_pref13.edit();
+                                    year_e13.putInt("year_key13", mYear);
+                                    month_e13.putInt("month_key13", mMonth);
+                                    day_e13.putInt("day_key13", mDay);
+                                    year_e13.commit();
+                                    month_e13.commit();
+                                    day_e13.commit();
+
+                                    int limit_year13 = year_pref13.getInt("year_key13", mYear);
+                                    int limit_month13 = month_pref13.getInt("month_key13", mMonth);
+                                    int limit_day13 = day_pref13.getInt("day_key13", mDay);
+                                    String limit_str13 = "賞味期限は" + String.valueOf(limit_year13) + "年" + String.valueOf(limit_month13 + 1) + "月" + String.valueOf(limit_day13) + "日です。";
+                                    TextView limit_tv13 = (TextView) viw.findViewById(R.id.textView30);
+                                    limit_tv13.setText(limit_str13);
+                                }
+                            };
+                            // DatePickerDialog の作成
+                            DatePickerDialog datePickerDialog13 = new DatePickerDialog(MainActivity.this, listener, mYear, mMonth, mDay);
+
+                            //DatePickerDialog の表示
+                            datePickerDialog13.show();
+                        }
+                    });
+                }
+            }
+        });
+
+        // テキスト画面遷移(Clickable)　乾電池
+        TextView dentialerttext = (TextView)findViewById(R.id.denti);
+        dentialerttext.setClickable(true);
+        dentialerttext.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (v.getId() == R.id.denti) {
+                    // アラートダイアログの出力
+                    AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
+                    alert.setTitle("乾電池（単3）");
+                    LayoutInflater inflater = LayoutInflater.from(MainActivity.this);
+                    final View viw = inflater.inflate(R.layout.activity_denti, null);
+                    // プリファレンスの生成
+                    SharedPreferences pref = getSharedPreferences("Preferences", MODE_PRIVATE);
+                    int i = 0;
+                    i = pref.getInt("denti_num", i);
+                    String str = String.valueOf(i);
+                    // 必ずView変数で生成したデータを使うこと
+                    EditText et = (EditText) viw.findViewById(R.id.dentitext);
+                    // 値をいれる
+                    et.setText(str);
+
+                    //人数の表示
+                    SharedPreferences adult_pref = getSharedPreferences("adult_pref", MODE_PRIVATE);
+                    int a = adult_pref.getInt("adult_key", 0);
+                    String adult_str = "大人" + String.valueOf(a) + "人";
+                    TextView adult_tv = (TextView) viw.findViewById(R.id.adulttext);
+                    adult_tv.setText(adult_str);
+
+                    // 決定ボタンを押された時の処理
+                    alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            SharedPreferences pref = getSharedPreferences("Preferences", MODE_PRIVATE);
+                            EditText et = (EditText) viw.findViewById(R.id.dentitext);
+                            String str = et.getText().toString();
+                            int i = Integer.parseInt(str);
+
+                            SharedPreferences.Editor e = pref.edit();
+                            e.putInt("denti_num", i);
+                            e.commit();
+
+                            //最終入力日の日付記録
+                            SharedPreferences lastyearprefb = getSharedPreferences("lastyearprefb", MODE_PRIVATE);
+                            SharedPreferences lastmonthprefb = getSharedPreferences("lastmonthprefb", MODE_PRIVATE);
+                            SharedPreferences lastdayprefb = getSharedPreferences("lastdayprefb", MODE_PRIVATE);
+
+                            SharedPreferences.Editor lastyear_eb = lastyearprefb.edit();
+                            SharedPreferences.Editor lastmonth_eb = lastmonthprefb.edit();
+                            SharedPreferences.Editor lastday_eb = lastdayprefb.edit();
+
+                            lastyear_eb.putInt("lastyear_keyb", mYear);
+                            lastmonth_eb.putInt("lastmonth_keyb", mMonth);
+                            lastday_eb.putInt("lastday_keyb", mDay);
+
+                            lastyear_eb.commit();
+                            lastmonth_eb.commit();
+                            lastday_eb.commit();
+
+                            Intent intent = new Intent();
+                            intent.setClassName("com.example.misakitatsuya.hello_world", "com.example.misakitatsuya.hello_world.MainActivity");
+                            startActivity(intent);//画面を出す
+                        }
+                    });
+                    alert.setView(viw);
+                    alert.show();
+
+                    // 消費期限カレンダー設定
+                    SharedPreferences year_pref14 = getSharedPreferences("year_pref14", MODE_PRIVATE);
+                    SharedPreferences month_pref14 = getSharedPreferences("month_pref14", MODE_PRIVATE);
+                    SharedPreferences day_pref14 = getSharedPreferences("day_pref14", MODE_PRIVATE);
+                    int limit_year14 = year_pref14.getInt("year_key14", mYear);
+                    int limit_month14 = month_pref14.getInt("month_key14", mMonth);
+                    int limit_day14 = day_pref14.getInt("day_key14", mDay);
+                    String limit_str14 = "消費期限は" + String.valueOf(limit_year14) + "年" + String.valueOf(limit_month14 + 1) + "月" + String.valueOf(limit_day14) + "日です。";
+                    TextView limit_tv14 = (TextView) viw.findViewById(R.id.textView30);
+                    limit_tv14.setText(limit_str14);
+
+                    Button calbutton = (Button) viw.findViewById(R.id.calbutton);
+                    calbutton.setOnClickListener(new OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            //DatePickerDialog の日付が変更されたときに呼び出されるコールバックを登録
+                            DatePickerDialog.OnDateSetListener listener = new DatePickerDialog.OnDateSetListener() {
+                                public void onDateSet(
+                                        DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                                    mYear = year;
+                                    mMonth = monthOfYear;
+                                    mDay = dayOfMonth;
+
+                                    SharedPreferences year_pref14 = getSharedPreferences("year_pref14", MODE_PRIVATE);
+                                    SharedPreferences month_pref14 = getSharedPreferences("month_pref14", MODE_PRIVATE);
+                                    SharedPreferences day_pref14 = getSharedPreferences("day_pref14", MODE_PRIVATE);
+
+                                    SharedPreferences.Editor year_e14 = year_pref14.edit();
+                                    SharedPreferences.Editor month_e14 = month_pref14.edit();
+                                    SharedPreferences.Editor day_e14 = day_pref14.edit();
+                                    year_e14.putInt("year_key14", mYear);
+                                    month_e14.putInt("month_key14", mMonth);
+                                    day_e14.putInt("day_key14", mDay);
+                                    year_e14.commit();
+                                    month_e14.commit();
+                                    day_e14.commit();
+
+                                    int limit_year14 = year_pref14.getInt("year_key14", mYear);
+                                    int limit_month14 = month_pref14.getInt("month_key14", mMonth);
+                                    int limit_day14 = day_pref14.getInt("day_key14", mDay);
+
+                                    String limit_str14 = "賞味期限は" + String.valueOf(limit_year14) + "年" + String.valueOf(limit_month14 + 1) + "月" + String.valueOf(limit_day14) + "日です。";
+                                    TextView limit_tv14 = (TextView) viw.findViewById(R.id.textView30);
+                                    limit_tv14.setText(limit_str14);
+                                }
+                            };
+                            // DatePickerDialog の作成
+                            DatePickerDialog datePickerDialog14 = new DatePickerDialog(MainActivity.this, listener, mYear, mMonth, mDay);
+
+                            //DatePickerDialog の表示
+                            datePickerDialog14.show();
+                        }
+                    });
+                }
+            }
+        });
+
+
 /*        //れいのプログラム
         LinearLayout ll = (LinearLayout)findViewById(R.id.Linear);
         TextView as = new TextView(this);
@@ -2333,23 +2917,21 @@ public class MainActivity extends Activity {
 
     private double differenceDays(String strDate1, String strDate2)
             throws ParseException {
-        int ret = 0;
+                double ret = 0.0;
 
-//        SimpleDateFormat formatA = new SimpleDateFormat("yyyy/MM/dd");
+                 Date date1 = SimpleDateFormat.getDateInstance().parse(strDate1);
+                 Date date2 = SimpleDateFormat.getDateInstance().parse(strDate2);
 
-        Date date1 = SimpleDateFormat.getDateInstance().parse(strDate1);
-        Date date2 = SimpleDateFormat.getDateInstance().parse(strDate2);
-
-        // 日付を比較.
-        int diff = date1.compareTo(date2);
-        if (diff == 0) {//日付1と日付2は同じ.
-            return ret;
-        } else if (diff > 0) {//日付1は日付2より未来の日付.
-            ret = (int)(date2.getTime() - date1.getTime());
-        } else {//日付2は日付1より未来の日付.
-            ret = (int)(date2.getTime() - date1.getTime());
-        }
-        return ret / 1000 / 60 / 60 / 24.0;
+                // 日付を比較.
+                int diff = date1.compareTo(date2);
+                if (diff == 0) {//日付1と日付2は同じ.
+                    return ret;
+                } else if (diff > 0) {//日付1は日付2より未来の日付.
+                    ret = (int)(date2.getTime() - date1.getTime());
+                } else {//日付2は日付1より未来の日付.
+                    ret = (int)(date2.getTime() - date1.getTime());
+                }
+                return ret / 1000 / 60 / 60 / 24.0;
     }
 
     @Override

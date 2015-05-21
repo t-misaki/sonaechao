@@ -5,6 +5,8 @@ import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -18,7 +20,10 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 
 public class hijo extends ActionBarActivity {
@@ -279,116 +284,116 @@ public class hijo extends ActionBarActivity {
         btnkanmen.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
                 // アラートダイアログの出力
-                AlertDialog.Builder alert = new AlertDialog.Builder(hijo.this);
-                alert.setTitle("乾麺、即席めん、カップ麺");
-                LayoutInflater inflater = LayoutInflater.from(hijo.this);
-                final View viw = inflater.inflate(R.layout.activity_kanmen, null);
-                // プリファレンスの生成
-                SharedPreferences pref = getSharedPreferences("Preferences", MODE_PRIVATE);
-                int i = 0;
-                i = pref.getInt("kanmen_num", i);
-                String str = String.valueOf(i);
-                // 必ずView変数で生成したデータを使うこと
-                EditText et = (EditText) viw.findViewById(R.id.kanmentext);
-                // 値をいれる
-                et.setText(str);
-
-                //人数の表示
-                SharedPreferences adult_pref = getSharedPreferences("adult_pref", MODE_PRIVATE);
-                SharedPreferences children_pref = getSharedPreferences("children_pref", MODE_PRIVATE);
-                int a = adult_pref.getInt("adult_key", 0);
-                int b = children_pref.getInt("children_key", 0);
-                String adult_str = "大人" + String.valueOf(a) + "人";
-                String children_str = "小人" + String.valueOf(b) + "人";
-                TextView adult_tv = (TextView) viw.findViewById(R.id.adulttext);
-                TextView children_tv = (TextView) viw.findViewById(R.id.childrentext);
-                adult_tv.setText(adult_str);
-                children_tv.setText(children_str);
-
-                // 決定ボタンを押された時の処理
-                alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
+                        AlertDialog.Builder alert = new AlertDialog.Builder(hijo.this);
+                        alert.setTitle("乾麺、即席めん、カップ麺");
+                        LayoutInflater inflater = LayoutInflater.from(hijo.this);
+                        final View viw = inflater.inflate(R.layout.activity_kanmen, null);
+                        // プリファレンスの生成
                         SharedPreferences pref = getSharedPreferences("Preferences", MODE_PRIVATE);
+                        int i = 0;
+                        i = pref.getInt("kanmen_num", i);
+                        String str = String.valueOf(i);
+                        // 必ずView変数で生成したデータを使うこと
                         EditText et = (EditText) viw.findViewById(R.id.kanmentext);
-                        String str = et.getText().toString();
-                        int i = Integer.parseInt(str);
+                        // 値をいれる
+                        et.setText(str);
 
-                        SharedPreferences.Editor e = pref.edit();
-                        e.putInt("kanmen_num", i);
-                        e.commit();
+                        //人数の表示
+                        SharedPreferences adult_pref = getSharedPreferences("adult_pref", MODE_PRIVATE);
+                        SharedPreferences children_pref = getSharedPreferences("children_pref", MODE_PRIVATE);
+                        int a = adult_pref.getInt("adult_key", 0);
+                        int b = children_pref.getInt("children_key", 0);
+                        String adult_str = "大人" + String.valueOf(a) + "人";
+                        String children_str = "小人" + String.valueOf(b) + "人";
+                        TextView adult_tv = (TextView) viw.findViewById(R.id.adulttext);
+                        TextView children_tv = (TextView) viw.findViewById(R.id.childrentext);
+                        adult_tv.setText(adult_str);
+                        children_tv.setText(children_str);
 
-                        //最終入力日の日付記録
-                        SharedPreferences lastyearpref = getSharedPreferences("lastyearpref", MODE_PRIVATE);
-                        SharedPreferences lastmonthpref = getSharedPreferences("lastmonthpref", MODE_PRIVATE);
-                        SharedPreferences lastdaypref = getSharedPreferences("lastdaypref", MODE_PRIVATE);
+                        // 決定ボタンを押された時の処理
+                        alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                SharedPreferences pref = getSharedPreferences("Preferences", MODE_PRIVATE);
+                                EditText et = (EditText) viw.findViewById(R.id.kanmentext);
+                                String str = et.getText().toString();
+                                int i = Integer.parseInt(str);
 
-                        SharedPreferences.Editor lastyear_e = lastyearpref.edit();
-                        SharedPreferences.Editor lastmonth_e = lastmonthpref.edit();
-                        SharedPreferences.Editor lastday_e = lastdaypref.edit();
+                                SharedPreferences.Editor e = pref.edit();
+                                e.putInt("kanmen_num", i);
+                                e.commit();
 
-                        lastyear_e.putInt("lastyear_key", mYear);
-                        lastmonth_e.putInt("lastmonth_key", mMonth);
-                        lastday_e.putInt("lastday_key", mDay);
+                                //最終入力日の日付記録
+                                SharedPreferences lastyearpref = getSharedPreferences("lastyearpref", MODE_PRIVATE);
+                                SharedPreferences lastmonthpref = getSharedPreferences("lastmonthpref", MODE_PRIVATE);
+                                SharedPreferences lastdaypref = getSharedPreferences("lastdaypref", MODE_PRIVATE);
 
-                        lastyear_e.commit();
-                        lastmonth_e.commit();
-                        lastday_e.commit();
-                    }
-                });
-                alert.setView(viw);
-                alert.show();
+                                SharedPreferences.Editor lastyear_e = lastyearpref.edit();
+                                SharedPreferences.Editor lastmonth_e = lastmonthpref.edit();
+                                SharedPreferences.Editor lastday_e = lastdaypref.edit();
 
-                //カレンダー設定
-                SharedPreferences year_pref3 = getSharedPreferences("year_pref3", MODE_PRIVATE);
-                SharedPreferences month_pref3 = getSharedPreferences("month_pref3", MODE_PRIVATE);
-                SharedPreferences day_pref3 = getSharedPreferences("day_pref3", MODE_PRIVATE);
-                int limit_year3 = year_pref3.getInt("year_key3", mYear);
-                int limit_month3 = month_pref3.getInt("month_key3", mMonth);
-                int limit_day3 = day_pref3.getInt("day_key3", mDay);
-                String limit_str3 = "賞味期限は" + String.valueOf(limit_year3) + "年" + String.valueOf(limit_month3 + 1) + "月" + String.valueOf(limit_day3) + "日です。";
-                TextView limit_tv3 = (TextView) viw.findViewById(R.id.textView30);
-                limit_tv3.setText(limit_str3);
+                                lastyear_e.putInt("lastyear_key", mYear);
+                                lastmonth_e.putInt("lastmonth_key", mMonth);
+                                lastday_e.putInt("lastday_key", mDay);
 
-                Button calbutton = (Button) viw.findViewById(R.id.calbutton);
-                calbutton.setOnClickListener(new OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        //DatePickerDialog の日付が変更されたときに呼び出されるコールバックを登録
-                        DatePickerDialog.OnDateSetListener listener = new DatePickerDialog.OnDateSetListener() {
-                            public void onDateSet(
-                                    DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                                mYear = year;
-                                mMonth = monthOfYear;
-                                mDay = dayOfMonth;
-
-                                SharedPreferences year_pref3 = getSharedPreferences("year_pref3", MODE_PRIVATE);
-                                SharedPreferences month_pref3 = getSharedPreferences("month_pref3", MODE_PRIVATE);
-                                SharedPreferences day_pref3 = getSharedPreferences("day_pref3", MODE_PRIVATE);
-
-                                SharedPreferences.Editor year_e3 = year_pref3.edit();
-                                SharedPreferences.Editor month_e3 = month_pref3.edit();
-                                SharedPreferences.Editor day_e3 = day_pref3.edit();
-                                year_e3.putInt("year_key3", mYear);
-                                month_e3.putInt("month_key3", mMonth);
-                                day_e3.putInt("day_key3", mDay);
-                                year_e3.commit();
-                                month_e3.commit();
-                                day_e3.commit();
-
-                                int limit_year3 = year_pref3.getInt("year_key3", mYear);
-                                int limit_month3 = month_pref3.getInt("month_key3", mMonth);
-                                int limit_day3 = day_pref3.getInt("day_key3", mDay);
-                                String limit_str3 = "賞味期限は" + String.valueOf(limit_year3) + "年" + String.valueOf(limit_month3 + 1) + "月" + String.valueOf(limit_day3) + "日です。";
-                                TextView limit_tv3 = (TextView) viw.findViewById(R.id.textView30);
-                                limit_tv3.setText(limit_str3);
+                                lastyear_e.commit();
+                                lastmonth_e.commit();
+                                lastday_e.commit();
                             }
-                        };
-                        // DatePickerDialog の作成
-                        DatePickerDialog datePickerDialog3 = new DatePickerDialog(hijo.this, listener, mYear, mMonth, mDay);
+                        });
+                        alert.setView(viw);
+                        alert.show();
 
-                        //DatePickerDialog の表示
-                        datePickerDialog3.show();
+                        //カレンダー設定
+                        SharedPreferences year_pref3 = getSharedPreferences("year_pref3", MODE_PRIVATE);
+                        SharedPreferences month_pref3 = getSharedPreferences("month_pref3", MODE_PRIVATE);
+                        SharedPreferences day_pref3 = getSharedPreferences("day_pref3", MODE_PRIVATE);
+                        int limit_year3 = year_pref3.getInt("year_key3", mYear);
+                        int limit_month3 = month_pref3.getInt("month_key3", mMonth);
+                        int limit_day3 = day_pref3.getInt("day_key3", mDay);
+                        String limit_str3 = "賞味期限は" + String.valueOf(limit_year3) + "年" + String.valueOf(limit_month3 + 1) + "月" + String.valueOf(limit_day3) + "日です。";
+                        TextView limit_tv3 = (TextView) viw.findViewById(R.id.textView30);
+                        limit_tv3.setText(limit_str3);
+
+                        Button calbutton = (Button) viw.findViewById(R.id.calbutton);
+                        calbutton.setOnClickListener(new OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                //DatePickerDialog の日付が変更されたときに呼び出されるコールバックを登録
+                                DatePickerDialog.OnDateSetListener listener = new DatePickerDialog.OnDateSetListener() {
+                                    public void onDateSet(
+                                            DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                                        mYear = year;
+                                        mMonth = monthOfYear;
+                                        mDay = dayOfMonth;
+
+                                        SharedPreferences year_pref3 = getSharedPreferences("year_pref3", MODE_PRIVATE);
+                                        SharedPreferences month_pref3 = getSharedPreferences("month_pref3", MODE_PRIVATE);
+                                        SharedPreferences day_pref3 = getSharedPreferences("day_pref3", MODE_PRIVATE);
+
+                                        SharedPreferences.Editor year_e3 = year_pref3.edit();
+                                        SharedPreferences.Editor month_e3 = month_pref3.edit();
+                                        SharedPreferences.Editor day_e3 = day_pref3.edit();
+                                        year_e3.putInt("year_key3", mYear);
+                                        month_e3.putInt("month_key3", mMonth);
+                                        day_e3.putInt("day_key3", mDay);
+                                        year_e3.commit();
+                                        month_e3.commit();
+                                        day_e3.commit();
+
+                                        int limit_year3 = year_pref3.getInt("year_key3", mYear);
+                                        int limit_month3 = month_pref3.getInt("month_key3", mMonth);
+                                        int limit_day3 = day_pref3.getInt("day_key3", mDay);
+                                        String limit_str3 = "賞味期限は" + String.valueOf(limit_year3) + "年" + String.valueOf(limit_month3 + 1) + "月" + String.valueOf(limit_day3) + "日です。";
+                                        TextView limit_tv3 = (TextView) viw.findViewById(R.id.textView30);
+                                        limit_tv3.setText(limit_str3);
+                                    }
+                                };
+                                // DatePickerDialog の作成
+                                DatePickerDialog datePickerDialog3 = new DatePickerDialog(hijo.this, listener, mYear, mMonth, mDay);
+
+                                //DatePickerDialog の表示
+                                datePickerDialog3.show();
                     }
                 });
             }
@@ -1464,6 +1469,32 @@ public class hijo extends ActionBarActivity {
             }
         });
 
+        // 賞味期限切れ赤淵設定
+        //要チェック欄、賞味期限設定（レトルトご飯)
+        SharedPreferences limit_pref = getSharedPreferences("limit_pref", MODE_PRIVATE); // 期日のプリファレンス
+        SharedPreferences year_pref1 = getSharedPreferences("year_pref1", MODE_PRIVATE); // 賞味期限の年のプリファレンス
+        SharedPreferences month_pref1 = getSharedPreferences("month_pref1", MODE_PRIVATE); // 賞味期限の月のプリファレンス
+        SharedPreferences day_pref1 = getSharedPreferences("day_pref1", MODE_PRIVATE); // 賞味期限の日のプリファレンス
+        int limit = limit_pref.getInt("limit_key", 0); // 期日
+        String lyearstr1 = String.valueOf(year_pref1.getInt("year_key1", 0)); // 賞味期限（年）
+        String lmonthstr1 = String.valueOf(month_pref1.getInt("month_key1", 0)); // 賞味期限（月）
+        String ldaystr1 = String.valueOf(day_pref1.getInt("day_key1", 0)); // 賞味期限（日）
+        String toyearstr = String.valueOf(mYear); // 現在の年
+        String tomonthstr = String.valueOf(mMonth); // 現在の月
+        String todaystr = String.valueOf(mDay); // 現在の日
+        double sa1 = 0.0;
+
+        try{
+            sa1  = differenceDays(toyearstr + "/" + tomonthstr + "/" + todaystr, lyearstr1 + "/" + lmonthstr1 + "/" + ldaystr1);
+        } catch (ParseException e) {
+            System.out.println(e);
+        }
+
+        if ( sa1 < 0.0 ) {
+            ImageButton retorutog = (ImageButton) findViewById(R.id.ImageButton);
+            retorutog.setBackgroundColor(Color.RED);
+        }
+
 
         //ボタン場所指定(ホーム)
         ImageButton btnhome = (ImageButton)findViewById(R.id.HomeButton1);
@@ -1500,6 +1531,25 @@ public class hijo extends ActionBarActivity {
                 startActivity(intent);//画面を出す
             }
         });
+    }
+
+    private double differenceDays(String strDate1, String strDate2)
+            throws ParseException {
+        double ret = 0.0;
+
+        Date date1 = SimpleDateFormat.getDateInstance().parse(strDate1);
+        Date date2 = SimpleDateFormat.getDateInstance().parse(strDate2);
+
+        // 日付を比較.
+        int diff = date1.compareTo(date2);
+        if (diff == 0) {//日付1と日付2は同じ.
+            return ret;
+        } else if (diff > 0) {//日付1は日付2より未来の日付.
+            ret = (int)(date2.getTime() - date1.getTime());
+        } else {//日付2は日付1より未来の日付.
+            ret = (int)(date2.getTime() - date1.getTime());
+        }
+        return ret / 1000 / 60 / 60 / 24.0;
     }
 
 

@@ -97,122 +97,122 @@
                 android:textSize="25dp" />
 
             <ImageButton
-                android:layout_width="80dp"
-                android:layout_height="90dp"
+                android:layout_width="100dp"
+                android:layout_height="120dp"
                 android:id="@+id/otonabutton"
                 android:layout_row="1"
                 android:layout_column="0"
                 android:src="@drawable/otona" />
 
             <ImageButton
-                android:layout_width="80dp"
-                android:layout_height="90dp"
+                android:layout_width="100dp"
+                android:layout_height="120dp"
                 android:id="@+id/kodomobutton"
                 android:layout_row="1"
                 android:layout_column="1"
                 android:src="@drawable/kodomo" />
 
             <ImageButton
-                android:layout_width="80dp"
-                android:layout_height="90dp"
+                android:layout_width="100dp"
+                android:layout_height="120dp"
                 android:id="@+id/raitobutton"
                 android:layout_row="1"
                 android:layout_column="2"
                 android:src="@drawable/raito" />
 
             <ImageButton
-                android:layout_width="80dp"
-                android:layout_height="90dp"
+                android:layout_width="100dp"
+                android:layout_height="120dp"
                 android:id="@+id/koppubutton"
-                android:layout_row="1"
-                android:layout_column="3"
+                android:layout_row="2"
+                android:layout_column="0"
                 android:src="@drawable/koppu" />
 
             <ImageButton
-                android:layout_width="80dp"
-                android:layout_height="90dp"
+                android:layout_width="100dp"
+                android:layout_height="120dp"
                 android:id="@+id/utuwabutton"
                 android:layout_row="2"
-                android:layout_column="0"
+                android:layout_column="1"
                 android:src="@drawable/utuwa" />
 
             <ImageButton
-                android:layout_width="80dp"
-                android:layout_height="90dp"
+                android:layout_width="100dp"
+                android:layout_height="120dp"
                 android:id="@+id/taorubutton"
                 android:layout_row="2"
-                android:layout_column="1"
+                android:layout_column="2"
                 android:src="@drawable/taoru" />
 
             <ImageButton
-                android:layout_width="80dp"
-                android:layout_height="90dp"
+                android:layout_width="100dp"
+                android:layout_height="120dp"
                 android:id="@+id/almibutton"
-                android:layout_row="2"
-                android:layout_column="2"
+                android:layout_row="3"
+                android:layout_column="0"
                 android:src="@drawable/almi" />
 
             <ImageButton
-                android:layout_width="80dp"
-                android:layout_height="90dp"
+                android:layout_width="100dp"
+                android:layout_height="120dp"
                 android:id="@+id/rappubutton"
-                android:layout_row="2"
-                android:layout_column="3"
+                android:layout_row="3"
+                android:layout_column="1"
                 android:src="@drawable/rappu" />
 
             <ImageButton
-                android:layout_width="80dp"
-                android:layout_height="90dp"
+                android:layout_width="100dp"
+                android:layout_height="120dp"
                 android:id="@+id/gasbombbutton"
                 android:layout_row="3"
-                android:layout_column="0"
+                android:layout_column="2"
                 android:src="@drawable/bombe" />
 
             <ImageButton
-                android:layout_width="80dp"
-                android:layout_height="90dp"
+                android:layout_width="100dp"
+                android:layout_height="120dp"
                 android:id="@+id/gasbutton"
-                android:layout_row="3"
-                android:layout_column="1"
+                android:layout_row="4"
+                android:layout_column="0"
                 android:src="@drawable/gas" />
 
             <ImageButton
-                android:layout_width="80dp"
-                android:layout_height="90dp"
+                android:layout_width="100dp"
+                android:layout_height="120dp"
                 android:id="@+id/thissyubutton"
-                android:layout_row="3"
-                android:layout_column="2"
+                android:layout_row="4"
+                android:layout_column="1"
                 android:src="@drawable/thissyu" />
 
             <ImageButton
-                android:layout_width="80dp"
-                android:layout_height="90dp"
+                android:layout_width="100dp"
+                android:layout_height="120dp"
                 android:id="@+id/hukurobutton"
-                android:layout_row="3"
-                android:layout_column="3"
+                android:layout_row="4"
+                android:layout_column="2"
                 android:src="@drawable/hukuro" />
 
             <ImageButton
-                android:layout_width="80dp"
-                android:layout_height="90dp"
+                android:layout_width="100dp"
+                android:layout_height="120dp"
                 android:id="@+id/spoonbutton"
-                android:layout_row="4"
+                android:layout_row="5"
                 android:layout_column="0"
                 android:src="@drawable/spoon" />
 
             <ImageButton
-                android:layout_width="80dp"
-                android:layout_height="90dp"
+                android:layout_width="100dp"
+                android:layout_height="120dp"
                 android:id="@+id/hasibutton"
-                android:layout_row="4"
+                android:layout_row="5"
                 android:layout_column="1"
                 android:src="@drawable/hasi" />
 
             <ImageButton
-                android:layout_width="80dp"
-                android:layout_height="90dp"
+                android:layout_width="100dp"
+                android:layout_height="120dp"
                 android:id="@+id/dentibutton"
-                android:layout_row="4"
+                android:layout_row="5"
                 android:layout_column="2"
                 android:src="@drawable/denti" />
 
@@ -226,67 +226,67 @@
                 android:textSize="25dp" />
 
             <ImageButton
-                android:layout_width="80dp"
-                android:layout_height="90dp"
+                android:layout_width="100dp"
+                android:layout_height="120dp"
                 android:id="@+id/guntebutton"
                 android:layout_row="7"
                 android:layout_column="0"
                 android:src="@drawable/gunnte" />
 
             <ImageButton
-                android:layout_width="80dp"
-                android:layout_height="90dp"
+                android:layout_width="100dp"
+                android:layout_height="120dp"
                 android:id="@+id/huebutton"
                 android:layout_row="7"
                 android:layout_column="1"
                 android:src="@drawable/hue"/>
 
             <ImageButton
-                android:layout_width="80dp"
-                android:layout_height="90dp"
+                android:layout_width="100dp"
+                android:layout_height="120dp"
                 android:id="@+id/mattibutton"
                 android:layout_row="7"
                 android:layout_column="2"
                 android:src="@drawable/matti"/>
 
             <ImageButton
-                android:layout_width="80dp"
-                android:layout_height="90dp"
+                android:layout_width="100dp"
+                android:layout_height="120dp"
                 android:id="@+id/radiobutton"
-                android:layout_row="7"
-                android:layout_column="3"
+                android:layout_row="8"
+                android:layout_column="0"
                 android:src="@drawable/radio"/>
 
             <ImageButton
-                android:layout_width="80dp"
-                android:layout_height="90dp"
+                android:layout_width="100dp"
+                android:layout_height="120dp"
                 android:id="@+id/kankiributton"
                 android:layout_row="8"
-                android:layout_column="0"
+                android:layout_column="1"
                 android:src="@drawable/kankiri"/>
 
             <ImageButton
-                android:layout_width="80dp"
-                android:layout_height="90dp"
+                android:layout_width="100dp"
+                android:layout_height="120dp"
                 android:id="@+id/masukubutton"
                 android:layout_row="8"
-                android:layout_column="1"
+                android:layout_column="2"
                 android:src="@drawable/masuku"/>
 
             <ImageButton
-                android:layout_width="80dp"
-                android:layout_height="90dp"
+                android:layout_width="100dp"
+                android:layout_height="120dp"
                 android:id="@+id/zyudenbutton"
-                android:layout_row="8"
-                android:layout_column="2"
+                android:layout_row="9"
+                android:layout_column="0"
                 android:src="@drawable/zyuden"/>
 
             <ImageButton
-                android:layout_width="80dp"
-                android:layout_height="90dp"
+                android:layout_width="100dp"
+                android:layout_height="120dp"
                 android:id="@+id/nebukurobutton"
-                android:layout_row="8"
-                android:layout_column="3"
+                android:layout_row="9"
+                android:layout_column="1"
                 android:src="@drawable/nebukuro" />
 
             <TextView
@@ -299,16 +299,16 @@
                 android:textSize="25dp" />
 
             <ImageButton
-                android:layout_width="80dp"
-                android:layout_height="90dp"
+                android:layout_width="100dp"
+                android:layout_height="120dp"
                 android:id="@+id/binbutton"
                 android:layout_row="11"
                 android:layout_column="0"
                 android:src="@drawable/bin" />
 
             <ImageButton
-                android:layout_width="80dp"
-                android:layout_height="90dp"
+                android:layout_width="100dp"
+                android:layout_height="120dp"
                 android:id="@+id/omutubutton"
                 android:layout_row="11"
                 android:layout_column="1"
