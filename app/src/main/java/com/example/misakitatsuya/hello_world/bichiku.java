@@ -66,8 +66,10 @@ public class bichiku extends Activity {
                         SharedPreferences bichikupref = getSharedPreferences("Preferences", MODE_PRIVATE);
                         EditText et = (EditText) viw.findViewById(R.id.kodomotext);
                         String str = et.getText().toString();
+                        if (str.length() <= 0) { // 値が空白値の場合0を入れる処理
+                            str = "0";
+                        }
                         int i = Integer.parseInt(str);
-
                         SharedPreferences.Editor e = bichikupref.edit();
                         e.putInt("kodomo_num", i);
                         e.commit();
@@ -128,8 +130,10 @@ public class bichiku extends Activity {
                         SharedPreferences bichikupref = getSharedPreferences("Preferences", MODE_PRIVATE);
                         EditText et = (EditText) viw.findViewById(R.id.raitotext);
                         String str = et.getText().toString();
+                        if (str.length() <= 0) { // 値が空白値の場合0を入れる処理
+                            str = "0";
+                        }
                         int i = Integer.parseInt(str);
-
                         SharedPreferences.Editor e = bichikupref.edit();
                         e.putInt("raito_num", i);
                         e.commit();
@@ -200,8 +204,10 @@ public class bichiku extends Activity {
                         SharedPreferences bichikupref = getSharedPreferences("Preferences", MODE_PRIVATE);
                         EditText et = (EditText) viw.findViewById(R.id.kopputext);
                         String str = et.getText().toString();
+                        if (str.length() <= 0) { // 値が空白値の場合0を入れる処理
+                            str = "0";
+                        }
                         int i = Integer.parseInt(str);
-
                         SharedPreferences.Editor e = bichikupref.edit();
                         e.putInt("koppu_num", i);
                         e.commit();
@@ -272,8 +278,10 @@ public class bichiku extends Activity {
                         SharedPreferences bichikupref = getSharedPreferences("Preferences", MODE_PRIVATE);
                         EditText et = (EditText) viw.findViewById(R.id.utuwatext);
                         String str = et.getText().toString();
+                        if (str.length() <= 0) { // 値が空白値の場合0を入れる処理
+                            str = "0";
+                        }
                         int i = Integer.parseInt(str);
-
                         SharedPreferences.Editor e = bichikupref.edit();
                         e.putInt("utuwa_num", i);
                         e.commit();
@@ -344,8 +352,10 @@ public class bichiku extends Activity {
                         SharedPreferences bichikupref = getSharedPreferences("Preferences", MODE_PRIVATE);
                         EditText et = (EditText) viw.findViewById(R.id.taorutext);
                         String str = et.getText().toString();
+                        if (str.length() <= 0) { // 値が空白値の場合0を入れる処理
+                            str = "0";
+                        }
                         int i = Integer.parseInt(str);
-
                         SharedPreferences.Editor e = bichikupref.edit();
                         e.putInt("taoru_num", i);
                         e.commit();
@@ -406,8 +416,10 @@ public class bichiku extends Activity {
                         SharedPreferences bichikupref = getSharedPreferences("Preferences", MODE_PRIVATE);
                         EditText et = (EditText) viw.findViewById(R.id.rapputext);
                         String str = et.getText().toString();
+                        if (str.length() <= 0) { // 値が空白値の場合0を入れる処理
+                            str = "0";
+                        }
                         int i = Integer.parseInt(str);
-
                         SharedPreferences.Editor e = bichikupref.edit();
                         e.putInt("rappu_num", i);
                         e.commit();
@@ -468,8 +480,10 @@ public class bichiku extends Activity {
                         SharedPreferences bichikupref = getSharedPreferences("Preferences", MODE_PRIVATE);
                         EditText et = (EditText) viw.findViewById(R.id.hukurotext);
                         String str = et.getText().toString();
+                        if (str.length() <= 0) { // 値が空白値の場合0を入れる処理
+                            str = "0";
+                        }
                         int i = Integer.parseInt(str);
-
                         SharedPreferences.Editor e = bichikupref.edit();
                         e.putInt("hukuro_num", i);
                         e.commit();
@@ -530,8 +544,10 @@ public class bichiku extends Activity {
                         SharedPreferences bichikupref = getSharedPreferences("Preferences", MODE_PRIVATE);
                         EditText et = (EditText) viw.findViewById(R.id.spoontext);
                         String str = et.getText().toString();
+                        if (str.length() <= 0) { // 値が空白値の場合0を入れる処理
+                            str = "0";
+                        }
                         int i = Integer.parseInt(str);
-
                         SharedPreferences.Editor e = bichikupref.edit();
                         e.putInt("spoon_num", i);
                         e.commit();
@@ -592,8 +608,10 @@ public class bichiku extends Activity {
                         SharedPreferences bichikupref = getSharedPreferences("Preferences", MODE_PRIVATE);
                         EditText et = (EditText) viw.findViewById(R.id.hasitext);
                         String str = et.getText().toString();
+                        if (str.length() <= 0) { // 値が空白値の場合0を入れる処理
+                            str = "0";
+                        }
                         int i = Integer.parseInt(str);
-
                         SharedPreferences.Editor e = bichikupref.edit();
                         e.putInt("hasi_num", i);
                         e.commit();
@@ -654,8 +672,10 @@ public class bichiku extends Activity {
                         SharedPreferences bichikupref = getSharedPreferences("Preferences", MODE_PRIVATE);
                         EditText et = (EditText) viw.findViewById(R.id.radiotext);
                         String str = et.getText().toString();
+                        if (str.length() <= 0) { // 値が空白値の場合0を入れる処理
+                            str = "0";
+                        }
                         int i = Integer.parseInt(str);
-
                         SharedPreferences.Editor e = bichikupref.edit();
                         e.putInt("radio_num", i);
                         e.commit();
@@ -716,8 +736,10 @@ public class bichiku extends Activity {
                         SharedPreferences bichikupref = getSharedPreferences("Preferences", MODE_PRIVATE);
                         EditText et = (EditText) viw.findViewById(R.id.kankiritext);
                         String str = et.getText().toString();
+                        if (str.length() <= 0) { // 値が空白値の場合0を入れる処理
+                            str = "0";
+                        }
                         int i = Integer.parseInt(str);
-
                         SharedPreferences.Editor e = bichikupref.edit();
                         e.putInt("kankiri_num", i);
                         e.commit();
@@ -778,8 +800,10 @@ public class bichiku extends Activity {
                         SharedPreferences bichikupref = getSharedPreferences("Preferences", MODE_PRIVATE);
                         EditText et = (EditText) viw.findViewById(R.id.masukutext);
                         String str = et.getText().toString();
+                        if (str.length() <= 0) { // 値が空白値の場合0を入れる処理
+                            str = "0";
+                        }
                         int i = Integer.parseInt(str);
-
                         SharedPreferences.Editor e = bichikupref.edit();
                         e.putInt("masuku_num", i);
                         e.commit();
@@ -840,8 +864,10 @@ public class bichiku extends Activity {
                         SharedPreferences bichikupref = getSharedPreferences("Preferences", MODE_PRIVATE);
                         EditText et = (EditText) viw.findViewById(R.id.zyudentext);
                         String str = et.getText().toString();
+                        if (str.length() <= 0) { // 値が空白値の場合0を入れる処理
+                            str = "0";
+                        }
                         int i = Integer.parseInt(str);
-
                         SharedPreferences.Editor e = bichikupref.edit();
                         e.putInt("zyuden_num", i);
                         e.commit();
@@ -907,8 +933,10 @@ public class bichiku extends Activity {
                         SharedPreferences bichikupref = getSharedPreferences("Preferences", MODE_PRIVATE);
                         EditText et = (EditText) viw.findViewById(R.id.nebukurotext);
                         String str = et.getText().toString();
+                        if (str.length() <= 0) { // 値が空白値の場合0を入れる処理
+                            str = "0";
+                        }
                         int i = Integer.parseInt(str);
-
                         SharedPreferences.Editor e = bichikupref.edit();
                         e.putInt("nebukuro_num", i);
                         e.commit();
@@ -969,8 +997,10 @@ public class bichiku extends Activity {
                         SharedPreferences bichikupref = getSharedPreferences("Preferences", MODE_PRIVATE);
                         EditText et = (EditText) viw.findViewById(R.id.bintext);
                         String str = et.getText().toString();
+                        if (str.length() <= 0) { // 値が空白値の場合0を入れる処理
+                            str = "0";
+                        }
                         int i = Integer.parseInt(str);
-
                         SharedPreferences.Editor e = bichikupref.edit();
                         e.putInt("bin_num", i);
                         e.commit();
@@ -1031,8 +1061,10 @@ public class bichiku extends Activity {
                         SharedPreferences bichikupref = getSharedPreferences("Preferences", MODE_PRIVATE);
                         EditText et = (EditText) viw.findViewById(R.id.omututext);
                         String str = et.getText().toString();
+                        if (str.length() <= 0) { // 値が空白値の場合0を入れる処理
+                            str = "0";
+                        }
                         int i = Integer.parseInt(str);
-
                         SharedPreferences.Editor e = bichikupref.edit();
                         e.putInt("omutu_num", i);
                         e.commit();
@@ -1093,8 +1125,10 @@ public class bichiku extends Activity {
                         SharedPreferences bichikupref = getSharedPreferences("Preferences", MODE_PRIVATE);
                         EditText et = (EditText) viw.findViewById(R.id.gastext);
                         String str = et.getText().toString();
+                        if (str.length() <= 0) { // 値が空白値の場合0を入れる処理
+                            str = "0";
+                        }
                         int i = Integer.parseInt(str);
-
                         SharedPreferences.Editor e = bichikupref.edit();
                         e.putInt("gas_num", i);
                         e.commit();
@@ -1150,35 +1184,37 @@ public class bichiku extends Activity {
 
                 // 決定ボタンを押す
                 alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                SharedPreferences bichikupref = getSharedPreferences("Preferences",MODE_PRIVATE);
-                                EditText et = (EditText)viw.findViewById(R.id.mattitext);
-                                String str = et.getText().toString();
-                                int i = Integer.parseInt(str);
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        SharedPreferences bichikupref = getSharedPreferences("Preferences",MODE_PRIVATE);
+                        EditText et = (EditText)viw.findViewById(R.id.mattitext);
+                        String str = et.getText().toString();
+                        if (str.length() <= 0) { // 値が空白値の場合0を入れる処理
+                            str = "0";
+                        }
+                        int i = Integer.parseInt(str);
+                        SharedPreferences.Editor e = bichikupref.edit();
+                        e.putInt("matti_num",i);
+                        e.commit();
 
-                                SharedPreferences.Editor e = bichikupref.edit();
-                                e.putInt("matti_num",i);
-                                e.commit();
+                        //最終入力日の日付記録
+                        SharedPreferences lastyearprefb = getSharedPreferences("lastyearprefb", MODE_PRIVATE);
+                        SharedPreferences lastmonthprefb = getSharedPreferences("lastmonthprefb", MODE_PRIVATE);
+                        SharedPreferences lastdayprefb = getSharedPreferences("lastdayprefb", MODE_PRIVATE);
 
-                                //最終入力日の日付記録
-                                SharedPreferences lastyearprefb = getSharedPreferences("lastyearprefb", MODE_PRIVATE);
-                                SharedPreferences lastmonthprefb = getSharedPreferences("lastmonthprefb", MODE_PRIVATE);
-                                SharedPreferences lastdayprefb = getSharedPreferences("lastdayprefb", MODE_PRIVATE);
+                        SharedPreferences.Editor lastyear_eb = lastyearprefb.edit();
+                        SharedPreferences.Editor lastmonth_eb = lastmonthprefb.edit();
+                        SharedPreferences.Editor lastday_eb = lastdayprefb.edit();
 
-                                SharedPreferences.Editor lastyear_eb = lastyearprefb.edit();
-                                SharedPreferences.Editor lastmonth_eb = lastmonthprefb.edit();
-                                SharedPreferences.Editor lastday_eb = lastdayprefb.edit();
+                        lastyear_eb.putInt("lastyear_keyb", mYear);
+                        lastmonth_eb.putInt("lastmonth_keyb", mMonth);
+                        lastday_eb.putInt("lastday_keyb",mDay);
 
-                                lastyear_eb.putInt("lastyear_keyb", mYear);
-                                lastmonth_eb.putInt("lastmonth_keyb", mMonth);
-                                lastday_eb.putInt("lastday_keyb",mDay);
-
-                                lastyear_eb.commit();
-                                lastmonth_eb.commit();
-                                lastday_eb.commit();
-                            }
-                        });
+                        lastyear_eb.commit();
+                        lastmonth_eb.commit();
+                        lastday_eb.commit();
+                    }
+                });
                 alert.setView(viw);
                 alert.show();
             }
@@ -1218,8 +1254,10 @@ public class bichiku extends Activity {
                         SharedPreferences bichikupref = getSharedPreferences("Preferences", MODE_PRIVATE);
                         EditText et = (EditText) viw.findViewById(R.id.gasbombtext);
                         String str = et.getText().toString();
+                        if (str.length() <= 0) { // 値が空白値の場合0を入れる処理
+                            str = "0";
+                        }
                         int i = Integer.parseInt(str);
-
                         SharedPreferences.Editor e = bichikupref.edit();
                         e.putInt("gasbomb_num", i);
                         e.commit();
@@ -1334,8 +1372,10 @@ public class bichiku extends Activity {
                         SharedPreferences bichikupref = getSharedPreferences("Preferences", MODE_PRIVATE);
                         EditText et = (EditText) viw.findViewById(R.id.dentitext);
                         String str = et.getText().toString();
+                        if (str.length() <= 0) { // 値が空白値の場合0を入れる処理
+                            str = "0";
+                        }
                         int i = Integer.parseInt(str);
-
                         SharedPreferences.Editor e = bichikupref.edit();
                         e.putInt("denti_num", i);
                         e.commit();
@@ -1450,8 +1490,10 @@ public class bichiku extends Activity {
                         SharedPreferences pref = getSharedPreferences("Preferences",MODE_PRIVATE);
                         EditText et = (EditText)viw.findViewById(R.id.almitext);
                         String str = et.getText().toString();
+                        if (str.length() <= 0) { // 値が空白値の場合0を入れる処理
+                            str = "0";
+                        }
                         int i = Integer.parseInt(str);
-
                         SharedPreferences.Editor e = pref.edit();
                         e.putInt("almi_num",i);
                         e.commit();
@@ -1519,8 +1561,10 @@ public class bichiku extends Activity {
                         SharedPreferences bichikupref = getSharedPreferences("Preferences",MODE_PRIVATE);
                         EditText et = (EditText)viw.findViewById(R.id.guntetext);
                         String str = et.getText().toString();
+                        if (str.length() <= 0) { // 値が空白値の場合0を入れる処理
+                            str = "0";
+                        }
                         int i = Integer.parseInt(str);
-
                         SharedPreferences.Editor e = bichikupref.edit();
                         e.putInt("gunte_num",i);
                         e.commit();
@@ -1583,8 +1627,10 @@ public class bichiku extends Activity {
                         SharedPreferences bichikupref = getSharedPreferences("Preferences",MODE_PRIVATE);
                         EditText et = (EditText)viw.findViewById(R.id.huetext);
                         String str = et.getText().toString();
+                        if (str.length() <= 0) { // 値が空白値の場合0を入れる処理
+                            str = "0";
+                        }
                         int i = Integer.parseInt(str);
-
                         SharedPreferences.Editor e = bichikupref.edit();
                         e.putInt("hue_num",i);
                         e.commit();
@@ -1647,8 +1693,10 @@ public class bichiku extends Activity {
                         SharedPreferences bichikupref = getSharedPreferences("Preferences",MODE_PRIVATE);
                         EditText et = (EditText)viw.findViewById(R.id.otonatext);
                         String str = et.getText().toString();
+                        if (str.length() <= 0) { // 値が空白値の場合0を入れる処理
+                            str = "0";
+                        }
                         int i = Integer.parseInt(str);
-
                         SharedPreferences.Editor e = bichikupref.edit();
                         e.putInt("otona_num",i);
                         e.commit();
@@ -1711,8 +1759,10 @@ public class bichiku extends Activity {
                         SharedPreferences bichikupref = getSharedPreferences("Preferences",MODE_PRIVATE);
                         EditText et = (EditText)viw.findViewById(R.id.thissyutext);
                         String str = et.getText().toString();
+                        if (str.length() <= 0) { // 値が空白値の場合0を入れる処理
+                            str = "0";
+                        }
                         int i = Integer.parseInt(str);
-
                         SharedPreferences.Editor e = bichikupref.edit();
                         e.putInt("thissyu_num",i);
                         e.commit();

@@ -76,8 +76,10 @@ public class hijo extends ActionBarActivity {
                         SharedPreferences pref = getSharedPreferences("Preferences", MODE_PRIVATE);
                         EditText et = (EditText) viw.findViewById(R.id.retorutogohantext);
                         String str = et.getText().toString();
+                        if (str.length() <= 0) { // 値が空白値の場合0を入れる処理
+                            str = "0";
+                        }
                         int i = Integer.parseInt(str);
-
                         SharedPreferences.Editor e = pref.edit();
                         e.putInt("retorutogohan_num", i);
                         e.commit();
@@ -197,8 +199,10 @@ public class hijo extends ActionBarActivity {
                         SharedPreferences pref = getSharedPreferences("Preferences", MODE_PRIVATE);
                         EditText et = (EditText) viw.findViewById(R.id.kandumetext);
                         String str = et.getText().toString();
+                        if (str.length() <= 0) { // 値が空白値の場合0を入れる処理
+                            str = "0";
+                        }
                         int i = Integer.parseInt(str);
-
                         SharedPreferences.Editor e = pref.edit();
                         e.putInt("kandume_num", i);
                         e.commit();
@@ -317,8 +321,10 @@ public class hijo extends ActionBarActivity {
                                 SharedPreferences pref = getSharedPreferences("Preferences", MODE_PRIVATE);
                                 EditText et = (EditText) viw.findViewById(R.id.kanmentext);
                                 String str = et.getText().toString();
+                                if (str.length() <= 0) { // 値が空白値の場合0を入れる処理
+                                    str = "0";
+                                }
                                 int i = Integer.parseInt(str);
-
                                 SharedPreferences.Editor e = pref.edit();
                                 e.putInt("kanmen_num", i);
                                 e.commit();
@@ -437,8 +443,10 @@ public class hijo extends ActionBarActivity {
                         SharedPreferences pref = getSharedPreferences("Preferences", MODE_PRIVATE);
                         EditText et = (EditText) viw.findViewById(R.id.kanpantext);
                         String str = et.getText().toString();
+                        if (str.length() <= 0) { // 値が空白値の場合0を入れる処理
+                            str = "0";
+                        }
                         int i = Integer.parseInt(str);
-
                         SharedPreferences.Editor e = pref.edit();
                         e.putInt("kanpan_num", i);
                         e.commit();
@@ -557,8 +565,10 @@ public class hijo extends ActionBarActivity {
                         SharedPreferences pref = getSharedPreferences("Preferences", MODE_PRIVATE);
                         EditText et = (EditText) viw.findViewById(R.id.kandume_syusaitext);
                         String str = et.getText().toString();
+                        if (str.length() <= 0) { // 値が空白値の場合0を入れる処理
+                            str = "0";
+                        }
                         int i = Integer.parseInt(str);
-
                         SharedPreferences.Editor e = pref.edit();
                         e.putInt("kandume2_num", i);
                         e.commit();
@@ -677,8 +687,10 @@ public class hijo extends ActionBarActivity {
                         SharedPreferences pref = getSharedPreferences("Preferences", MODE_PRIVATE);
                         EditText et = (EditText) viw.findViewById(R.id.retorutotext);
                         String str = et.getText().toString();
+                        if (str.length() <= 0) { // 値が空白値の場合0を入れる処理
+                            str = "0";
+                        }
                         int i = Integer.parseInt(str);
-
                         SharedPreferences.Editor e = pref.edit();
                         e.putInt("retoruto_num", i);
                         e.commit();
@@ -797,8 +809,10 @@ public class hijo extends ActionBarActivity {
                         SharedPreferences pref = getSharedPreferences("Preferences", MODE_PRIVATE);
                         EditText et = (EditText) viw.findViewById(R.id.freazetext);
                         String str = et.getText().toString();
+                        if (str.length() <= 0) { // 値が空白値の場合0を入れる処理
+                            str = "0";
+                        }
                         int i = Integer.parseInt(str);
-
                         SharedPreferences.Editor e = pref.edit();
                         e.putInt("freaze_num", i);
                         e.commit();
@@ -922,8 +936,10 @@ public class hijo extends ActionBarActivity {
                         SharedPreferences pref = getSharedPreferences("Preferences", MODE_PRIVATE);
                         EditText et = (EditText) viw.findViewById(R.id.mizutext);
                         String str = et.getText().toString();
+                        if (str.length() <= 0) { // 値が空白値の場合0を入れる処理
+                            str = "0";
+                        }
                         int i = Integer.parseInt(str);
-
                         SharedPreferences.Editor e = pref.edit();
                         e.putInt("mizu_num", i);
                         e.commit();
@@ -1036,8 +1052,10 @@ public class hijo extends ActionBarActivity {
                         SharedPreferences pref = getSharedPreferences("Preferences", MODE_PRIVATE);
                         EditText et = (EditText) viw.findViewById(R.id.rinyutext);
                         String str = et.getText().toString();
+                        if (str.length() <= 0) { // 値が空白値の場合0を入れる処理
+                            str = "0";
+                        }
                         int i = Integer.parseInt(str);
-
                         SharedPreferences.Editor e = pref.edit();
                         e.putInt("rinyu_num", i);
                         e.commit();
@@ -1155,8 +1173,10 @@ public class hijo extends ActionBarActivity {
                         SharedPreferences pref = getSharedPreferences("Preferences", MODE_PRIVATE);
                         EditText et = (EditText) viw.findViewById(R.id.karoritext);
                         String str = et.getText().toString();
+                        if (str.length() <= 0) { // 値が空白値の場合0を入れる処理
+                            str = "0";
+                        }
                         int i = Integer.parseInt(str);
-
                         SharedPreferences.Editor e = pref.edit();
                         e.putInt("karori_num", i);
                         e.commit();
@@ -1274,8 +1294,10 @@ public class hijo extends ActionBarActivity {
                         SharedPreferences pref = getSharedPreferences("Preferences", MODE_PRIVATE);
                         EditText et = (EditText) viw.findViewById(R.id.okasitext);
                         String str = et.getText().toString();
+                        if (str.length() <= 0) { // 値が空白値の場合0を入れる処理
+                            str = "0";
+                        }
                         int i = Integer.parseInt(str);
-
                         SharedPreferences.Editor e = pref.edit();
                         e.putInt("okasi_num", i);
                         e.commit();
@@ -1388,8 +1410,10 @@ public class hijo extends ActionBarActivity {
                         SharedPreferences pref = getSharedPreferences("Preferences", MODE_PRIVATE);
                         EditText et = (EditText) viw.findViewById(R.id.konamilktext);
                         String str = et.getText().toString();
+                        if (str.length() <= 0) { // 値が空白値の場合0を入れる処理
+                            str = "0";
+                        }
                         int i = Integer.parseInt(str);
-
                         SharedPreferences.Editor e = pref.edit();
                         e.putInt("konamilk_num", i);
                         e.commit();
@@ -1470,7 +1494,7 @@ public class hijo extends ActionBarActivity {
         });
 
         // 賞味期限切れ赤淵設定
-        //要チェック欄、賞味期限設定（レトルトご飯)
+        // 要チェック欄、賞味期限設定（レトルトご飯)
         SharedPreferences limit_pref = getSharedPreferences("limit_pref", MODE_PRIVATE); // 期日のプリファレンス
         SharedPreferences year_pref1 = getSharedPreferences("year_pref1", MODE_PRIVATE); // 賞味期限の年のプリファレンス
         SharedPreferences month_pref1 = getSharedPreferences("month_pref1", MODE_PRIVATE); // 賞味期限の月のプリファレンス
@@ -1493,6 +1517,237 @@ public class hijo extends ActionBarActivity {
         if ( sa1 < 0.0 ) {
             ImageButton retorutog = (ImageButton) findViewById(R.id.ImageButton);
             retorutog.setBackgroundColor(Color.RED);
+        }
+
+        // 賞味期限切れ赤淵設定
+        // 要チェック欄、賞味期限設定 （缶詰（ご飯））
+        SharedPreferences year_pref2 = getSharedPreferences("year_pref2", MODE_PRIVATE); // 賞味期限の年のプリファレンス
+        SharedPreferences month_pref2 = getSharedPreferences("month_pref2", MODE_PRIVATE); // 賞味期限の月のプリファレンス
+        SharedPreferences day_pref2 = getSharedPreferences("day_pref2", MODE_PRIVATE); // 賞味期限の日のプリファレンス
+        String lyearstr2 = String.valueOf(year_pref2.getInt("year_key2", 0)); // 賞味期限（年）
+        String lmonthstr2 = String.valueOf(month_pref2.getInt("month_key2", 0)); // 賞味期限（月）
+        String ldaystr2 = String.valueOf(day_pref2.getInt("day_key2", 0)); // 賞味期限（日）
+        double sa2 = 0.0;
+
+        try{
+            sa2  = differenceDays(toyearstr + "/" + tomonthstr + "/" + todaystr, lyearstr2 + "/" + lmonthstr2 + "/" + ldaystr2);
+        } catch (ParseException e) {
+            System.out.println(e);
+        }
+
+        if ( sa2 < 0.0 ) {
+            ImageButton kandume = (ImageButton) findViewById(R.id.kandumebutton);
+            kandume.setBackgroundColor(Color.RED);
+        }
+
+        // 賞味期限切れ赤淵設定
+        // 要チェック欄、賞味期限設定 （乾麺）
+        SharedPreferences year_pref3 = getSharedPreferences("year_pref3", MODE_PRIVATE); // 賞味期限の年のプリファレンス
+        SharedPreferences month_pref3 = getSharedPreferences("month_pref3", MODE_PRIVATE); // 賞味期限の月のプリファレンス
+        SharedPreferences day_pref3 = getSharedPreferences("day_pref3", MODE_PRIVATE); // 賞味期限の日のプリファレンス
+        String lyearstr3 = String.valueOf(year_pref3.getInt("year_key3", 0)); // 賞味期限（年）
+        String lmonthstr3 = String.valueOf(month_pref3.getInt("month_key3", 0)); // 賞味期限（月）
+        String ldaystr3 = String.valueOf(day_pref3.getInt("day_key3", 0)); // 賞味期限（日）
+        double sa3 = 0.0;
+
+        try{
+            sa3  = differenceDays(toyearstr + "/" + tomonthstr + "/" + todaystr, lyearstr3 + "/" + lmonthstr3 + "/" + ldaystr3);
+        } catch (ParseException e) {
+            System.out.println(e);
+        }
+
+        if ( sa3 < 0.0 ) {
+            ImageButton kanmen = (ImageButton) findViewById(R.id.kanmenbutton);
+            kanmen.setBackgroundColor(Color.RED);
+        }
+
+        // 賞味期限切れ赤淵設定
+        // 要チェック欄、賞味期限設定 乾パン
+        SharedPreferences year_pref4 = getSharedPreferences("year_pref4", MODE_PRIVATE); // 賞味期限の年のプリファレンス
+        SharedPreferences month_pref4 = getSharedPreferences("month_pref4", MODE_PRIVATE); // 賞味期限の月のプリファレンス
+        SharedPreferences day_pref4 = getSharedPreferences("day_pref4", MODE_PRIVATE); // 賞味期限の日のプリファレンス
+        String lyearstr4 = String.valueOf(year_pref4.getInt("year_key4", 0)); // 賞味期限（年）
+        String lmonthstr4 = String.valueOf(month_pref4.getInt("month_key4", 0)); // 賞味期限（月）
+        String ldaystr4 = String.valueOf(day_pref4.getInt("day_key4", 0)); // 賞味期限（日）
+        double sa4 = 0.0;
+
+        try{
+            sa4  = differenceDays(toyearstr + "/" + tomonthstr + "/" + todaystr, lyearstr4 + "/" + lmonthstr4 + "/" + ldaystr4);
+        } catch (ParseException e) {
+            System.out.println(e);
+        }
+
+        if ( sa4 < 0.0 ) {
+            ImageButton kanpan = (ImageButton) findViewById(R.id.kanpanbutton);
+            kanpan.setBackgroundColor(Color.RED);
+        }
+
+        // 賞味期限切れ赤淵設定
+        // 要チェック欄、賞味期限設定 缶詰（肉・魚）
+        SharedPreferences year_pref5 = getSharedPreferences("year_pref5", MODE_PRIVATE); // 賞味期限の年のプリファレンス
+        SharedPreferences month_pref5 = getSharedPreferences("month_pref5", MODE_PRIVATE); // 賞味期限の月のプリファレンス
+        SharedPreferences day_pref5 = getSharedPreferences("day_pref5", MODE_PRIVATE); // 賞味期限の日のプリファレンス
+        String lyearstr5 = String.valueOf(year_pref5.getInt("year_key5", 0)); // 賞味期限（年）
+        String lmonthstr5 = String.valueOf(month_pref5.getInt("month_key5", 0)); // 賞味期限（月）
+        String ldaystr5 = String.valueOf(day_pref5.getInt("day_key5", 0)); // 賞味期限（日）
+        double sa5 = 0.0;
+
+        try{
+            sa5  = differenceDays(toyearstr + "/" + tomonthstr + "/" + todaystr, lyearstr5 + "/" + lmonthstr5 + "/" + ldaystr5);
+        } catch (ParseException e) {
+            System.out.println(e);
+        }
+
+        if ( sa5 < 0.0 ) {
+            ImageButton kandume2 = (ImageButton) findViewById(R.id.kandumebutton2);
+            kandume2.setBackgroundColor(Color.RED);
+        }
+
+        // 賞味期限切れ赤淵設定
+        // 要チェック欄、賞味期限設定 レトルト
+        SharedPreferences year_pref6 = getSharedPreferences("year_pref6", MODE_PRIVATE); // 賞味期限の年のプリファレンス
+        SharedPreferences month_pref6 = getSharedPreferences("month_pref6", MODE_PRIVATE); // 賞味期限の月のプリファレンス
+        SharedPreferences day_pref6 = getSharedPreferences("day_pref6", MODE_PRIVATE); // 賞味期限の日のプリファレンス
+        String lyearstr6 = String.valueOf(year_pref6.getInt("year_key6", 0)); // 賞味期限（年）
+        String lmonthstr6 = String.valueOf(month_pref6.getInt("month_key6", 0)); // 賞味期限（月）
+        String ldaystr6 = String.valueOf(day_pref6.getInt("day_key6", 0)); // 賞味期限（日）
+        double sa6 = 0.0;
+
+        try{
+            sa6  = differenceDays(toyearstr + "/" + tomonthstr + "/" + todaystr, lyearstr6 + "/" + lmonthstr6 + "/" + ldaystr6);
+        } catch (ParseException e) {
+            System.out.println(e);
+        }
+
+        if ( sa6 < 0.0 ) {
+            ImageButton retoruto = (ImageButton) findViewById(R.id.retorutobutton);
+            retoruto.setBackgroundColor(Color.RED);
+        }
+
+        // 賞味期限切れ赤淵設定
+        // 要チェック欄、賞味期限設定 フリーズドライ
+        SharedPreferences year_pref7 = getSharedPreferences("year_pref7", MODE_PRIVATE); // 賞味期限の年のプリファレンス
+        SharedPreferences month_pref7 = getSharedPreferences("month_pref7", MODE_PRIVATE); // 賞味期限の月のプリファレンス
+        SharedPreferences day_pref7 = getSharedPreferences("day_pref7", MODE_PRIVATE); // 賞味期限の日のプリファレンス
+        String lyearstr7 = String.valueOf(year_pref7.getInt("year_key7", 0)); // 賞味期限（年）
+        String lmonthstr7 = String.valueOf(month_pref7.getInt("month_key7", 0)); // 賞味期限（月）
+        String ldaystr7 = String.valueOf(day_pref7.getInt("day_key7", 0)); // 賞味期限（日）
+        double sa7 = 0.0;
+
+        try{
+            sa7  = differenceDays(toyearstr + "/" + tomonthstr + "/" + todaystr, lyearstr7 + "/" + lmonthstr7 + "/" + ldaystr7);
+        } catch (ParseException e) {
+            System.out.println(e);
+        }
+
+        if ( sa7 < 0.0 ) {
+            ImageButton freaze = (ImageButton) findViewById(R.id.freazedry_button);
+            freaze.setBackgroundColor(Color.RED);
+        }
+
+        // 賞味期限切れ赤淵設定
+        // 要チェック欄、賞味期限設定 水
+        SharedPreferences year_pref8 = getSharedPreferences("year_pref8", MODE_PRIVATE); // 賞味期限の年のプリファレンス
+        SharedPreferences month_pref8 = getSharedPreferences("month_pref8", MODE_PRIVATE); // 賞味期限の月のプリファレンス
+        SharedPreferences day_pref8 = getSharedPreferences("day_pref8", MODE_PRIVATE); // 賞味期限の日のプリファレンス
+        String lyearstr8 = String.valueOf(year_pref8.getInt("year_key8", 0)); // 賞味期限（年）
+        String lmonthstr8 = String.valueOf(month_pref8.getInt("month_key8", 0)); // 賞味期限（月）
+        String ldaystr8 = String.valueOf(day_pref8.getInt("day_key8", 0)); // 賞味期限（日）
+        double sa8 = 0.0;
+
+        try{
+            sa8  = differenceDays(toyearstr + "/" + tomonthstr + "/" + todaystr, lyearstr8 + "/" + lmonthstr8 + "/" + ldaystr8);
+        } catch (ParseException e) {
+            System.out.println(e);
+        }
+
+        if ( sa8 < 0.0 ) {
+            ImageButton mizu = (ImageButton) findViewById(R.id.mizu_button);
+            mizu.setBackgroundColor(Color.RED);
+        }
+
+        // 賞味期限切れ赤淵設定
+        // 要チェック欄、賞味期限設定 離乳食
+        SharedPreferences year_pref9 = getSharedPreferences("year_pref9", MODE_PRIVATE); // 賞味期限の年のプリファレンス
+        SharedPreferences month_pref9 = getSharedPreferences("month_pref9", MODE_PRIVATE); // 賞味期限の月のプリファレンス
+        SharedPreferences day_pref9 = getSharedPreferences("day_pref9", MODE_PRIVATE); // 賞味期限の日のプリファレンス
+        String lyearstr9 = String.valueOf(year_pref9.getInt("year_key9", 0)); // 賞味期限（年）
+        String lmonthstr9 = String.valueOf(month_pref9.getInt("month_key9", 0)); // 賞味期限（月）
+        String ldaystr9 = String.valueOf(day_pref9.getInt("day_key9", 0)); // 賞味期限（日）
+        double sa9 = 0.0;
+
+        try{
+            sa9  = differenceDays(toyearstr + "/" + tomonthstr + "/" + todaystr, lyearstr9 + "/" + lmonthstr9 + "/" + ldaystr9);
+        } catch (ParseException e) {
+            System.out.println(e);
+        }
+
+        if ( sa9 < 0.0 ) {
+            ImageButton rinyu = (ImageButton) findViewById(R.id.rinyubutton);
+            rinyu.setBackgroundColor(Color.RED);
+        }
+
+        // 賞味期限切れ赤淵設定
+        // 要チェック欄、賞味期限設定 カロリーメイト
+        SharedPreferences year_pref10 = getSharedPreferences("year_pref10", MODE_PRIVATE); // 賞味期限の年のプリファレンス
+        SharedPreferences month_pref10 = getSharedPreferences("month_pref10", MODE_PRIVATE); // 賞味期限の月のプリファレンス
+        SharedPreferences day_pref10 = getSharedPreferences("day_pref10", MODE_PRIVATE); // 賞味期限の日のプリファレンス
+        String lyearstr10 = String.valueOf(year_pref10.getInt("year_key10", 0)); // 賞味期限（年）
+        String lmonthstr10 = String.valueOf(month_pref10.getInt("month_key10", 0)); // 賞味期限（月）
+        String ldaystr10 = String.valueOf(day_pref10.getInt("day_key10", 0)); // 賞味期限（日）
+        double sa10 = 0.0;
+
+        try{
+            sa10  = differenceDays(toyearstr + "/" + tomonthstr + "/" + todaystr, lyearstr10 + "/" + lmonthstr10 + "/" + ldaystr10);
+        } catch (ParseException e) {
+            System.out.println(e);
+        }
+
+        if ( sa10 < 0.0 ) {
+            ImageButton karori = (ImageButton) findViewById(R.id.karoributton);
+            karori.setBackgroundColor(Color.RED);
+        }
+
+        // 賞味期限切れ赤淵設定
+        // 要チェック欄、賞味期限設定 お菓子
+        SharedPreferences year_pref11 = getSharedPreferences("year_pref11", MODE_PRIVATE); // 賞味期限の年のプリファレンス
+        SharedPreferences month_pref11 = getSharedPreferences("month_pref11", MODE_PRIVATE); // 賞味期限の月のプリファレンス
+        SharedPreferences day_pref11 = getSharedPreferences("day_pref11", MODE_PRIVATE); // 賞味期限の日のプリファレンス
+        String lyearstr11 = String.valueOf(year_pref11.getInt("year_key11", 0)); // 賞味期限（年）
+        String lmonthstr11 = String.valueOf(month_pref11.getInt("month_key11", 0)); // 賞味期限（月）
+        String ldaystr11 = String.valueOf(day_pref11.getInt("day_key11", 0)); // 賞味期限（日）
+        double sa11 = 0.0;
+
+        try{
+            sa11  = differenceDays(toyearstr + "/" + tomonthstr + "/" + todaystr, lyearstr11 + "/" + lmonthstr11 + "/" + ldaystr11);
+        } catch (ParseException e) {
+            System.out.println(e);
+        }
+
+        if ( sa11 < 0.0 ) {
+            ImageButton okasi = (ImageButton) findViewById(R.id.okasibutton);
+            okasi.setBackgroundColor(Color.RED);
+        }
+
+        // 賞味期限切れ赤淵設定
+        // 要チェック欄、賞味期限設定 粉ミルク
+        SharedPreferences year_pref12 = getSharedPreferences("year_pref12", MODE_PRIVATE); // 賞味期限の年のプリファレンス
+        SharedPreferences month_pref12 = getSharedPreferences("month_pref12", MODE_PRIVATE); // 賞味期限の月のプリファレンス
+        SharedPreferences day_pref12 = getSharedPreferences("day_pref12", MODE_PRIVATE); // 賞味期限の日のプリファレンス
+        String lyearstr12 = String.valueOf(year_pref12.getInt("year_key12", 0)); // 賞味期限（年）
+        String lmonthstr12 = String.valueOf(month_pref12.getInt("month_key12", 0)); // 賞味期限（月）
+        String ldaystr12 = String.valueOf(day_pref12.getInt("day_key12", 0)); // 賞味期限（日）
+        double sa12 = 0.0;
+
+        try{
+            sa12  = differenceDays(toyearstr + "/" + tomonthstr + "/" + todaystr, lyearstr12 + "/" + lmonthstr12 + "/" + ldaystr12);
+        } catch (ParseException e) {
+            System.out.println(e);
+        }
+
+        if ( sa12 < 0.0 ) {
+            ImageButton konamilk = (ImageButton) findViewById(R.id.konamilkbutton);
+            konamilk.setBackgroundColor(Color.RED);
         }
 
 

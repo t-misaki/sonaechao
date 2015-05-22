@@ -24,6 +24,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 public class MainActivity extends Activity {
 
@@ -66,6 +68,7 @@ public class MainActivity extends Activity {
         double baby_food_need[][] =     {{  3.0,  9.0, 21.0},{  2.0,  6.0, 14.0}}; // 幼児の必要数 {{非常食1.3.7日分},{水1.3.7日分}}
 
         double food_meter = 0.0;
+        double babyfood_meter = 0.0;
         double mizu_meter = 0.0;
 
         if ( (adult_n + children_n + baby_n) == 0 ) { // 人数が0人だった場合の処理
@@ -81,13 +84,25 @@ public class MainActivity extends Activity {
                 double sumfood = (kanpan * 3.0) + (karori * 3.0) + retorutogohan + kandume + kanmen + kan2 + retoruto + freaze + okasi;
                 // 入力されている量　=　離乳食ｘ１　＋　粉ミルクｘ3
                 double sumfood_baby = rinyu + (konamilk * 3);
-                // 入力されている量　＞＝　A　→　50％
-                if ((sumfood + sumfood_baby) >= (adult_fnumber + children_fnumber + baby_fnumber)) {
-                    food_meter = 50.0;
-                } else { // 入力されている量　＜　A　→　入力されている量　÷　必要数　ｘ　100　÷　2
-                    food_meter = ((sumfood + sumfood_baby) / (adult_fnumber + children_fnumber + baby_fnumber)) * 100.0 / 2.0;
+                if (baby_n >= 1) { // 幼児が1人以上の場合(食べ物25％、幼児25％)
+                    // 入力されている量　＞＝　A　→　25％
+                    if (sumfood >= (adult_fnumber + children_fnumber)) {
+                        food_meter = 25.0;
+                    } else { // 入力されている量　＜　A　→　入力されている量　÷　必要数　ｘ　100　÷　4
+                        food_meter = sumfood / (adult_fnumber + children_fnumber) * 100.0 / 4.0;
+                    }
+                    if (sumfood_baby >= baby_fnumber) {
+                        babyfood_meter = 25.0;
+                    } else {
+                        babyfood_meter = sumfood_baby / (baby_fnumber) * 100.0 / 4.0;
+                    }
+                } else { // 幼児が0人の場合(食べ物50％、幼児0％)
+                    if (sumfood >= (adult_fnumber + children_fnumber)) {
+                        food_meter = 50.0;
+                    } else {
+                        food_meter = sumfood / (adult_fnumber + children_fnumber) * 100.0 / 2.0;
+                    }
                 }
-
                 // 水
                 double adult_mnumber = adult_food_need[1][0] * adult_n; // A　=　大人必要数　ｘ　大人人数
                 double children_mnumber = children_food_need[1][0] * children_n; // C　=　小人必要数　ｘ　小人人数
@@ -116,13 +131,25 @@ public class MainActivity extends Activity {
                 double sumfood = (kanpan * 3.0) + (karori * 3.0) + retorutogohan + kandume + kanmen + kan2 + retoruto + freaze + okasi;
                 // 入力されている量　=　離乳食ｘ１　＋　粉ミルクｘ3
                 double sumfood_baby = rinyu + (konamilk * 3);
-                // 入力されている量　＞＝　A　→　50％
-                if ((sumfood + sumfood_baby) >= (adult_fnumber + children_fnumber + baby_fnumber)) {
-                    food_meter = 50.0;
-                } else { // 入力されている量　＜　A　→　入力されている量　÷　必要数　ｘ　100　÷　2
-                    food_meter = ((sumfood + sumfood_baby) / (adult_fnumber + children_fnumber + baby_fnumber)) * 100.0 / 2.0;
+                if (baby_n >= 1) { // 幼児が1人以上の場合(食べ物25％、幼児25％)
+                    // 入力されている量　＞＝　A　→　25％
+                    if (sumfood >= (adult_fnumber + children_fnumber)) {
+                        food_meter = 25.0;
+                    } else { // 入力されている量　＜　A　→　入力されている量　÷　必要数　ｘ　100　÷　4
+                        food_meter = sumfood / (adult_fnumber + children_fnumber) * 100.0 / 4.0;
+                    }
+                    if (sumfood_baby >= baby_fnumber) {
+                        babyfood_meter = 25.0;
+                    } else {
+                        babyfood_meter = sumfood_baby / (baby_fnumber) * 100.0 / 4.0;
+                    }
+                } else { // 幼児が0人の場合(食べ物50％、幼児0％)
+                    if (sumfood >= (adult_fnumber + children_fnumber)) {
+                        food_meter = 50.0;
+                    } else {
+                        food_meter = sumfood / (adult_fnumber + children_fnumber) * 100.0 / 2.0;
+                    }
                 }
-
                 // 水
                 double adult_mnumber = adult_food_need[1][1] * adult_n; // A　=　大人必要数　ｘ　大人人数
                 double children_mnumber = children_food_need[1][1] * children_n; // C　=　小人必要数　ｘ　小人人数
@@ -151,13 +178,25 @@ public class MainActivity extends Activity {
                 double sumfood = (kanpan * 3.0) + (karori * 3.0) + retorutogohan + kandume + kanmen + kan2 + retoruto + freaze + okasi;
                 // 入力されている量　=　離乳食ｘ１　＋　粉ミルクｘ3
                 double sumfood_baby = rinyu + (konamilk * 3);
-                // 入力されている量　＞＝　A　→　50％
-                if ((sumfood + sumfood_baby) >= (adult_fnumber + children_fnumber + baby_fnumber)) {
-                    food_meter = 50.0;
-                } else { // 入力されている量　＜　A　→　入力されている量　÷　必要数　ｘ　100　÷　2
-                    food_meter = ((sumfood + sumfood_baby) / (adult_fnumber + children_fnumber + baby_fnumber)) * 100.0 / 2.0;
+                if (baby_n >= 1) { // 幼児が1人以上の場合(食べ物25％、幼児25％)
+                    // 入力されている量　＞＝　A　→　25％
+                    if (sumfood >= (adult_fnumber + children_fnumber)) {
+                        food_meter = 25.0;
+                    } else { // 入力されている量　＜　A　→　入力されている量　÷　必要数　ｘ　100　÷　4
+                        food_meter = sumfood / (adult_fnumber + children_fnumber) * 100.0 / 4.0;
+                    }
+                    if (sumfood_baby >= baby_fnumber) {
+                        babyfood_meter = 25.0;
+                    } else {
+                        babyfood_meter = sumfood_baby / (baby_fnumber) * 100.0 / 4.0;
+                    }
+                } else { // 幼児が0人の場合(食べ物50％、幼児0％)
+                    if (sumfood >= (adult_fnumber + children_fnumber)) {
+                        food_meter = 50.0;
+                    } else {
+                        food_meter = sumfood / (adult_fnumber + children_fnumber) * 100.0 / 2.0;
+                    }
                 }
-
                 // 水
                 double adult_mnumber = adult_food_need[1][2] * adult_n; // A　=　大人必要数　ｘ　大人人数
                 double children_mnumber = children_food_need[1][2] * children_n; // C　=　小人必要数　ｘ　小人人数
@@ -173,34 +212,34 @@ public class MainActivity extends Activity {
             }
         }
 
-        if ( 0.0 <= (food_meter + mizu_meter) && (food_meter + mizu_meter) < 10.0 ) {
+        if ( 0.0 <= (food_meter + babyfood_meter + mizu_meter) && (food_meter + mizu_meter) < 10.0 ) {
             ImageView hijograph = (ImageView)findViewById(R.id.hijoview);
             hijograph.setImageResource(R.drawable.graph0);
-        } else if ( (food_meter + mizu_meter) < 20.0 ) {
+        } else if ( (food_meter + babyfood_meter + mizu_meter) < 20.0 ) {
             ImageView hijograph = (ImageView)findViewById(R.id.hijoview);
             hijograph.setImageResource(R.drawable.graph1);
-        } else if ( (food_meter + mizu_meter) < 30.0 ) {
+        } else if ( (food_meter + babyfood_meter + mizu_meter) < 30.0 ) {
             ImageView hijograph = (ImageView)findViewById(R.id.hijoview);
             hijograph.setImageResource(R.drawable.graph2);
-        } else if ( (food_meter + mizu_meter) < 40.0 ) {
+        } else if ( (food_meter + babyfood_meter + mizu_meter) < 40.0 ) {
             ImageView hijograph = (ImageView)findViewById(R.id.hijoview);
             hijograph.setImageResource(R.drawable.graph3);
-        } else if ( (food_meter + mizu_meter) < 50.0 ) {
+        } else if ( (food_meter + babyfood_meter + mizu_meter) < 50.0 ) {
             ImageView hijograph = (ImageView)findViewById(R.id.hijoview);
             hijograph.setImageResource(R.drawable.graph4);
-        } else if ( (food_meter + mizu_meter) < 60.0 ) {
+        } else if ( (food_meter + babyfood_meter + mizu_meter) < 60.0 ) {
             ImageView hijograph = (ImageView)findViewById(R.id.hijoview);
             hijograph.setImageResource(R.drawable.graph5);
-        } else if ( (food_meter + mizu_meter) < 70.0 ) {
+        } else if ( (food_meter + babyfood_meter + mizu_meter) < 70.0 ) {
             ImageView hijograph = (ImageView)findViewById(R.id.hijoview);
             hijograph.setImageResource(R.drawable.graph6);
-        } else if ( (food_meter + mizu_meter) < 80.0 ) {
+        } else if ( (food_meter + babyfood_meter + mizu_meter) < 80.0 ) {
             ImageView hijograph = (ImageView)findViewById(R.id.hijoview);
             hijograph.setImageResource(R.drawable.graph7);
-        } else if ( (food_meter + mizu_meter) < 90.0 ) {
+        } else if ( (food_meter + babyfood_meter + mizu_meter) < 90.0 ) {
             ImageView hijograph = (ImageView)findViewById(R.id.hijoview);
             hijograph.setImageResource(R.drawable.graph8);
-        } else if ( (food_meter + mizu_meter) < 100.0 ) {
+        } else if ( (food_meter + babyfood_meter + mizu_meter) < 100.0 ) {
             ImageView hijograph = (ImageView)findViewById(R.id.hijoview);
             hijograph.setImageResource(R.drawable.graph9);
         } else {
@@ -264,7 +303,8 @@ public class MainActivity extends Activity {
         double denti_need[] =   {2.0, 2.0, 4.0}; // 乾電池の必要数
 
         // 便利品(個人用)
-        double gunte_need[][] = {{1.0, 1.0, 1.0},{1.0, 1.0, 1.0},{0.0, 0.0, 0.0 }}; // 軍手の必要数 {{大人1.3.7日分},{小人1.3.7日分},{幼児1.3.7日分}}
+        double gunte_need[][] =    {{1.0, 1.0, 1.0},{1.0, 1.0, 1.0},{0.0, 0.0, 0.0}}; // 軍手の必要数 {{大人1.3.7日分},{小人1.3.7日分},{幼児1.3.7日分}}
+        double nebukuro_need[][] = {{1.0, 1.0, 1.0},{1.0, 1.0, 1.0},{0.0, 0.0, 0.0}}; // 寝袋の必要数 {{大人1.3.7日分},{小人1.3.7日分},{幼児1.3.7日分}}
 
         // 便利品(家族用)
         double hue_need[] =     {1.0, 1.0, 1.0}; // 笛の必要数 {1.3.7日分}
@@ -286,96 +326,1160 @@ public class MainActivity extends Activity {
             ImageView bichikugraph = (ImageView) findViewById(R.id.bichikuview);
             bichikugraph.setImageResource(R.drawable.rightgraph0);
         } else {
-            if ( setting_day == 1 ) { // 設定日数が1日の場合
-                // 必需品
-                if ( otona * adult_n >= otona_need[0] ) { // 大人下着が必要数以上ならば必要数以上にならないようにする
-                    otona = otona_need[0];
-                }
-                if ( kodomo * children_n >= kodomo_need[0] ) { // 小人下着が必要数以上ならば必要数以上にならないようにする
-                    kodomo = kodomo_need[0];
-                }
-                if ( raito >= raito_need[0] ) { // 懐中電灯が必要数以上ならば必要数以上にならないようにする
-                    raito = raito_need[0];
-                }
-                double koppu_sum = koppu;
-                double koppu_n = 0.0;
-                if ( koppu_sum >= adult_n * koppu_need[0][0] ) { // コップの数が大人必要数以上だったら大人必要数分を引く
-                    koppu_sum -= adult_n * koppu_need[0][0];
-                    koppu_n += adult_n * koppu_need[0][0];
-                    if ( koppu_sum >= children_n * koppu_need[0][1] ) { // 小人必要数分を引く
-                        koppu_sum += children_n * koppu_need[0][1];
-                        koppu_n += children_n * koppu_need[0][1];
-                        if ( koppu_sum >= baby_n * koppu_need[0][2] ) { // 幼児必要数分を引く
-                            koppu_sum -= baby_n * koppu_need[0][2];
-                            koppu_n += baby_n * koppu_need[0][2];
-                        }
+            if (setting_day == 1) { // 設定日数が1日の場合
+                if (baby_n == 0) { // 幼児が0人だった場合の計算
+                    // 必需品
+                    double otona_n = 0.0;
+                    if (otona >= otona_need[0] * adult_n) { // 大人下着が必要数以上ならば60％を超えないように設定する
+                        otona_n = (60.0 / 15.0);
+                    } else {
+                        otona_n = otona * (60.0 / 15.0) / adult_n;
                     }
-                }
-                double utuwa_sum = utuwa;
-                double utuwa_n = 0.0;
-                if ( utuwa_sum >= adult_n * utuwa_need[0][0] ) { // 器の数が大人必要数以上だったら大人必要分を引く
-                    utuwa_sum -= adult_n * utuwa_need[0][0];
-                    utuwa_n += adult_n * utuwa_need[0][0];
-                    if ( utuwa_sum >= children_n * utuwa_need[0][1] ) { // 小人必要数分を引く
-                        utuwa_sum -= children_n * utuwa_need[0][1];
-                        utuwa_n += children_n * utuwa_need[0][1];
-                        if ( utuwa_sum >= baby_n * utuwa_need[0][2] ) { // 幼児必要数分を引く
-                            utuwa_sum -= baby_n * utuwa_need[0][2];
-                            utuwa_n += baby_n * utuwa_need[0][2];
-                        }
-                    }
-                }
-                double taoru_sum = taoru;
-                double taoru_n = 0.0;
-                if ( taoru_sum >= adult_n * taoru_need[0][0] ) { // タオルの数が大人必要数以上だったら大人必要分を引く
-                    taoru_sum -= adult_n * taoru_need[0][0];
-                    taoru_n += adult_n * taoru_need[0][0];
-                    if (taoru_sum >= children_n * taoru_need[0][1]) { // 小人必要数分を引く
-                        taoru_sum -= children_n * taoru_need[0][1];
-                        taoru_n += children_n * taoru_need[0][1];
-                        if (taoru_sum >= baby_n * taoru_need[0][2]) { // 幼児必要数分を引く
-                            taoru_sum -= baby_n * taoru_need[0][2];
-                            taoru_n += baby_n * taoru_need[0][2];
-                        }
-                    }
-                }
-                if ( almi >= almi_need[0] ) { // アルミの数が必要数以上ならば必要数以上にならないようにする
-                    almi = almi_need[0];
-                }
-                if ( rappu >= rappu_need[0] ) { // ラップの数が必要数以上ならば必要数以上にならないようにする
-                    rappu = rappu_need[0];
-                }
-                if ( gasbomb >= gasbomb_need[0] ) { // ガスボンベの数が必要数以上ならば必要数以上にならないようにする
-                    gasbomb = gasbomb_need[0];
-                }
-                if ( gas >= gas_need[0] ) { // ガスコンロの数が必要数以上ならば必要数以上にならないようにする
-                    gas = gas_need[0];
-                }
-                if ( thissyu >= thissyu_need[0] ) { // ティッシュの数が必要数以上ならば必要数以上にならないようにする
-                    thissyu = thissyu_need[0];
-                }
-                if ( hukuro >= hukuro_need[0] ) { // 袋の数が必要数以上ならば必要数以上にならないようにする
-                    hukuro = hukuro_need[0];
-                }
-                if ( spoon >= spoon_need[0] ) { // スプーンの数が必要数以上ならば必要数以上にならないようにする
-                    spoon = spoon_need[0];
-                }
-                if ( hasi >= hasi_need[0] ) { // 箸の数が必要数以上ならば必要数以上にならないようにする
-                    hasi = hasi_need[0];
-                }
-                if ( denti >= denti_need[0] ) { // 乾電池の数が必要数以上ならば必要数以上にならないようにする
-                    denti = denti_need[0];
-                }
 
-                double hitsuzyu_sum = otona + kodomo + raito + koppu_n + utuwa_n + taoru_n + almi + rappu + gasbomb + gas + thissyu + hukuro + spoon + hasi + denti;
-                double hitsuyo_sum = otona_need[0] + kodomo_need[0] + raito_need[0] + koppu_need[0][0] + koppu_need[1][0] + koppu_need[2][0] +
-                        utuwa_need[0][0] + utuwa_need[1][0] + utuwa_need[2][0] + taoru_need[0][0] + taoru_need[1][0] + taoru_need[2][0] + almi_need[0] +
-                        rappu_need[0] + gasbomb_need[0] + gas_need[0] + thissyu_need[0] + hukuro_need[0] + spoon_need[0] + hasi_need[0] + denti_need[0];
-                hitsuzyu_meter = ( hitsuzyu_sum / hitsuyo_sum * 0.6);
+                    double kodomo_n = 0.0;
+                    if (kodomo >= kodomo_need[0] * children_n) { // 小人下着が必要数以上ならば60％を超えないように設定する
+                        kodomo_n = (60.0 / 15.0);
+                    } else {
+                        kodomo_n = kodomo * (60.0 / 15.0) / children_n;
+                    }
+
+                    double raito_n = 0.0;
+                    if (raito >= raito_need[0]) { // 懐中電灯が必要数以上ならば60％を超えないように設定する
+                        raito_n = (60.0 / 15.0);
+                    }
+
+                    double koppu_sum = koppu;
+                    double koppu_n = 0.0;
+                    if (koppu_sum >= (koppu_need[0][0] * adult_n) + (koppu_need[1][0] * children_n) + (koppu_need[2][0] * baby_n)) { // コップの合計が大人小人幼児の必要数以上だったら60％を超えないように設定する
+                        koppu_n = (60.0 / 15.0);
+                    } else if (koppu_sum >= koppu_need[0][0] * adult_n) { // コップの合計が大人必要数以上ならば大人必要数を引く
+                        koppu_sum -= koppu_need[0][0] * adult_n;
+                        koppu_n += koppu_need[0][0] * adult_n;
+                        if (koppu_sum >= koppu_need[1][0] * children_n) { // コップの合計が小人必要数以上ならば小人必要数を引く
+                            koppu_sum -= koppu_need[1][0] * children_n;
+                            koppu_n += koppu_need[1][0] * children_n;
+                            if (koppu_sum >= koppu_need[2][0] * baby_n) { // コップの合計が幼児必要数以上ならば幼児必要数を引く
+                                koppu_sum -= koppu_need[2][0] * baby_n;
+                                koppu_n += koppu_need[2][0] * baby_n;
+                            }
+                        }
+                        koppu_n = koppu_n * (60.0 / 15.0) / (adult_n + children_n + baby_n);
+                    }
+
+                    double utuwa_sum = utuwa;
+                    double utuwa_n = 0.0;
+                    if (utuwa_sum >= (utuwa_need[0][0] * adult_n) + (utuwa_need[1][0] * children_n) + (utuwa_need[2][0] * baby_n)) {
+                        utuwa_n = (60.0 / 15.0);
+                    } else if (utuwa_sum >= utuwa_need[0][0] * adult_n) { // 器の数が大人必要数以上だったら大人必要分を引く
+                        utuwa_sum -= utuwa_need[0][0] * adult_n;
+                        utuwa_n += utuwa_need[0][0] * adult_n;
+                        if (utuwa_sum >= utuwa_need[1][0] * children_n) { // 小人必要数分を引く
+                            utuwa_sum -= utuwa_need[1][0] * children_n;
+                            utuwa_n += utuwa_need[1][0] * children_n;
+                            if (utuwa_sum >= utuwa_need[2][0] * baby_n) { // 幼児必要数分を引く
+                                utuwa_sum -= utuwa_need[2][0] * baby_n;
+                                utuwa_n += utuwa_need[2][0] * baby_n;
+                            }
+                        }
+                        utuwa_n = utuwa_n * (60.0 / 15.0) / (adult_n + children_n + baby_n);
+                    }
+
+                    double taoru_sum = taoru;
+                    double taoru_n = 0.0;
+                    if (taoru_sum >= (taoru_need[0][0] * adult_n) + (taoru_need[1][0] * children_n) + (taoru_need[2][0] * baby_n)) {
+                        taoru_n = (60.0 / 15.0);
+                    } else if (taoru_sum >= taoru_need[0][0] * adult_n) { // タオルの数が大人必要数以上だったら大人必要分を引く
+                        taoru_sum -= taoru_need[0][0] * adult_n;
+                        taoru_n += taoru_need[0][0] * adult_n;
+                        if (taoru_sum >= taoru_need[1][0] * children_n) { // 小人必要数分を引く
+                            taoru_sum -= taoru_need[1][0] * children_n;
+                            taoru_n += taoru_need[1][0] * children_n;
+                            if (taoru_sum >= taoru_need[2][0] * baby_n) { // 幼児必要数分を引く
+                                taoru_sum -= taoru_need[2][0] * baby_n;
+                                taoru_n += taoru_need[2][0] * baby_n;
+                            }
+                        }
+                        taoru_n = taoru_n * (60.0 / 15.0) / (adult_n + children_n + baby_n);
+                    }
+
+                    double almi_n = 0.0;
+                    if (almi >= almi_need[0]) { // アルミの数が必要数以上ならば60％を超えないように設定する
+                        almi_n = (60.0 / 15.0);
+                    }
+
+                    double rappu_n = 0.0;
+                    if (rappu >= rappu_need[0]) { // ラップの数が必要数以上ならば60％を超えないように設定する
+                        rappu_n = (60.0 / 15.0);
+                    }
+
+                    double gasbomb_n = 0.0;
+                    if (gasbomb >= gasbomb_need[0]) { // ガスボンベの数が必要数以上ならば60％を超えないように設定する
+                        gasbomb_n = (60.0 / 15.0);
+                    }
+
+                    double gas_n = 0.0;
+                    if (gas >= gas_need[0]) { // ガスコンロの数が必要数以上ならば60％を超えないように設定する
+                        gas_n = (60.0 / 15.0);
+                    }
+
+                    double thissyu_n = 0.0;
+                    if (thissyu >= thissyu_need[0]) { // ティッシュの数が必要数以上ならば60％を超えないように設定する
+                        thissyu_n = (60.0 / 15.0);
+                    }
+
+                    double hukuro_n = 0.0;
+                    if (hukuro >= hukuro_need[0]) { // 袋の数が必要数以上ならば60％を超えないように設定する
+                        hukuro_n = (60.0 / 15.0);
+                    }
+
+                    double spoon_n = 0.0;
+                    if (spoon >= spoon_need[0]) { // スプーンの数が必要数以上ならば60％を超えないように設定する
+                        spoon_n = (60.0 / 15.0);
+                    }
+
+                    double hasi_n = 0.0;
+                    if (hasi >= hasi_need[0]) { // 箸の数が必要数以上ならば60％を超えないように設定する
+                        hasi_n = (60.0 / 15.0);
+                    }
+
+                    double denti_n = 0.0;
+                    if (denti >= denti_need[0]) { // 乾電池の数が必要数以上ならば60％を超えないように設定する
+                        denti_n = (60.0 / 15.0);
+                    }
+
+                    // 便利品
+                    double gunte_sum = gunte;
+                    double gunte_n = 0.0;
+                    if (gunte_sum >= (gunte_need[0][0] * adult_n) + (gunte_need[1][0] * children_n)) { // 軍手の合計が大人小人の必要数以上だったら40％を超えないように設定する
+                        gunte_n = (40.0 / 8.0);
+                    } else if (gunte_sum >= gunte_need[0][0] * adult_n) { // 軍手の合計から大人の必要数を引く
+                        gunte_sum -= gunte_need[0][0] * adult_n;
+                        gunte_n += gunte_need[0][0] * adult_n;
+                        if (gunte_sum >= gunte_need[1][0] * children_n) { // 軍手の合計から小人の必要数を引く
+                            gunte_sum -= gunte_need[1][0] * children_n;
+                            gunte_n += gunte_need[1][0] * children_n;
+                        }
+                        gunte_n = gunte_n * (40.0 / 8.0) / (adult_n + children_n);
+                    }
+
+                    double hue_n = 0.0;
+                    if (hue >= hue_need[0]) { // 笛の合計が必要数以上だったら40％を超えないように設定する
+                        hue_n = (40.0 / 8.0);
+                    }
+
+                    double matti_n = 0.0;
+                    if (matti >= matti_need[0]) { // マッチの合計が必要数以上だったら40％を超えないように設定する
+                        matti_n = (40.0 / 8.0);
+                    }
+
+                    double radio_n = 0.0;
+                    if (radio >= radio_need[0]) { // ラジオの合計が必要数以上だったら40％を超えないように設定する
+                        radio_n = (40.0 / 8.0);
+                    }
+
+                    double kankiri_n = 0.0;
+                    if (kankiri >= kankiri_need[0]) { // 缶切りの合計が必要数以上だったら40％を超えないように設定する
+                        kankiri_n = (40.0 / 8.0);
+                    }
+
+                    double masuku_n = 0.0;
+                    if (masuku >= masuku_need[0]) { // マスクの合計が必要数以上だったら40％を超えないように設定する
+                        masuku_n = (40.0 / 8.0);
+                    }
+
+                    double zyuden_n = 0.0;
+                    if (zyuden >= zyuden_need[0]) { // 充電器の合計が必要数以上だったら40％を超えないように設定する
+                        zyuden_n = (40.0 / 8.0);
+                    }
+
+                    double nebukuro_sum = nebukuro;
+                    double nebukuro_n = 0.0;
+                    if (nebukuro_sum >= (nebukuro_need[0][0] * adult_n) + (nebukuro_need[1][0] * children_n)) { // 寝袋の合計が大人小人の必要数以上だったら40％を超えないように設定する
+                        nebukuro_n = (40.0 / 8.0);
+                    } else if (nebukuro_sum >= nebukuro_need[0][0] * adult_n) { // 寝袋の合計から大人の必要数を引く
+                        nebukuro_sum -= nebukuro_need[0][0] * adult_n;
+                        nebukuro_n += nebukuro_need[0][0] * adult_n;
+                        if (nebukuro_sum >= nebukuro_need[1][0] * children_n) { // 寝袋の合計から小人の必要数を引く
+                            nebukuro_sum -= nebukuro_need[1][0] * children_n;
+                            nebukuro_n += nebukuro_need[1][0] * children_n;
+                        }
+                        nebukuro_n = nebukuro_n * (40.0 / 8.0) / (adult_n + children_n);
+                    }
+
+                double hitsuzyu_sum = otona_n + kodomo_n + raito_n + koppu_n + utuwa_n + taoru_n + almi_n + rappu_n + gasbomb_n + gas_n + thissyu_n + hukuro_n + spoon_n + hasi_n + denti_n;
+                double benri_sum = gunte_n + hue_n + matti_n + radio_n + kankiri_n + masuku_n + zyuden_n + nebukuro_n;
+                hitsuzyu_meter = hitsuzyu_sum;
+                benri_meter = benri_sum;
+
+                } else { // 幼児が1人以上だった場合の計算
+                    // 必需品
+                    double otona_n = 0.0;
+                    if (otona >= otona_need[0] * adult_n) { // 大人下着が必要数以上ならば50％を超えないように設定する
+                        otona_n = (50.0 / 15.0);
+                    } else {
+                        otona_n = otona * (50.0 / 15.0) / adult_n;
+                    }
+
+                    double kodomo_n = 0.0;
+                    if (kodomo >= kodomo_need[0] * children_n) { // 小人下着が必要数以上ならば50％を超えないように設定する
+                        kodomo_n = (50.0 / 15.0);
+                    } else {
+                        kodomo_n = kodomo * (50.0 / 15.0) / children_n;
+                    }
+
+                    double raito_n = 0.0;
+                    if (raito >= raito_need[0]) { // 懐中電灯が必要数以上ならば50％を超えないように設定する
+                        raito_n = (50.0 / 15.0);
+                    }
+
+                    double koppu_sum = koppu;
+                    double koppu_n = 0.0;
+                    if (koppu_sum >= (koppu_need[0][0] * adult_n) + (koppu_need[1][0] * children_n) + (koppu_need[2][0] * baby_n)) { // コップの数が大人小人幼児の必要数以上だったら50％を超えないように設定する
+                        koppu_n = (50.0 / 15.0 );
+                    } else if (koppu_sum >= koppu_need[0][0] * adult_n) { // コップの数が大人必要数以上ならば大人必要数を引く
+                        koppu_sum -= koppu_need[0][0] * adult_n;
+                        koppu_n += koppu_need[0][0] * adult_n;
+                        if (koppu_sum >= koppu_need[1][0] * children_n) { // コップの数が小人必要数以上ならば小人必要数を引く
+                            koppu_sum -= koppu_need[1][0] * children_n;
+                            koppu_n += koppu_need[1][0] * children_n;
+                            if (koppu_sum >= koppu_need[2][0] * baby_n) { // コップの数が幼児必要数以上ならば幼児必要数を引く
+                                koppu_sum -= koppu_need[2][0] * baby_n;
+                                koppu_n += koppu_need[2][0] * baby_n;
+                            }
+                        }
+                        koppu_n = koppu_n * (50.0 / 15.0) / (adult_n + children_n + baby_n);
+                    }
+
+                    double utuwa_sum = utuwa;
+                    double utuwa_n = 0.0;
+                    if (utuwa_sum >= (utuwa_need[0][0] * adult_n) + (utuwa_need[1][0] * children_n) + (utuwa_need[2][0] * baby_n)) { // 器の数が大人小人幼児の必要数以上だったら50％を超えないように設定する
+                        utuwa_n = (50.0 / 15.0);
+                    } else if (utuwa_sum >= utuwa_need[0][0] * adult_n) { // 器の数が大人必要数以上だったら大人必要分を引く
+                        utuwa_sum -= utuwa_need[0][0] * adult_n;
+                        utuwa_n += utuwa_need[0][0] * adult_n;
+                        if (utuwa_sum >= utuwa_need[1][0] * children_n) { // 小人必要数分を引く
+                            utuwa_sum -= utuwa_need[1][0] * children_n;
+                            utuwa_n += utuwa_need[1][0] * children_n;
+                            if (utuwa_sum >= utuwa_need[2][0] * baby_n) { // 幼児必要数分を引く
+                                utuwa_sum -= utuwa_need[2][0] * baby_n;
+                                utuwa_n += utuwa_need[2][0] * baby_n;
+                            }
+                        }
+                        utuwa_n = utuwa_n * (50.0 / 15.0) / (adult_n + children_n + baby_n);
+                    }
+
+                    double taoru_sum = taoru;
+                    double taoru_n = 0.0;
+                    if (taoru_sum >= (taoru_need[0][0] * adult_n) + (taoru_need[1][0] * children_n) + (taoru_need[2][0] * baby_n)) { // タオルの数が大人小人幼児の必要数以上だったら50％を超えないように設定する
+                        taoru_n = (50.0 / 15.0);
+                    } else if (taoru_sum >= taoru_need[0][0] * adult_n) { // タオルの数が大人必要数以上だったら大人必要分を引く
+                        taoru_sum -= taoru_need[0][0] * adult_n;
+                        taoru_n += taoru_need[0][0] * adult_n;
+                        if (taoru_sum >= taoru_need[1][0] * children_n) { // 小人必要数分を引く
+                            taoru_sum -= taoru_need[1][0] * children_n;
+                            taoru_n += taoru_need[1][0] * children_n;
+                            if (taoru_sum >= taoru_need[2][0] * baby_n) { // 幼児必要数分を引く
+                                taoru_sum -= taoru_need[2][0] * baby_n;
+                                taoru_n += taoru_need[2][0] * baby_n;
+                            }
+                        }
+                        taoru_n = taoru_n * (50.0 / 15.0) / (adult_n + children_n + baby_n);
+                    }
+
+                    double almi_n = 0.0;
+                    if (almi >= almi_need[0]) { // アルミの数が必要数以上ならば50％を超えないように設定する
+                        almi_n = (50.0 / 15.0);
+                    }
+
+                    double rappu_n = 0.0;
+                    if (rappu >= rappu_need[0]) { // ラップの数が必要数以上ならば50％を超えないように設定する
+                        rappu_n = (50.0 / 15.0);
+                    }
+
+                    double gasbomb_n = 0.0;
+                    if (gasbomb >= gasbomb_need[0]) { // ガスボンベの数が必要数以上ならば50％を超えないように設定する
+                        gasbomb_n = (50.0 / 15.0);
+                    }
+
+                    double gas_n = 0.0;
+                    if (gas >= gas_need[0]) { // ガスコンロの数が必要数以上ならば50％を超えないように設定する
+                        gas_n = (50.0 / 15.0);
+                    }
+
+                    double thissyu_n = 0.0;
+                    if (thissyu >= thissyu_need[0]) { // ティッシュの数が必要数以上ならば50％を超えないように設定する
+                        thissyu_n = (50.0 / 15.0);
+                    }
+
+                    double hukuro_n = 0.0;
+                    if (hukuro >= hukuro_need[0]) { // 袋の数が必要数以上ならば50％を超えないように設定する
+                        hukuro_n = (50.0 / 15.0);
+                    }
+
+                    double spoon_n = 0.0;
+                    if (spoon >= spoon_need[0]) { // スプーンの数が必要数以上ならば50％を超えないように設定する
+                        spoon_n = (50.0 / 15.0);
+                    }
+
+                    double hasi_n = 0.0;
+                    if (hasi >= hasi_need[0]) { // 箸の数が必要数以上ならば50％を超えないように設定する
+                        hasi_n = (50.0 / 15.0);
+                    }
+
+                    double denti_n = 0.0;
+                    if (denti >= denti_need[0]) { // 乾電池の数が必要数以上ならば50％を超えないように設定する
+                        denti_n = (50.0 / 15.0);
+                    }
+
+                    double bin_n = 0.0;
+                    if ( bin >= bin_need[0] ) { // 哺乳瓶の数が必要数以上ならば10％を超えないように設定する
+                        bin_n = (10.0 / 2.0);
+                    }
+
+                    double omutu_n = 0.0;
+                    if ( omutu >= omutu_need[0] ) { // おむつの数が必要数以上ならば10％を超えないように設定する
+                        omutu_n = (10.0 / 2.0);
+                    }
+
+                    // 便利品
+                    double gunte_sum = gunte;
+                    double gunte_n = 0.0;
+                    if (gunte_sum >= (gunte_need[0][0] * adult_n) + (gunte_need[1][0] * children_n)) { // 軍手の合計が大人小人の必要数以上だったら40％を超えないように設定する
+                        gunte_n = (40.0 / 8.0);
+                    } else if (gunte_sum >= gunte_need[0][0] * adult_n) { // 軍手の合計から大人必要数を引く
+                        gunte_sum -= gunte_need[0][0] * adult_n;
+                        gunte_n += gunte_need[0][0] * adult_n;
+                        if (gunte_sum >= gunte_need[1][0] * children_n) { // 軍手の合計から小人必要数を引く
+                            gunte_sum -= gunte_need[1][0] * children_n;
+                            gunte_n += gunte_need[1][0] * children_n;
+                        }
+                        gunte_n = gunte_n * (40.0 / 8.0) / (adult_n + children_n);
+                    }
+
+                    double hue_n = 0.0;
+                    if (hue >= hue_need[0]) { // 笛の数が必要数以上だったら40％を超えないように設定する
+                        hue_n = (40.0 / 8.0);
+                    }
+
+                    double matti_n = 0.0;
+                    if (matti >= matti_need[0]) { // マッチの数が必要数以上だったら40％を超えないように設定する
+                        matti_n = (40.0 / 8.0);
+                    }
+
+                    double radio_n = 0.0;
+                    if (radio >= radio_need[0]) { // ラジオの数が必要数以上だったら40％を超えないように設定する
+                        radio_n = (40.0 / 8.0);
+                    }
+
+                    double kankiri_n = 0.0;
+                    if (kankiri >= kankiri_need[0]) { // 缶切りの数が必要数以上だったら40％を超えないように設定する
+                        kankiri_n = (40.0 / 8.0);
+                    }
+
+                    double masuku_n = 0.0;
+                    if (masuku >= masuku_need[0]) { // マスクの数が必要数以上だったら40％を超えないように設定する
+                        masuku_n = (40.0 / 8.0);
+                    }
+
+                    double zyuden_n = 0.0;
+                    if (zyuden >= zyuden_need[0]) { // 充電器の数が必要数以上だったら40％を超えないように設定する
+                        zyuden_n = (40.0 / 8.0);
+                    }
+
+                    double nebukuro_sum = nebukuro;
+                    double nebukuro_n = 0.0;
+                    if (nebukuro_sum >= (nebukuro_need[0][0] * adult_n) + (nebukuro_need[1][0] * children_n)) { // 寝袋の合計が大人小人の必要数以上だったら40％を超えないように設定する
+                        nebukuro_n = (40.0 / 8.0);
+                    } else if (nebukuro_sum >= nebukuro_need[0][0] * adult_n) { // 寝袋の合計から大人の必要数を引く
+                        nebukuro_sum -= nebukuro_need[0][0] * adult_n;
+                        nebukuro_n += nebukuro_need[0][0] * adult_n;
+                        if (nebukuro_sum >= nebukuro_need[1][0] * children_n) { // 寝袋の合計から小人の必要数を引く
+                            nebukuro_sum -= nebukuro_need[1][0] * children_n;
+                            nebukuro_n += nebukuro_need[1][0] * children_n;
+                        }
+                        nebukuro_n = nebukuro_n * (40.0 / 8.0) / (adult_n + children_n);
+                    }
+
+                    double hitsuzyu_sum = otona_n + kodomo_n + raito_n + koppu_n + utuwa_n + taoru_n + almi_n + rappu_n + gasbomb_n + gas_n + thissyu_n + hukuro_n + spoon_n + hasi_n + denti_n;
+                    double nyuzi_sum = bin_n + omutu_n;
+                    double benri_sum = gunte_n + hue_n + matti_n + radio_n + kankiri_n + masuku_n + zyuden_n + nebukuro_n;
+                    hitsuzyu_meter = hitsuzyu_sum;
+                    nyuzi_meter = nyuzi_sum;
+                    benri_meter = benri_sum;
+
+                }
+            }
+
+            if (setting_day == 3) { // 設定日数が3日の場合
+                if (baby_n == 0) { // 幼児が0人だった場合の計算
+                    // 必需品
+                    double otona_n = 0.0;
+                    if (otona >= otona_need[1] * adult_n) { // 大人下着が必要数以上ならば60％を超えないように設定する
+                        otona_n = (60.0 / 15.0);
+                    } else {
+                        otona_n = otona * (60.0 / 15.0) / adult_n;
+                    }
+
+                    double kodomo_n = 0.0;
+                    if (kodomo >= kodomo_need[1] * children_n) { // 小人下着が必要数以上ならば60％を超えないように設定する
+                        kodomo_n = (60.0 / 15.0);
+                    } else {
+                        kodomo_n = kodomo * (60.0 / 15.0) / children_n;
+                    }
+
+                    double raito_n = 0.0;
+                    if (raito >= raito_need[1]) { // 懐中電灯が必要数以上ならば60％を超えないように設定する
+                        raito_n = (60.0 / 15.0);
+                    }
+
+                    double koppu_sum = koppu;
+                    double koppu_n = 0.0;
+                    if (koppu_sum >= (koppu_need[0][1] * adult_n) + (koppu_need[1][1] * children_n) + (koppu_need[2][1] * baby_n)) { // コップの合計が大人小人幼児の必要数以上だったら60％を超えないように設定する
+                        koppu_n = (60.0 / 15.0);
+                    } else if (koppu_sum >= koppu_need[0][1] * adult_n) { // コップの合計が大人必要数以上ならば大人必要数を引く
+                        koppu_sum -= koppu_need[0][1] * adult_n;
+                        koppu_n += koppu_need[0][1] * adult_n;
+                        if (koppu_sum >= koppu_need[1][1] * children_n) { // コップの合計が小人必要数以上ならば小人必要数を引く
+                            koppu_sum -= koppu_need[1][1] * children_n;
+                            koppu_n += koppu_need[1][1] * children_n;
+                            if (koppu_sum >= koppu_need[2][1] * baby_n) { // コップの合計が幼児必要数以上ならば幼児必要数を引く
+                                koppu_sum -= koppu_need[2][1] * baby_n;
+                                koppu_n += koppu_need[2][1] * baby_n;
+                            }
+                        }
+                        koppu_n = koppu_n * (60.0 / 15.0) / (adult_n + children_n + baby_n);
+                    }
+
+                    double utuwa_sum = utuwa;
+                    double utuwa_n = 0.0;
+                    if (utuwa_sum >= (utuwa_need[0][1] * adult_n) + (utuwa_need[1][1] * children_n) + (utuwa_need[2][1] * baby_n)) {
+                        utuwa_n = (60.0 / 15.0);
+                    } else if (utuwa_sum >= utuwa_need[0][1] * adult_n) { // 器の数が大人必要数以上だったら大人必要分を引く
+                        utuwa_sum -= utuwa_need[0][1] * adult_n;
+                        utuwa_n += utuwa_need[0][1] * adult_n;
+                        if (utuwa_sum >= utuwa_need[1][1] * children_n) { // 小人必要数分を引く
+                            utuwa_sum -= utuwa_need[1][1] * children_n;
+                            utuwa_n += utuwa_need[1][1] * children_n;
+                            if (utuwa_sum >= utuwa_need[2][1] * baby_n) { // 幼児必要数分を引く
+                                utuwa_sum -= utuwa_need[2][1] * baby_n;
+                                utuwa_n += utuwa_need[2][1] * baby_n;
+                            }
+                        }
+                        utuwa_n = utuwa_n * (60.0 / 15.0) / (adult_n + children_n + baby_n);
+                    }
+
+                    double taoru_sum = taoru;
+                    double taoru_n = 0.0;
+                    if (taoru_sum >= (taoru_need[0][1] * adult_n) + (taoru_need[1][1] * children_n) + (taoru_need[2][1] * baby_n)) {
+                        taoru_n = (60.0 / 15.0);
+                    } else if (taoru_sum >= taoru_need[0][1] * adult_n) { // タオルの数が大人必要数以上だったら大人必要分を引く
+                        taoru_sum -= taoru_need[0][1] * adult_n;
+                        taoru_n += taoru_need[0][1] * adult_n;
+                        if (taoru_sum >= taoru_need[1][1] * children_n) { // 小人必要数分を引く
+                            taoru_sum -= taoru_need[1][1] * children_n;
+                            taoru_n += taoru_need[1][1] * children_n;
+                            if (taoru_sum >= taoru_need[2][1] * baby_n) { // 幼児必要数分を引く
+                                taoru_sum -= taoru_need[2][1] * baby_n;
+                                taoru_n += taoru_need[2][1] * baby_n;
+                            }
+                        }
+                        taoru_n = taoru_n * (60.0 / 15.0) / (adult_n + children_n + baby_n);
+                    }
+
+                    double almi_n = 0.0;
+                    if (almi >= almi_need[1]) { // アルミの数が必要数以上ならば60％を超えないように設定する
+                        almi_n = (60.0 / 15.0);
+                    }
+
+                    double rappu_n = 0.0;
+                    if (rappu >= rappu_need[1]) { // ラップの数が必要数以上ならば60％を超えないように設定する
+                        rappu_n = (60.0 / 15.0);
+                    }
+
+                    double gasbomb_n = 0.0;
+                    if (gasbomb >= gasbomb_need[1]) { // ガスボンベの数が必要数以上ならば60％を超えないように設定する
+                        gasbomb_n = (60.0 / 15.0);
+                    }
+
+                    double gas_n = 0.0;
+                    if (gas >= gas_need[1]) { // ガスコンロの数が必要数以上ならば60％を超えないように設定する
+                        gas_n = (60.0 / 15.0);
+                    }
+
+                    double thissyu_n = 0.0;
+                    if (thissyu >= thissyu_need[1]) { // ティッシュの数が必要数以上ならば60％を超えないように設定する
+                        thissyu_n = (60.0 / 15.0);
+                    }
+
+                    double hukuro_n = 0.0;
+                    if (hukuro >= hukuro_need[1]) { // 袋の数が必要数以上ならば60％を超えないように設定する
+                        hukuro_n = (60.0 / 15.0);
+                    }
+
+                    double spoon_n = 0.0;
+                    if (spoon >= spoon_need[1]) { // スプーンの数が必要数以上ならば60％を超えないように設定する
+                        spoon_n = (60.0 / 15.0);
+                    }
+
+                    double hasi_n = 0.0;
+                    if (hasi >= hasi_need[1]) { // 箸の数が必要数以上ならば60％を超えないように設定する
+                        hasi_n = (60.0 / 15.0);
+                    }
+
+                    double denti_n = 0.0;
+                    if (denti >= denti_need[1]) { // 乾電池の数が必要数以上ならば60％を超えないように設定する
+                        denti_n = (60.0 / 15.0);
+                    }
+
+                    // 便利品
+                    double gunte_sum = gunte;
+                    double gunte_n = 0.0;
+                    if (gunte_sum >= (gunte_need[0][1] * adult_n) + (gunte_need[1][1] * children_n)) { // 軍手の合計が大人小人の必要数以上だったら40％を超えないように設定する
+                        gunte_n = (40.0 / 8.0);
+                    } else if (gunte_sum >= gunte_need[0][1] * adult_n) { // 軍手の合計から大人の必要数を引く
+                        gunte_sum -= gunte_need[0][1] * adult_n;
+                        gunte_n += gunte_need[0][1] * adult_n;
+                        if (gunte_sum >= gunte_need[1][1] * children_n) { // 軍手の合計から小人の必要数を引く
+                            gunte_sum -= gunte_need[1][1] * children_n;
+                            gunte_n += gunte_need[1][1] * children_n;
+                        }
+                        gunte_n = gunte_n * (40.0 / 8.0) / (adult_n + children_n);
+                    }
+
+                    double hue_n = 0.0;
+                    if (hue >= hue_need[1]) { // 笛の合計が必要数以上だったら40％を超えないように設定する
+                        hue_n = (40.0 / 8.0);
+                    }
+
+                    double matti_n = 0.0;
+                    if (matti >= matti_need[1]) { // マッチの合計が必要数以上だったら40％を超えないように設定する
+                        matti_n = (40.0 / 8.0);
+                    }
+
+                    double radio_n = 0.0;
+                    if (radio >= radio_need[1]) { // ラジオの合計が必要数以上だったら40％を超えないように設定する
+                        radio_n = (40.0 / 8.0);
+                    }
+
+                    double kankiri_n = 0.0;
+                    if (kankiri >= kankiri_need[1]) { // 缶切りの合計が必要数以上だったら40％を超えないように設定する
+                        kankiri_n = (40.0 / 8.0);
+                    }
+
+                    double masuku_n = 0.0;
+                    if (masuku >= masuku_need[1]) { // マスクの合計が必要数以上だったら40％を超えないように設定する
+                        masuku_n = (40.0 / 8.0);
+                    }
+
+                    double zyuden_n = 0.0;
+                    if (zyuden >= zyuden_need[1]) { // 充電器の合計が必要数以上だったら40％を超えないように設定する
+                        zyuden_n = (40.0 / 8.0);
+                    }
+
+                    double nebukuro_sum = nebukuro;
+                    double nebukuro_n = 0.0;
+                    if (nebukuro_sum >= (nebukuro_need[0][1] * adult_n) + (nebukuro_need[1][1] * children_n)) { // 寝袋の合計が大人小人の必要数以上だったら40％を超えないように設定する
+                        nebukuro_n = (40.0 / 8.0);
+                    } else if (nebukuro_sum >= nebukuro_need[0][1] * adult_n) { // 寝袋の合計から大人の必要数を引く
+                        nebukuro_sum -= nebukuro_need[0][1] * adult_n;
+                        nebukuro_n += nebukuro_need[0][1] * adult_n;
+                        if (nebukuro_sum >= nebukuro_need[1][1] * children_n) { // 寝袋の合計から小人の必要数を引く
+                            nebukuro_sum -= nebukuro_need[1][1] * children_n;
+                            nebukuro_n += nebukuro_need[1][1] * children_n;
+                        }
+                        nebukuro_n = nebukuro_n * (40.0 / 8.0) / (adult_n + children_n);
+                    }
+
+                    double hitsuzyu_sum = otona_n + kodomo_n + raito_n + koppu_n + utuwa_n + taoru_n + almi_n + rappu_n + gasbomb_n + gas_n + thissyu_n + hukuro_n + spoon_n + hasi_n + denti_n;
+                    double benri_sum = gunte_n + hue_n + matti_n + radio_n + kankiri_n + masuku_n + zyuden_n + nebukuro_n;
+                    hitsuzyu_meter = hitsuzyu_sum;
+                    benri_meter = benri_sum;
+
+                } else { // 幼児が1人以上だった場合の計算
+                    // 必需品
+                    double otona_n = 0.0;
+                    if (otona >= otona_need[1] * adult_n) { // 大人下着が必要数以上ならば50％を超えないように設定する
+                        otona_n = (50.0 / 15.0);
+                    } else {
+                        otona_n = otona * (50.0 / 15.0) / adult_n;
+                    }
+
+                    double kodomo_n = 0.0;
+                    if (kodomo >= kodomo_need[1] * children_n) { // 小人下着が必要数以上ならば50％を超えないように設定する
+                        kodomo_n = (50.0 / 15.0);
+                    } else {
+                        kodomo_n = kodomo * (50.0 / 15.0) / children_n;
+                    }
+
+                    double raito_n = 0.0;
+                    if (raito >= raito_need[1]) { // 懐中電灯が必要数以上ならば50％を超えないように設定する
+                        raito_n = (50.0 / 15.0);
+                    }
+
+                    double koppu_sum = koppu;
+                    double koppu_n = 0.0;
+                    if (koppu_sum >= (koppu_need[0][1] * adult_n) + (koppu_need[1][1] * children_n) + (koppu_need[2][1] * baby_n)) { // コップの数が大人小人幼児の必要数以上だったら50％を超えないように設定する
+                        koppu_n = (50.0 / 15.0 );
+                    } else if (koppu_sum >= koppu_need[0][1] * adult_n) { // コップの数が大人必要数以上ならば大人必要数を引く
+                        koppu_sum -= koppu_need[0][1] * adult_n;
+                        koppu_n += koppu_need[0][1] * adult_n;
+                        if (koppu_sum >= koppu_need[1][1] * children_n) { // コップの数が小人必要数以上ならば小人必要数を引く
+                            koppu_sum -= koppu_need[1][1] * children_n;
+                            koppu_n += koppu_need[1][1] * children_n;
+                            if (koppu_sum >= koppu_need[2][1] * baby_n) { // コップの数が幼児必要数以上ならば幼児必要数を引く
+                                koppu_sum -= koppu_need[2][1] * baby_n;
+                                koppu_n += koppu_need[2][1] * baby_n;
+                            }
+                        }
+                        koppu_n = koppu_n * (50.0 / 15.0) / (adult_n + children_n + baby_n);
+                    }
+
+                    double utuwa_sum = utuwa;
+                    double utuwa_n = 0.0;
+                    if (utuwa_sum >= (utuwa_need[0][1] * adult_n) + (utuwa_need[1][1] * children_n) + (utuwa_need[2][1] * baby_n)) { // 器の数が大人小人幼児の必要数以上だったら50％を超えないように設定する
+                        utuwa_n = (50.0 / 15.0);
+                    } else if (utuwa_sum >= utuwa_need[0][1] * adult_n) { // 器の数が大人必要数以上だったら大人必要分を引く
+                        utuwa_sum -= utuwa_need[0][1] * adult_n;
+                        utuwa_n += utuwa_need[0][1] * adult_n;
+                        if (utuwa_sum >= utuwa_need[1][1] * children_n) { // 小人必要数分を引く
+                            utuwa_sum -= utuwa_need[1][1] * children_n;
+                            utuwa_n += utuwa_need[1][1] * children_n;
+                            if (utuwa_sum >= utuwa_need[2][1] * baby_n) { // 幼児必要数分を引く
+                                utuwa_sum -= utuwa_need[2][1] * baby_n;
+                                utuwa_n += utuwa_need[2][1] * baby_n;
+                            }
+                        }
+                        utuwa_n = utuwa_n * (50.0 / 15.0) / (adult_n + children_n + baby_n);
+                    }
+
+                    double taoru_sum = taoru;
+                    double taoru_n = 0.0;
+                    if (taoru_sum >= (taoru_need[0][1] * adult_n) + (taoru_need[1][1] * children_n) + (taoru_need[2][1] * baby_n)) { // タオルの数が大人小人幼児の必要数以上だったら50％を超えないように設定する
+                        taoru_n = (50.0 / 15.0);
+                    } else if (taoru_sum >= taoru_need[0][1] * adult_n) { // タオルの数が大人必要数以上だったら大人必要分を引く
+                        taoru_sum -= taoru_need[0][1] * adult_n;
+                        taoru_n += taoru_need[0][1] * adult_n;
+                        if (taoru_sum >= taoru_need[1][1] * children_n) { // 小人必要数分を引く
+                            taoru_sum -= taoru_need[1][1] * children_n;
+                            taoru_n += taoru_need[1][1] * children_n;
+                            if (taoru_sum >= taoru_need[2][1] * baby_n) { // 幼児必要数分を引く
+                                taoru_sum -= taoru_need[2][1] * baby_n;
+                                taoru_n += taoru_need[2][1] * baby_n;
+                            }
+                        }
+                        taoru_n = taoru_n * (50.0 / 15.0) / (adult_n + children_n + baby_n);
+                    }
+
+                    double almi_n = 0.0;
+                    if (almi >= almi_need[1]) { // アルミの数が必要数以上ならば50％を超えないように設定する
+                        almi_n = (50.0 / 15.0);
+                    }
+
+                    double rappu_n = 0.0;
+                    if (rappu >= rappu_need[1]) { // ラップの数が必要数以上ならば50％を超えないように設定する
+                        rappu_n = (50.0 / 15.0);
+                    }
+
+                    double gasbomb_n = 0.0;
+                    if (gasbomb >= gasbomb_need[1]) { // ガスボンベの数が必要数以上ならば50％を超えないように設定する
+                        gasbomb_n = (50.0 / 15.0);
+                    }
+
+                    double gas_n = 0.0;
+                    if (gas >= gas_need[1]) { // ガスコンロの数が必要数以上ならば50％を超えないように設定する
+                        gas_n = (50.0 / 15.0);
+                    }
+
+                    double thissyu_n = 0.0;
+                    if (thissyu >= thissyu_need[1]) { // ティッシュの数が必要数以上ならば50％を超えないように設定する
+                        thissyu_n = (50.0 / 15.0);
+                    }
+
+                    double hukuro_n = 0.0;
+                    if (hukuro >= hukuro_need[1]) { // 袋の数が必要数以上ならば50％を超えないように設定する
+                        hukuro_n = (50.0 / 15.0);
+                    }
+
+                    double spoon_n = 0.0;
+                    if (spoon >= spoon_need[1]) { // スプーンの数が必要数以上ならば50％を超えないように設定する
+                        spoon_n = (50.0 / 15.0);
+                    }
+
+                    double hasi_n = 0.0;
+                    if (hasi >= hasi_need[1]) { // 箸の数が必要数以上ならば50％を超えないように設定する
+                        hasi_n = (50.0 / 15.0);
+                    }
+
+                    double denti_n = 0.0;
+                    if (denti >= denti_need[1]) { // 乾電池の数が必要数以上ならば50％を超えないように設定する
+                        denti_n = (50.0 / 15.0);
+                    }
+
+                    double bin_n = 0.0;
+                    if ( bin >= bin_need[1] ) { // 哺乳瓶の数が必要数以上ならば10％を超えないように設定する
+                        bin_n = (10.0 / 2.0);
+                    }
+
+                    double omutu_n = 0.0;
+                    if ( omutu >= omutu_need[1] ) { // おむつの数が必要数以上ならば10％を超えないように設定する
+                        omutu_n = (10.0 / 2.0);
+                    }
+
+                    // 便利品
+                    double gunte_sum = gunte;
+                    double gunte_n = 0.0;
+                    if (gunte_sum >= (gunte_need[0][1] * adult_n) + (gunte_need[1][1] * children_n)) { // 軍手の合計が大人小人の必要数以上だったら40％を超えないように設定する
+                        gunte_n = (40.0 / 8.0);
+                    } else if (gunte_sum >= gunte_need[0][1] * adult_n) { // 軍手の合計から大人必要数を引く
+                        gunte_sum -= gunte_need[0][1] * adult_n;
+                        gunte_n += gunte_need[0][1] * adult_n;
+                        if (gunte_sum >= gunte_need[1][1] * children_n) { // 軍手の合計から小人必要数を引く
+                            gunte_sum -= gunte_need[1][1] * children_n;
+                            gunte_n += gunte_need[1][1] * children_n;
+                        }
+                        gunte_n = gunte_n * (40.0 / 8.0) / (adult_n + children_n);
+                    }
+
+                    double hue_n = 0.0;
+                    if (hue >= hue_need[1]) { // 笛の数が必要数以上だったら40％を超えないように設定する
+                        hue_n = (40.0 / 8.0);
+                    }
+
+                    double matti_n = 0.0;
+                    if (matti >= matti_need[1]) { // マッチの数が必要数以上だったら40％を超えないように設定する
+                        matti_n = (40.0 / 8.0);
+                    }
+
+                    double radio_n = 0.0;
+                    if (radio >= radio_need[1]) { // ラジオの数が必要数以上だったら40％を超えないように設定する
+                        radio_n = (40.0 / 8.0);
+                    }
+
+                    double kankiri_n = 0.0;
+                    if (kankiri >= kankiri_need[1]) { // 缶切りの数が必要数以上だったら40％を超えないように設定する
+                        kankiri_n = (40.0 / 8.0);
+                    }
+
+                    double masuku_n = 0.0;
+                    if (masuku >= masuku_need[1]) { // マスクの数が必要数以上だったら40％を超えないように設定する
+                        masuku_n = (40.0 / 8.0);
+                    }
+
+                    double zyuden_n = 0.0;
+                    if (zyuden >= zyuden_need[1]) { // 充電器の数が必要数以上だったら40％を超えないように設定する
+                        zyuden_n = (40.0 / 8.0);
+                    }
+
+                    double nebukuro_sum = nebukuro;
+                    double nebukuro_n = 0.0;
+                    if (nebukuro_sum >= (nebukuro_need[0][1] * adult_n) + (nebukuro_need[1][1] * children_n)) { // 寝袋の合計が大人小人の必要数以上だったら40％を超えないように設定する
+                        nebukuro_n = (40.0 / 8.0);
+                    } else if (nebukuro_sum >= nebukuro_need[0][1] * adult_n) { // 寝袋の合計から大人の必要数を引く
+                        nebukuro_sum -= nebukuro_need[0][1] * adult_n;
+                        nebukuro_n += nebukuro_need[0][1] * adult_n;
+                        if (nebukuro_sum >= nebukuro_need[1][1] * children_n) { // 寝袋の合計から小人の必要数を引く
+                            nebukuro_sum -= nebukuro_need[1][1] * children_n;
+                            nebukuro_n += nebukuro_need[1][1] * children_n;
+                        }
+                        nebukuro_n = nebukuro_n * (40.0 / 8.0) / (adult_n + children_n);
+                    }
+
+                    double hitsuzyu_sum = otona_n + kodomo_n + raito_n + koppu_n + utuwa_n + taoru_n + almi_n + rappu_n + gasbomb_n + gas_n + thissyu_n + hukuro_n + spoon_n + hasi_n + denti_n;
+                    double nyuzi_sum = bin_n + omutu_n;
+                    double benri_sum = gunte_n + hue_n + matti_n + radio_n + kankiri_n + masuku_n + zyuden_n + nebukuro_n;
+                    hitsuzyu_meter = hitsuzyu_sum;
+                    nyuzi_meter = nyuzi_sum;
+                    benri_meter = benri_sum;
+
+                }
+            }
+
+            if (setting_day == 7) { // 設定日数が7日の場合
+                if (baby_n == 0) { // 幼児が0人だった場合の計算
+                    // 必需品
+                    double otona_n = 0.0;
+                    if (otona >= otona_need[2] * adult_n) { // 大人下着が必要数以上ならば60％を超えないように設定する
+                        otona_n = (60.0 / 15.0);
+                    } else {
+                        otona_n = otona * (60.0 / 15.0) / adult_n;
+                    }
+
+                    double kodomo_n = 0.0;
+                    if (kodomo >= kodomo_need[2] * children_n) { // 小人下着が必要数以上ならば60％を超えないように設定する
+                        kodomo_n = (60.0 / 15.0);
+                    } else {
+                        kodomo_n = kodomo * (60.0 / 15.0) / children_n;
+                    }
+
+                    double raito_n = 0.0;
+                    if (raito >= raito_need[2]) { // 懐中電灯が必要数以上ならば60％を超えないように設定する
+                        raito_n = (60.0 / 15.0);
+                    }
+
+                    double koppu_sum = koppu;
+                    double koppu_n = 0.0;
+                    if (koppu_sum >= (koppu_need[0][2] * adult_n) + (koppu_need[1][2] * children_n) + (koppu_need[2][2] * baby_n)) { // コップの合計が大人小人幼児の必要数以上だったら60％を超えないように設定する
+                        koppu_n = (60.0 / 15.0);
+                    } else if (koppu_sum >= koppu_need[0][2] * adult_n) { // コップの合計が大人必要数以上ならば大人必要数を引く
+                        koppu_sum -= koppu_need[0][2] * adult_n;
+                        koppu_n += koppu_need[0][2] * adult_n;
+                        if (koppu_sum >= koppu_need[1][2] * children_n) { // コップの合計が小人必要数以上ならば小人必要数を引く
+                            koppu_sum -= koppu_need[1][2] * children_n;
+                            koppu_n += koppu_need[1][2] * children_n;
+                            if (koppu_sum >= koppu_need[2][2] * baby_n) { // コップの合計が幼児必要数以上ならば幼児必要数を引く
+                                koppu_sum -= koppu_need[2][2] * baby_n;
+                                koppu_n += koppu_need[2][2] * baby_n;
+                            }
+                        }
+                        koppu_n = koppu_n * (60.0 / 15.0) / (adult_n + children_n + baby_n);
+                    }
+
+                    double utuwa_sum = utuwa;
+                    double utuwa_n = 0.0;
+                    if (utuwa_sum >= (utuwa_need[0][2] * adult_n) + (utuwa_need[1][2] * children_n) + (utuwa_need[2][2] * baby_n)) {
+                        utuwa_n = (60.0 / 15.0);
+                    } else if (utuwa_sum >= utuwa_need[0][2] * adult_n) { // 器の数が大人必要数以上だったら大人必要分を引く
+                        utuwa_sum -= utuwa_need[0][2] * adult_n;
+                        utuwa_n += utuwa_need[0][2] * adult_n;
+                        if (utuwa_sum >= utuwa_need[1][2] * children_n) { // 小人必要数分を引く
+                            utuwa_sum -= utuwa_need[1][2] * children_n;
+                            utuwa_n += utuwa_need[1][2] * children_n;
+                            if (utuwa_sum >= utuwa_need[2][2] * baby_n) { // 幼児必要数分を引く
+                                utuwa_sum -= utuwa_need[2][2] * baby_n;
+                                utuwa_n += utuwa_need[2][2] * baby_n;
+                            }
+                        }
+                        utuwa_n = utuwa_n * (60.0 / 15.0) / (adult_n + children_n + baby_n);
+                    }
+
+                    double taoru_sum = taoru;
+                    double taoru_n = 0.0;
+                    if (taoru_sum >= (taoru_need[0][2] * adult_n) + (taoru_need[1][2] * children_n) + (taoru_need[2][2] * baby_n)) {
+                        taoru_n = (60.0 / 15.0);
+                    } else if (taoru_sum >= taoru_need[0][2] * adult_n) { // タオルの数が大人必要数以上だったら大人必要分を引く
+                        taoru_sum -= taoru_need[0][2] * adult_n;
+                        taoru_n += taoru_need[0][2] * adult_n;
+                        if (taoru_sum >= taoru_need[1][2] * children_n) { // 小人必要数分を引く
+                            taoru_sum -= taoru_need[1][2] * children_n;
+                            taoru_n += taoru_need[1][2] * children_n;
+                            if (taoru_sum >= taoru_need[2][2] * baby_n) { // 幼児必要数分を引く
+                                taoru_sum -= taoru_need[2][2] * baby_n;
+                                taoru_n += taoru_need[2][2] * baby_n;
+                            }
+                        }
+                        taoru_n = taoru_n * (60.0 / 15.0) / (adult_n + children_n + baby_n);
+                    }
+
+                    double almi_n = 0.0;
+                    if (almi >= almi_need[2]) { // アルミの数が必要数以上ならば60％を超えないように設定する
+                        almi_n = (60.0 / 15.0);
+                    }
+
+                    double rappu_n = 0.0;
+                    if (rappu >= rappu_need[2]) { // ラップの数が必要数以上ならば60％を超えないように設定する
+                        rappu_n = (60.0 / 15.0);
+                    }
+
+                    double gasbomb_n = 0.0;
+                    if (gasbomb >= gasbomb_need[2]) { // ガスボンベの数が必要数以上ならば60％を超えないように設定する
+                        gasbomb_n = (60.0 / 15.0);
+                    }
+
+                    double gas_n = 0.0;
+                    if (gas >= gas_need[2]) { // ガスコンロの数が必要数以上ならば60％を超えないように設定する
+                        gas_n = (60.0 / 15.0);
+                    }
+
+                    double thissyu_n = 0.0;
+                    if (thissyu >= thissyu_need[2]) { // ティッシュの数が必要数以上ならば60％を超えないように設定する
+                        thissyu_n = (60.0 / 15.0);
+                    }
+
+                    double hukuro_n = 0.0;
+                    if (hukuro >= hukuro_need[2]) { // 袋の数が必要数以上ならば60％を超えないように設定する
+                        hukuro_n = (60.0 / 15.0);
+                    }
+
+                    double spoon_n = 0.0;
+                    if (spoon >= spoon_need[2]) { // スプーンの数が必要数以上ならば60％を超えないように設定する
+                        spoon_n = (60.0 / 15.0);
+                    }
+
+                    double hasi_n = 0.0;
+                    if (hasi >= hasi_need[2]) { // 箸の数が必要数以上ならば60％を超えないように設定する
+                        hasi_n = (60.0 / 15.0);
+                    }
+
+                    double denti_n = 0.0;
+                    if (denti >= denti_need[2]) { // 乾電池の数が必要数以上ならば60％を超えないように設定する
+                        denti_n = (60.0 / 15.0);
+                    }
+
+                    // 便利品
+                    double gunte_sum = gunte;
+                    double gunte_n = 0.0;
+                    if (gunte_sum >= (gunte_need[0][2] * adult_n) + (gunte_need[1][2] * children_n)) { // 軍手の合計が大人小人の必要数以上だったら40％を超えないように設定する
+                        gunte_n = (40.0 / 8.0);
+                    } else if (gunte_sum >= gunte_need[0][2] * adult_n) { // 軍手の合計から大人の必要数を引く
+                        gunte_sum -= gunte_need[0][2] * adult_n;
+                        gunte_n += gunte_need[0][2] * adult_n;
+                        if (gunte_sum >= gunte_need[1][2] * children_n) { // 軍手の合計から小人の必要数を引く
+                            gunte_sum -= gunte_need[1][2] * children_n;
+                            gunte_n += gunte_need[1][2] * children_n;
+                        }
+                        gunte_n = gunte_n * (40.0 / 8.0) / (adult_n + children_n);
+                    }
+
+                    double hue_n = 0.0;
+                    if (hue >= hue_need[2]) { // 笛の合計が必要数以上だったら40％を超えないように設定する
+                        hue_n = (40.0 / 8.0);
+                    }
+
+                    double matti_n = 0.0;
+                    if (matti >= matti_need[2]) { // マッチの合計が必要数以上だったら40％を超えないように設定する
+                        matti_n = (40.0 / 8.0);
+                    }
+
+                    double radio_n = 0.0;
+                    if (radio >= radio_need[2]) { // ラジオの合計が必要数以上だったら40％を超えないように設定する
+                        radio_n = (40.0 / 8.0);
+                    }
+
+                    double kankiri_n = 0.0;
+                    if (kankiri >= kankiri_need[2]) { // 缶切りの合計が必要数以上だったら40％を超えないように設定する
+                        kankiri_n = (40.0 / 8.0);
+                    }
+
+                    double masuku_n = 0.0;
+                    if (masuku >= masuku_need[2]) { // マスクの合計が必要数以上だったら40％を超えないように設定する
+                        masuku_n = (40.0 / 8.0);
+                    }
+
+                    double zyuden_n = 0.0;
+                    if (zyuden >= zyuden_need[2]) { // 充電器の合計が必要数以上だったら40％を超えないように設定する
+                        zyuden_n = (40.0 / 8.0);
+                    }
+
+                    double nebukuro_sum = nebukuro;
+                    double nebukuro_n = 0.0;
+                    if (nebukuro_sum >= (nebukuro_need[0][2] * adult_n) + (nebukuro_need[1][2] * children_n)) { // 寝袋の合計が大人小人の必要数以上だったら40％を超えないように設定する
+                        nebukuro_n = (40.0 / 8.0);
+                    } else if (nebukuro_sum >= nebukuro_need[0][2] * adult_n) { // 寝袋の合計から大人の必要数を引く
+                        nebukuro_sum -= nebukuro_need[0][2] * adult_n;
+                        nebukuro_n += nebukuro_need[0][2] * adult_n;
+                        if (nebukuro_sum >= nebukuro_need[1][2] * children_n) { // 寝袋の合計から小人の必要数を引く
+                            nebukuro_sum -= nebukuro_need[1][2] * children_n;
+                            nebukuro_n += nebukuro_need[1][2] * children_n;
+                        }
+                        nebukuro_n = nebukuro_n * (40.0 / 8.0) / (adult_n + children_n);
+                    }
+
+                    double hitsuzyu_sum = otona_n + kodomo_n + raito_n + koppu_n + utuwa_n + taoru_n + almi_n + rappu_n + gasbomb_n + gas_n + thissyu_n + hukuro_n + spoon_n + hasi_n + denti_n;
+                    double benri_sum = gunte_n + hue_n + matti_n + radio_n + kankiri_n + masuku_n + zyuden_n + nebukuro_n;
+                    hitsuzyu_meter = hitsuzyu_sum;
+                    benri_meter = benri_sum;
+
+                } else { // 幼児が1人以上だった場合の計算
+                    // 必需品
+                    double otona_n = 0.0;
+                    if (otona >= otona_need[2] * adult_n) { // 大人下着が必要数以上ならば50％を超えないように設定する
+                        otona_n = (50.0 / 15.0);
+                    } else {
+                        otona_n = otona * (50.0 / 15.0) / adult_n;
+                    }
+
+                    double kodomo_n = 0.0;
+                    if (kodomo >= kodomo_need[2] * children_n) { // 小人下着が必要数以上ならば50％を超えないように設定する
+                        kodomo_n = (50.0 / 15.0);
+                    } else {
+                        kodomo_n = kodomo * (50.0 / 15.0) / children_n;
+                    }
+
+                    double raito_n = 0.0;
+                    if (raito >= raito_need[2]) { // 懐中電灯が必要数以上ならば50％を超えないように設定する
+                        raito_n = (50.0 / 15.0);
+                    }
+
+                    double koppu_sum = koppu;
+                    double koppu_n = 0.0;
+                    if (koppu_sum >= (koppu_need[0][2] * adult_n) + (koppu_need[1][2] * children_n) + (koppu_need[2][2] * baby_n)) { // コップの数が大人小人幼児の必要数以上だったら50％を超えないように設定する
+                        koppu_n = (50.0 / 15.0 );
+                    } else if (koppu_sum >= koppu_need[0][2] * adult_n) { // コップの数が大人必要数以上ならば大人必要数を引く
+                        koppu_sum -= koppu_need[0][2] * adult_n;
+                        koppu_n += koppu_need[0][2] * adult_n;
+                        if (koppu_sum >= koppu_need[1][2] * children_n) { // コップの数が小人必要数以上ならば小人必要数を引く
+                            koppu_sum -= koppu_need[1][2] * children_n;
+                            koppu_n += koppu_need[1][2] * children_n;
+                            if (koppu_sum >= koppu_need[2][2] * baby_n) { // コップの数が幼児必要数以上ならば幼児必要数を引く
+                                koppu_sum -= koppu_need[2][2] * baby_n;
+                                koppu_n += koppu_need[2][2] * baby_n;
+                            }
+                        }
+                        koppu_n = koppu_n * (50.0 / 15.0) / (adult_n + children_n + baby_n);
+                    }
+
+                    double utuwa_sum = utuwa;
+                    double utuwa_n = 0.0;
+                    if (utuwa_sum >= (utuwa_need[0][2] * adult_n) + (utuwa_need[1][2] * children_n) + (utuwa_need[2][2] * baby_n)) { // 器の数が大人小人幼児の必要数以上だったら50％を超えないように設定する
+                        utuwa_n = (50.0 / 15.0);
+                    } else if (utuwa_sum >= utuwa_need[0][2] * adult_n) { // 器の数が大人必要数以上だったら大人必要分を引く
+                        utuwa_sum -= utuwa_need[0][2] * adult_n;
+                        utuwa_n += utuwa_need[0][2] * adult_n;
+                        if (utuwa_sum >= utuwa_need[1][2] * children_n) { // 小人必要数分を引く
+                            utuwa_sum -= utuwa_need[1][2] * children_n;
+                            utuwa_n += utuwa_need[1][2] * children_n;
+                            if (utuwa_sum >= utuwa_need[2][2] * baby_n) { // 幼児必要数分を引く
+                                utuwa_sum -= utuwa_need[2][2] * baby_n;
+                                utuwa_n += utuwa_need[2][2] * baby_n;
+                            }
+                        }
+                        utuwa_n = utuwa_n * (50.0 / 15.0) / (adult_n + children_n + baby_n);
+                    }
+
+                    double taoru_sum = taoru;
+                    double taoru_n = 0.0;
+                    if (taoru_sum >= (taoru_need[0][2] * adult_n) + (taoru_need[1][2] * children_n) + (taoru_need[2][2] * baby_n)) { // タオルの数が大人小人幼児の必要数以上だったら50％を超えないように設定する
+                        taoru_n = (50.0 / 15.0);
+                    } else if (taoru_sum >= taoru_need[0][2] * adult_n) { // タオルの数が大人必要数以上だったら大人必要分を引く
+                        taoru_sum -= taoru_need[0][2] * adult_n;
+                        taoru_n += taoru_need[0][2] * adult_n;
+                        if (taoru_sum >= taoru_need[1][2] * children_n) { // 小人必要数分を引く
+                            taoru_sum -= taoru_need[1][2] * children_n;
+                            taoru_n += taoru_need[1][2] * children_n;
+                            if (taoru_sum >= taoru_need[2][2] * baby_n) { // 幼児必要数分を引く
+                                taoru_sum -= taoru_need[2][2] * baby_n;
+                                taoru_n += taoru_need[2][2] * baby_n;
+                            }
+                        }
+                        taoru_n = taoru_n * (50.0 / 15.0) / (adult_n + children_n + baby_n);
+                    }
+
+                    double almi_n = 0.0;
+                    if (almi >= almi_need[2]) { // アルミの数が必要数以上ならば50％を超えないように設定する
+                        almi_n = (50.0 / 15.0);
+                    }
+
+                    double rappu_n = 0.0;
+                    if (rappu >= rappu_need[2]) { // ラップの数が必要数以上ならば50％を超えないように設定する
+                        rappu_n = (50.0 / 15.0);
+                    }
+
+                    double gasbomb_n = 0.0;
+                    if (gasbomb >= gasbomb_need[2]) { // ガスボンベの数が必要数以上ならば50％を超えないように設定する
+                        gasbomb_n = (50.0 / 15.0);
+                    }
+
+                    double gas_n = 0.0;
+                    if (gas >= gas_need[2]) { // ガスコンロの数が必要数以上ならば50％を超えないように設定する
+                        gas_n = (50.0 / 15.0);
+                    }
+
+                    double thissyu_n = 0.0;
+                    if (thissyu >= thissyu_need[2]) { // ティッシュの数が必要数以上ならば50％を超えないように設定する
+                        thissyu_n = (50.0 / 15.0);
+                    }
+
+                    double hukuro_n = 0.0;
+                    if (hukuro >= hukuro_need[2]) { // 袋の数が必要数以上ならば50％を超えないように設定する
+                        hukuro_n = (50.0 / 15.0);
+                    }
+
+                    double spoon_n = 0.0;
+                    if (spoon >= spoon_need[2]) { // スプーンの数が必要数以上ならば50％を超えないように設定する
+                        spoon_n = (50.0 / 15.0);
+                    }
+
+                    double hasi_n = 0.0;
+                    if (hasi >= hasi_need[2]) { // 箸の数が必要数以上ならば50％を超えないように設定する
+                        hasi_n = (50.0 / 15.0);
+                    }
+
+                    double denti_n = 0.0;
+                    if (denti >= denti_need[2]) { // 乾電池の数が必要数以上ならば50％を超えないように設定する
+                        denti_n = (50.0 / 15.0);
+                    }
+
+                    double bin_n = 0.0;
+                    if ( bin >= bin_need[2] ) { // 哺乳瓶の数が必要数以上ならば10％を超えないように設定する
+                        bin_n = (10.0 / 2.0);
+                    }
+
+                    double omutu_n = 0.0;
+                    if ( omutu >= omutu_need[2] ) { // おむつの数が必要数以上ならば10％を超えないように設定する
+                        omutu_n = (10.0 / 2.0);
+                    }
+
+                    // 便利品
+                    double gunte_sum = gunte;
+                    double gunte_n = 0.0;
+                    if (gunte_sum >= (gunte_need[0][2] * adult_n) + (gunte_need[1][2] * children_n)) { // 軍手の合計が大人小人の必要数以上だったら40％を超えないように設定する
+                        gunte_n = (40.0 / 8.0);
+                    } else if (gunte_sum >= gunte_need[0][2] * adult_n) { // 軍手の合計から大人必要数を引く
+                        gunte_sum -= gunte_need[0][2] * adult_n;
+                        gunte_n += gunte_need[0][2] * adult_n;
+                        if (gunte_sum >= gunte_need[1][2] * children_n) { // 軍手の合計から小人必要数を引く
+                            gunte_sum -= gunte_need[1][2] * children_n;
+                            gunte_n += gunte_need[1][2] * children_n;
+                        }
+                        gunte_n = gunte_n * (40.0 / 8.0) / (adult_n + children_n);
+                    }
+
+                    double hue_n = 0.0;
+                    if (hue >= hue_need[2]) { // 笛の数が必要数以上だったら40％を超えないように設定する
+                        hue_n = (40.0 / 8.0);
+                    }
+
+                    double matti_n = 0.0;
+                    if (matti >= matti_need[2]) { // マッチの数が必要数以上だったら40％を超えないように設定する
+                        matti_n = (40.0 / 8.0);
+                    }
+
+                    double radio_n = 0.0;
+                    if (radio >= radio_need[2]) { // ラジオの数が必要数以上だったら40％を超えないように設定する
+                        radio_n = (40.0 / 8.0);
+                    }
+
+                    double kankiri_n = 0.0;
+                    if (kankiri >= kankiri_need[2]) { // 缶切りの数が必要数以上だったら40％を超えないように設定する
+                        kankiri_n = (40.0 / 8.0);
+                    }
+
+                    double masuku_n = 0.0;
+                    if (masuku >= masuku_need[2]) { // マスクの数が必要数以上だったら40％を超えないように設定する
+                        masuku_n = (40.0 / 8.0);
+                    }
+
+                    double zyuden_n = 0.0;
+                    if (zyuden >= zyuden_need[2]) { // 充電器の数が必要数以上だったら40％を超えないように設定する
+                        zyuden_n = (40.0 / 8.0);
+                    }
+
+                    double nebukuro_sum = nebukuro;
+                    double nebukuro_n = 0.0;
+                    if (nebukuro_sum >= (nebukuro_need[0][2] * adult_n) + (nebukuro_need[1][2] * children_n)) { // 寝袋の合計が大人小人の必要数以上だったら40％を超えないように設定する
+                        nebukuro_n = (40.0 / 8.0);
+                    } else if (nebukuro_sum >= nebukuro_need[0][2] * adult_n) { // 寝袋の合計から大人の必要数を引く
+                        nebukuro_sum -= nebukuro_need[0][2] * adult_n;
+                        nebukuro_n += nebukuro_need[0][2] * adult_n;
+                        if (nebukuro_sum >= nebukuro_need[1][2] * children_n) { // 寝袋の合計から小人の必要数を引く
+                            nebukuro_sum -= nebukuro_need[1][2] * children_n;
+                            nebukuro_n += nebukuro_need[1][2] * children_n;
+                        }
+                        nebukuro_n = nebukuro_n * (40.0 / 8.0) / (adult_n + children_n);
+                    }
+
+                    double hitsuzyu_sum = otona_n + kodomo_n + raito_n + koppu_n + utuwa_n + taoru_n + almi_n + rappu_n + gasbomb_n + gas_n + thissyu_n + hukuro_n + spoon_n + hasi_n + denti_n;
+                    double nyuzi_sum = bin_n + omutu_n;
+                    double benri_sum = gunte_n + hue_n + matti_n + radio_n + kankiri_n + masuku_n + zyuden_n + nebukuro_n;
+                    hitsuzyu_meter = hitsuzyu_sum;
+                    nyuzi_meter = nyuzi_sum;
+                    benri_meter = benri_sum;
+
+                }
             }
         }
 
-        if ( 0.0 <= (hitsuzyu_meter + benri_meter + nyuzi_meter) && (hitsuzyu_meter + benri_meter + nyuzi_meter) < 10.0 ) {
+        if ( 0.0 <= (hitsuzyu_meter + benri_meter + nyuzi_meter) && (hitsuzyu_meter + benri_meter) < 10.0 ) {
             ImageView bichikugraph = (ImageView)findViewById(R.id.bichikuview);
             bichikugraph.setImageResource(R.drawable.rightgraph0);
         } else if ( (hitsuzyu_meter + benri_meter + nyuzi_meter) < 20.0 ) {
@@ -413,11 +1517,11 @@ public class MainActivity extends Activity {
 
         // 非常食のパーセント表示
         TextView hijopercent = (TextView)findViewById(R.id.hijopercent);
-        hijopercent.setText( "非常食:" + String.valueOf((int)food_meter + (int)mizu_meter) + "%" );
+        hijopercent.setText( "非常食:" + String.valueOf((int)food_meter + (int)babyfood_meter + (int)mizu_meter) + "%" );
 
         // 備蓄品のパーセント表示
-        //TextView bichikupercent = (TextView)findViewById(R.id.bichikupercent);
-        //bichikupercent.setText( "備蓄品:" + String.valueOf((int)hitsuzyu_meter + (int)benri_meter + (int)nyuzi_meter) + "%" );
+        TextView bichikupercent = (TextView)findViewById(R.id.bichikupercent);
+        bichikupercent.setText( "備蓄品:" + String.valueOf((int)hitsuzyu_meter + (int)nyuzi_meter + (int)benri_meter) + "%" );
 
 
         // 非常食が60％以下の場合のアラート警告
