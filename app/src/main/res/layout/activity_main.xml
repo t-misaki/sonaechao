@@ -231,7 +231,8 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:background="#ff9aff98" />
+        android:background="#ff9aff98"
+        android:alpha="0" />
 
     <ImageButton
         android:layout_width="80dp"
@@ -295,6 +296,17 @@
         android:text="要チェック"
         android:id="@+id/textView"
         android:layout_above="@+id/scrollView2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <fragment
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:name="jp.co.nichiwa_system.misakitatsuya.hello_world.ad"
+        android:id="@+id/fragment"
+        class="jp.co.nichiwa_system.misakitatsuya.hello_world.ad"
+        tools:layout="@layout/fragment_ad"
+        android:layout_below="@+id/HomeButton"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 

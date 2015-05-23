@@ -5,7 +5,7 @@ android {
     buildToolsVersion "21.1.2"
 
     defaultConfig {
-        applicationId "com.example.misakitatsuya.hello_world"
+        applicationId "jp.co.nichiwa_system.misakitatsuya.hello_world"
         minSdkVersion 15
         targetSdkVersion 21
         versionCode 1
