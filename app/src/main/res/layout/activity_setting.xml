@@ -136,7 +136,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="※2歳以上"
+        android:text="※2歳未満"
         android:id="@+id/textView20"
         android:layout_below="@+id/textView6"
         android:layout_alignLeft="@+id/textView6"
